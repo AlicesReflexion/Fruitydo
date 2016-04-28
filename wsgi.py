@@ -1,5 +1,16 @@
-#!/usr/bin/env python
+#!/usr/bin/python
 import os
+
+virtenv = os.environ['OPENSHIFT_PYTHON_DIR'] + '/virtenv/venv/'
+virtualenv = os.path.join(virtenv, 'bin/activate_this.py')
+try:
+    execfile(virtualenv, dict(__file__=virtualenv))
+except IOError:
+    pass
+#
+# IMPORTANT: Put any additional includes below this line.  If placed above this
+# line, it's possible required libraries won't be in your searchable path
+#
 
 def application(environ, start_response):
 
@@ -154,7 +165,7 @@ hgroup {
 }
 footer {
     margin: 50px 0 25px;
-    font-size: 11px;
+    font-size: 11px
 }
 h1, h2, h3 {
   color: #000;
@@ -270,7 +281,6 @@ $ git push</pre>
                     <li><a href="http://git-scm.com/documentation">Git documentation</a></li>
                   </ul>
 
-
           </section>
         </div>
 
@@ -280,13 +290,12 @@ $ git push</pre>
 </section>
 </body>
 </html>'''
-    response_body = response_body.encode('utf-8')
 
     status = '200 OK'
     response_headers = [('Content-Type', ctype), ('Content-Length', str(len(response_body)))]
     #
     start_response(status, response_headers)
-    return [response_body ]
+    return [response_body]
 
 #
 # Below for testing only
