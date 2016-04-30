@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="generator" content=
-  "HTML Tidy for HTML5 for Linux version 5.0.0">
-  <title>ayylmao</title>
+  <head>
+    <title>{% block title %}{% endblock %} | Newtodo</title>
 </head>
 <body>
-	{% block title %}{% endblock %}
+  <ul class="navbar">
+    <li><a href="{% url 'home' %}">Home</a></li>
+    <li><a href="{% url 'about' %}">About</a></li>
+    <li><a href="{% url 'help' %}">Help</a></li>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'profile' %}">Profile</a></li>
+      <li>Logout</li>
+      {% else %}
+      <li>Log In</li>
+  {% endif %}
+</ul>
 	{% block content %}{% endblock %}
 </body>
 </html>

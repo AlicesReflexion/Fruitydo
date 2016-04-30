@@ -18,6 +18,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', 'project.views.home', name='home'),
+    url(r'^about', 'project.views.about', name='about'),
+    url(r'^help', 'project.views.help', name='help'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('registration.backends.simple.urls'))
+    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('profilepage.urls')),
 ]
