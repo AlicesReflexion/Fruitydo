@@ -1,11 +1,12 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def home(request):
-	return HttpResponse('Hello world from django 1.8 on Open Shift')
+	return render(request, 'home.html')
 
 def about(request):
-	return HttpResponse('totes an about page')
+	return render(request, 'about.html')
 
-def help(request):
-	return HttpResponse('totes a help page')
+def help(request):	
+	return render(request, 'help.html')
