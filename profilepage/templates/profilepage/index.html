@@ -5,9 +5,30 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h1>Welcome back, {{ user.username }}</h1>
+<form action="{% url 'profilepage:create' 'task_title' %}" method="post">
+	{% csrf_token %}
+	<input type="text" name="task_title">
+	<input type="submit" value="+" class="newtaskbutton">
+</form>
+<h2>Incomplete tasks</h2>
 <ul>
 	{% for task in user.task_set.all %}
+	{% if task.complete == 0 %}
+	<li><form action="{% url 'profilepage:complete' task.id %}" method="post">
+			{% csrf_token %}
+			<input type="submit" value="✓" class="completebutton">
+			{{ task.task_title }}
+		</form>
+	</li>
+	{% endif %}
+	{% endfor %}
+</ul>
+<h2>Complete tasks</h2>
+<ul>
+	{% for task in user.task_set.all %}
+	{% if task.complete == 1 %}
 	<li>{{ task.task_title }}</li>
+	{% endif %}
 	{% endfor %}
 </ul>
 {% endif %}
