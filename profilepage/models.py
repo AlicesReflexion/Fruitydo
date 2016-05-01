@@ -15,6 +15,8 @@ class Task(models.Model):
         #5=Every other week
         #6=Every Month
         #7=Every Yeah
+        def __str__(self):
+                return self.task_title
 
 class Event(models.Model):
         Task = models.ForeignKey(Task, on_delete=models.CASCADE)
