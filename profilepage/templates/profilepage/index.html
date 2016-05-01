@@ -5,6 +5,11 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h1>Welcome back, {{ user.username }}</h1>
+<ul>
+	{% for task in user.task_set.all %}
+	<li>{{ task.task_title }}</li>
+	{% endfor %}
+</ul>
 {% endif %}
 {% endblock %}
 
