@@ -95,6 +95,7 @@ height: 15px;
 	border-radius: 10px;
 	background-color: #f88379;
 	transition: .3s;
+	font-weight: bold;
 }
 
 .completebutton:hover, .newtaskbutton:hover {
