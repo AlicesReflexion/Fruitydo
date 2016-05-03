@@ -1,19 +1,27 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
   <head>
     <title>{% block title %}{% endblock %} | Newtodo</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 </head>
 <body>
   <ul class="navbar">
-    <li><a href="{% url 'home' %}">Home</a></li>
-    <li><a href="{% url 'about' %}">About</a></li>
-    <li><a href="{% url 'help' %}">Help</a></li>
+    <li class="navtitle"><a href="{% url 'home' %}"><img height="25" width="25" src="{% static 'logo.png' %}" alt="newtodologo">Newtodo</a></li>
+    <li class="navlink"><a href="{% url 'about' %}">About</a></li>
+    <li class="navlink"><a href="{% url 'help' %}">Help</a></li>
       {% if user.is_authenticated %}
-      <li><a href="{% url 'auth_logout' %}">Logout</a></li>
+      <li class="auth"><a href="{% url 'auth_logout' %}">Logout</a></li>
       {% else %}
-      <li><a href="{% url 'auth_login' %}">Log In</a></li>
+      <li class="auth"><a href="{% url 'auth_login' %}">Log In</a></li>
   {% endif %}
 </ul>
-	{% block content %}{% endblock %}
+<div class="content">
+    {% block content %}{% endblock %}
+</div>
+<div class="footer">
+  An <img src="http://gravatar.com/avatar/3142dd8c15835543d4874e013949c38f?s=60" alt="alexskclogo" width="15" height="15">@alexskc project.
+</div>
 </body>
 </html>
