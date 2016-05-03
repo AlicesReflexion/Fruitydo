@@ -82,3 +82,25 @@ bottom: 5px;
 background-color: #ffffff;
 height: 15px;
 }
+
+.completeform {
+	display: inline;
+}
+
+.completebutton, .newtaskbutton {
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	border: none;
+	border-radius: 10px;
+	background-color: #f88379;
+	transition: .3s;
+}
+
+.completebutton:hover, .newtaskbutton:hover {
+	background-color: #7fd3f8;
+}
+
+.incompletetasks {
+	list-style: none;
+}

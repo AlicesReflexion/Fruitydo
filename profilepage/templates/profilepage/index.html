@@ -11,7 +11,7 @@
 	<input type="submit" value="+" class="newtaskbutton">
 </form>
 <h2>Incomplete tasks</h2>
-<ul>
+<ul class="incompletetasks">
 	{% for task in user.task_set.all %}
 	{% if task.complete == 0 %}
 	<li><form action="{% url 'profilepage:complete' task.id %}" method="post" class="completeform">
@@ -34,7 +34,7 @@
 	{% endfor %}
 </ul>
 <h2>Complete tasks</h2>
-<ul>
+<ul class="completetasks">
 	{% for task in user.task_set.all %}
 	{% if task.complete == 1 %}
 	<li>{{ task.task_title }}</li>
