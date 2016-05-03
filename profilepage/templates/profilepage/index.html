@@ -14,11 +14,21 @@
 <ul>
 	{% for task in user.task_set.all %}
 	{% if task.complete == 0 %}
-	<li><form action="{% url 'profilepage:complete' task.id %}" method="post">
+	<li><form action="{% url 'profilepage:complete' task.id %}" method="post" class="completeform">
 			{% csrf_token %}
 			<input type="submit" value="✓" class="completebutton">
-			{{ task.task_title }}
 		</form>
+		{{ task.task_title }}
+		<ul>
+			{% for event in task.event_set.all %}
+			<li>{{ event.event_description }}</li>
+			{% endfor %}
+		</ul>
+			<form action="{% url 'profilepage:event_create' task.id %}" method="post" class="eventform">
+				{% csrf_token %}
+				<textarea name="event_description"></textarea>
+				<input type="submit" value="Add event" class="eventbutton">
+			</form>
 	</li>
 	{% endif %}
 	{% endfor %}
@@ -28,6 +38,11 @@
 	{% for task in user.task_set.all %}
 	{% if task.complete == 1 %}
 	<li>{{ task.task_title }}</li>
+	<ul>
+		{% for event in task.event_set.all %}
+		<li>{{ event.event_description }}</li>
+		{% endfor %}
+	</ul>
 	{% endif %}
 	{% endfor %}
 </ul>
