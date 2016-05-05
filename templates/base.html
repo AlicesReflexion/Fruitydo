@@ -5,10 +5,11 @@
   <head>
     <title>{% block title %}{% endblock %} | Newtodo</title>
     <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    {% block customscripts %}{% endblock %}
 </head>
 <body>
   <ul class="navbar">
-    <li class="navtitle"><a href="{% url 'home' %}"><img height="25" width="25" src="{% static 'logo-small.png' %}" alt="newtodologo">Progress Calendar</a></li>
+    <li class="navtitle"><a href="{% url 'home' %}"><img height="30" width="98" src="{% static 'logo-small.png' %}" alt="newtodologo"></a></li>
     <li class="navlink"><a href="{% url 'about' %}">About</a></li>
     <li class="navlink"><a href="{% url 'help' %}">Help</a></li>
       {% if user.is_authenticated %}
