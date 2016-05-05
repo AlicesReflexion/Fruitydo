@@ -1,4 +1,19 @@
 {% extends "base.html" %}
+{% load staticfiles %}
+
+{% block customscripts %}
+<link rel="stylesheet" href="{% static 'jquery-ui-1.11.4.custom/jquery-ui.css' %}">
+<script src="{% static 'jquery-ui-1.11.4.custom/external/jquery/jquery.js' %}"></script>
+<script src="{% static 'jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
+<script>
+	$(function() {
+		$( ".datepicker" ).datepicker();
+		$( ".datepicker" ).each(function() {
+			$(this).datepicker('option', 'altField', "#desc" + this.id);
+		})
+	});
+</script>
+{% endblock %}
 
 {% block title %}Profile{% endblock %}
 
@@ -11,7 +26,7 @@
 	<input type="submit" value="+" class="newtaskbutton">
 </form>
 <h2>Incomplete tasks</h2>
-<ul class="incompletetasks">
+<ul class="incompltetasks">
 	{% for task in user.task_set.all %}
 	{% if task.complete == 0 %}
 	<li><form action="{% url 'profilepage:complete' task.id %}" method="post" class="completeform">
@@ -19,16 +34,16 @@
 			<input type="submit" value="✓" class="completebutton">
 		</form>
 		{{ task.task_title }}
-		<ul>
-			{% for event in task.event_set.all %}
-			<li>{{ event.event_description }}</li>
-			{% endfor %}
-		</ul>
-			<form action="{% url 'profilepage:event_create' task.id %}" method="post" class="eventform">
-				{% csrf_token %}
-				<textarea name="event_description"></textarea>
-				<input type="submit" value="Add event" class="eventbutton">
-			</form>
+		<table class="task_calendar">
+			<tr>
+				<td>
+					<div class="datepicker" id="{{ task.id }}"></div>
+				</td>
+				<td>
+					<textarea class="desc_input" id="desc{{ task.id }}"></textarea>
+				</td>
+		</tr>
+		</table>
 	</li>
 	{% endif %}
 	{% endfor %}

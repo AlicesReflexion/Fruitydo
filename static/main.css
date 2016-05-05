@@ -7,7 +7,7 @@ body {
 	font-family: sans-serif;
 	margin: 0;
 	padding-bottom: 30px;
-	min-height: calc(100%-30px);
+	min-height: calc(100% - 30px);
 }
 
 .navbar {
@@ -104,4 +104,17 @@ height: 15px;
 
 .incompletetasks {
 	list-style: none;
+}
+
+.desc_input{
+	height: 180px;
+	width: 280px;
+	resize: none;
+	position: absolute;
+	top: 0;
+}
+
+.task_calendar {
+	height: 213px;
+	position: relative;
 }
