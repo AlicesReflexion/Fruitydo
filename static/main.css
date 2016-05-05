@@ -6,7 +6,7 @@ body {
 	background-color: #ffffff;
 	font-family: sans-serif;
 	margin: 0;
-	padding-bottom: 30px;
+	margin-bottom: 30px;
 	min-height: calc(100% - 30px);
 }
 
