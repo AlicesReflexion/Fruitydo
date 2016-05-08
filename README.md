@@ -1,52 +1,20 @@
-This tuto was based on https://github.com/jfmatth/openshift-django17, Thanks jfmatth
+![Fruitydo logo](https://raw.githubusercontent.com/alexskc/Fruitydo/master/static/logo-large.png)
 
-# Django-OpenShift-1.8
+Fruitydo is a to do list app with a personal diary so you can track your progress towards a goal.
 
-###How to use this repository
-- Create an account at https://www.openshift.com
-- Install the RHC client tools if you have not already done so.
-```
-sudo gem install rhc
-rhc setup
-```
-- Create a Python 3.3 application
-```
-rhc app create django python-3.3
-```
-- Add the database cartridge (choose one)
-```
-rhc add-cartridge postgresql-9.2 --app django
+Running on Red Hat's Openshift at [newtodo-alexskc.rhcloud.com](http://newtodo-alexskc.rhcloud.com/)
 
-OR
+## Dependencies
+Fruitydo is built with Django 1.8 and Python 3.3, and won't run without the following apps. 
+* django-registration-redux
+* django-markup
 
-rhc add-cartridge mysql-5.5 --app django 
-```
-- Add this upstream repo
-```
-cd django
-git remote add upstream -m master https://github.com/Gpzim98/Django-OpenShift-1.8.git
-git pull -s recursive -X theirs upstream master
-```
-- set the WSGI application to django's built in WSGI application (stored in the wsgi folder).
-```
-rhc env set OPENSHIFT_PYTHON_WSGI_APPLICATION=wsgi/wsgi.py --app django
-```
-- Push the repo upstream
-```
-git push
-```
-- SSH into the application to create a django superuser.
-```
-python app-root/repo/manage.py createsuperuser
-```
-- Now use your browser to connect to the Admin site.
+By default, Fruitydo will try to detect your database backend if deployed to Openshift, and fallback to Postgresql if it can't find anything. This can be changed in the `project/settings.py` file, under `DATABASES`
 
+## Running
+Once all the dependencies are set up, you can start the server with `python manage.py runserver 127.0.0.1:8000` or whatever IP address and port you prefer.
 
-If your deploy can't install django, you will may log in your app by ssh and make:
-'''
-pip install django
-'''
-For log in your app, access your account on OpenShift, select your app and find the url of ssh for your app.
+## Contributing
+Fruitydo is *very much* a "this is my first app hope u like it guys" project. I have no idea what I'm doing, and will likely accept any pull request you throw at me. :)
 
-More details on my blog:
-blog.gregorypacheco.com.br    
+I'd also be very happy to look at any feature requests, bug reports, etc, but I dunno how long those might take me to finish.
