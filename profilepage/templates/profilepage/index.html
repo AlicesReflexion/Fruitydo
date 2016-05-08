@@ -9,7 +9,8 @@
 	$(function() {
 		$( ".datepicker" ).datepicker();
 		$( ".datepicker" ).each(function() {
-			$(this).datepicker('option', 'altField', "#desc" + this.id);
+		    $(this).datepicker('option', 'altField', "#desc" + this.id);
+		    $(this).datepicker('option', 'dateFormat', "yy-mm-dd");
 		})
 	});
     </script>
@@ -44,7 +45,7 @@ var csrftoken = getCookie('csrftoken');
 
 	$.post("{% url 'profilepage:event_fetch' %}", {date: "2016-05-03", task: "19", csrfmiddlewaretoken: csrftoken})
 	.done(function(data) {
-		$('#desc19').val(data);
+		alert("ok");
 	});
 
 </script>
@@ -64,11 +65,29 @@ var csrftoken = getCookie('csrftoken');
 		{{ task.task_title }}
 		<table class="task_calendar">
 			<tr>
-				<td>
-					<div class="datepicker" id="{{ task.id }}"></div>
+			    <td>
+			    				    <div class="datepicker" id="{{ task.id }}"></div>
 				</td>
 				<td>
-					<textarea class="desc_input" id="desc{{ task.id }}"></textarea>
+				    <textarea class="desc_input" id="event{{ task.id }}"></textarea>
+<script>
+				$('.datepicker').datepicker({
+				    onSelect: function(dateText)
+				    {
+$.post("{% url 'profilepage:event_fetch' %}", {
+	date: dateText,
+	task: "{{ task.id }}",
+	csrfmiddlewaretoken: csrftoken
+})
+.done(function(data){
+    $('#event{{ task.id }}').val(data);
+});
+
+;
+				    }
+				});
+				</script>
+
 				</td>
 		</tr>
 		</table>
