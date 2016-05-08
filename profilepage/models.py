@@ -21,7 +21,10 @@ class Task(models.Model):
 class Event(models.Model):
         Task = models.ForeignKey(Task, on_delete=models.CASCADE)
         event_description = models.TextField('event description')
-        pub_date = models.DateTimeField('date published')
+        pub_date = models.DateField('date published')
+
+        def __str__(self):
+                return self.event_description
 
 
 # Create your models here.

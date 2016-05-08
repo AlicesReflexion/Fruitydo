@@ -1,5 +1,4 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.views import generic
 from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
@@ -26,5 +25,16 @@ def event_create(request, task_id):
     event = Event(event_description = entered_description, pub_date = datetime.now(), Task = get_object_or_404(Task, pk=task_id))
     event.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
+
+def event_fetch(request):
+    user = request.user
+    date = request.POST['date']
+    task = request.POST['task']
+    returnevent = Event.objects.filter(pub_date = date, Task_id = task)
+    print(returnevent);
+    if not returnevent:
+        return HttpResponse("Nothing happened on this day!")
+    else:
+        return HttpResponse(returnevent)
 
 # Create your views here.
