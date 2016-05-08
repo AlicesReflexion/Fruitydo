@@ -13,8 +13,6 @@
 		    $(this).datepicker('option', 'dateFormat', "yy-mm-dd");
 		})
 	});
-    </script>
-    <script>
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie != '') {
@@ -40,15 +38,6 @@ var csrftoken = getCookie('csrftoken');
 {% block content %}
 {% if user.is_authenticated %}
 <h1>Welcome back, {{ user.username }}</h1>
-<script>
-
-
-	$.post("{% url 'profilepage:event_fetch' %}", {date: "2016-05-03", task: "19", csrfmiddlewaretoken: csrftoken})
-	.done(function(data) {
-		alert("ok");
-	});
-
-</script>
 <form action="{% url 'profilepage:create' 'task_title' %}" method="post">
 	{% csrf_token %}
 	<input type="text" name="task_title">
