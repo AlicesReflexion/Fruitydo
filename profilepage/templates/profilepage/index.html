@@ -44,7 +44,7 @@ var csrftoken = getCookie('csrftoken');
 
 	$.post("{% url 'profilepage:event_fetch' %}", {date: "2016-05-03", task: "19", csrfmiddlewaretoken: csrftoken})
 	.done(function(data) {
-		alert(data);
+		$('#desc19').val(data);
 	});
 
 </script>
