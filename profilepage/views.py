@@ -31,6 +31,10 @@ def event_fetch(request):
     date = request.POST['date']
     task = request.POST['task']
     returnevent = Event.objects.filter(pub_date = date, Task_id = task)
-    return HttpResponse(returnevent)
+    print(returnevent);
+    if not returnevent:
+        return HttpResponse("Nothing happened on this day!")
+    else:
+        return HttpResponse(returnevent)
 
 # Create your views here.
