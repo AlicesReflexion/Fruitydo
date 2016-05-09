@@ -99,7 +99,7 @@ height: 15px;
 }
 
 .incompletetasks {
-	list-style: none;
+	list-style: nonej
 }
 
 .desc_input{
@@ -108,6 +108,7 @@ height: 15px;
 	resize: none;
 	position: absolute;
 	top: 0;
+	display: none;
 }
 
 .task_calendar {

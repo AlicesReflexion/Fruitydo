@@ -60,7 +60,8 @@ var csrftoken = getCookie('csrftoken');
 				<td>
 				    <form action="{% url 'profilepage:event_create' %}" method="post">
 					{% csrf_token %}
-					<textarea class="desc_input" id="event{{ task.id }}" name="event_description"></textarea>
+					<div id="event{{ task.id }}"></div>
+					<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
 					<div class="editorbuttons">
 					<input type="hidden" name="task" value="{{task.id}}">
 					<input type="hidden" name="pub_date" id="desc{{task.id}}">
@@ -76,7 +77,7 @@ $.post("{% url 'profilepage:event_fetch' %}", {
 	csrfmiddlewaretoken: csrftoken
 })
 .done(function(data){
-    $('#event{{ task.id }}').val(data);
+    $('#event{{ task.id }}').html(data);
 });
 
 ;
