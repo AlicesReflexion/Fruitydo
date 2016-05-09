@@ -1,6 +1,13 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 
 {% block title %}Home{% endblock %}
 
 {% block content %}
+<div class="lander">
+<img src="{% static 'mainpage-title.png' %}">
+<p class="blurb">Fruitydo is a different kind of productivity app. One that lets you look back on your progress, as well as forward on your goals.</p>
+
+<div class="registercontainer"><a href="{% url 'registration_register' %}" class="registerbutton">register</a></div>
+</div>
 {% endblock %}
