@@ -103,7 +103,7 @@ height: 15px;
 }
 
 .desc_input{
-	height: 180px;
+	height: 190px;
 	width: 280px;
 	resize: none;
 	position: absolute;
@@ -113,4 +113,11 @@ height: 15px;
 .task_calendar {
 	height: 213px;
 	position: relative;
+}
+
+.editorbuttons {
+	width: 290px;
+	height: 0px;
+	padding-top: 170px;
+	text-align: right;
 }
