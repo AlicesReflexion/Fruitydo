@@ -20,9 +20,11 @@ def create(request, task_title):
     task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
-def event_create(request, task_id):
+def event_create(request):
     entered_description = request.POST['event_description']
-    event = Event(event_description = entered_description, pub_date = datetime.now(), Task = get_object_or_404(Task, pk=task_id))
+    entered_task = request.POST['task']
+    entered_date = request.POST['pub_date']
+    event = Event(event_description = entered_description, pub_date = entered_date, Task = get_object_or_404(Task, pk=entered_task))
     event.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 

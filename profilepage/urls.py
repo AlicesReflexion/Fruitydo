@@ -7,6 +7,6 @@ urlpatterns = [
         url(r'^profile/event_fetch', views.event_fetch, name='event_fetch'),
         url(r'^profile/(?P<task_id>[0-9]+)/complete/$', views.complete, name='complete'),
         url(r'^profile/(?P<task_title>.+)/create/$', views.create, name='create'),
-        url(r'^profile/(?P<task_id>[0-9]+)/event_create/$', views.event_create, name='event_create'),
+        url(r'^profile/event_create', views.event_create, name='event_create'),
         url(r'^profile', views.profile, name='profile'),
         ]

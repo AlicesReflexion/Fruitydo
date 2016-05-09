@@ -58,7 +58,14 @@ var csrftoken = getCookie('csrftoken');
 			    				    <div class="datepicker" id="{{ task.id }}"></div>
 				</td>
 				<td>
-				    <textarea class="desc_input" id="event{{ task.id }}"></textarea>
+				    <form action="{% url 'profilepage:event_create' %}" method="post">
+					{% csrf_token %}
+					<textarea class="desc_input" id="event{{ task.id }}" name="event_description"></textarea>
+					<div class="editorbuttons">
+					<input type="hidden" name="task" value="{{task.id}}">
+					<input type="hidden" name="pub_date" id="desc{{task.id}}">
+					<input type="submit" value="Save" class="saveeventbutton">
+				</div></form>
 <script>
 				$('.datepicker').datepicker({
 				    onSelect: function(dateText)
