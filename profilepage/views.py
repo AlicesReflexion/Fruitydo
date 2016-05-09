@@ -4,6 +4,8 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from .models import Task, Event
 from datetime import datetime
+from django_markup.filter import MarkupFilter
+from django_markup.markup import formatter
 
 def profile(request):
     return render(request, 'profilepage/index.html')
@@ -36,6 +38,7 @@ def event_fetch(request):
     if not returnevent:
         return HttpResponse("Nothing happened on this day!")
     else:
-        return HttpResponse(returnevent)
+        formatted = (formatter(returnevent[0].event_description, filter_name='markdown'))
+        return HttpResponse(formatted)
 
 # Create your views here.
