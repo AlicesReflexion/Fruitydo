@@ -3,6 +3,7 @@
 
 {% block customscripts %}
 <link rel="stylesheet" href="{% static 'jquery-ui-1.11.4.custom/jquery-ui.css' %}">
+<link rel="stylesheet" href="{% static 'eventbox.css' %}">
 <script src="{% static 'jquery-ui-1.11.4.custom/external/jquery/jquery.js' %}"></script>
 <script src="{% static 'jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
 <script>
@@ -29,6 +30,14 @@ function getCookie(name) {
     return cookieValue;
 }
 var csrftoken = getCookie('csrftoken');
+
+$(document).ready(function(){
+    $('.editbutton').click(function(){
+	words = this.id.split('-');
+	$("#form-" + words[1]).css({"display":"inline"});
+	$('#' + this.id).css({"display":"none"});
+	});
+});
 </script>
 
 {% endblock %}
@@ -57,14 +66,16 @@ var csrftoken = getCookie('csrftoken');
 			    <td>
 			    				    <div class="datepicker" id="{{ task.id }}"></div>
 				</td>
-				<td>
-				    <form action="{% url 'profilepage:event_create' %}" method="post">
+				<td><div class="eventbox" id="event{{ task.id }}"></div>
+				    <div class="editbuttoncontainer">
+					<input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
+				    </div>
+				    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 					{% csrf_token %}
-					<div id="event{{ task.id }}"></div>
 					<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
 					<div class="editorbuttons">
-					<input type="hidden" name="task" value="{{task.id}}">
-					<input type="hidden" name="pub_date" id="desc{{task.id}}">
+					    <input type="hidden" name="task" value="{{task.id}}">
+					    <input type="hidden" name="pub_date" id="desc{{task.id}}">
 					<input type="submit" value="Save" class="saveeventbutton">
 				</div></form>
 <script>
@@ -80,7 +91,17 @@ $.post("{% url 'profilepage:event_fetch' %}", {
     $('#event{{ task.id }}').html(data);
 });
 
-;
+
+$.post("{% url 'profilepage:event_fetch_raw' %}", {
+	date: dateText,
+	task: "{{ task.id }}",
+	csrfmiddlewaretoken: csrftoken
+})
+.done(function(rawdata){
+    $('#textarea{{ task.id }}').val(rawdata);
+});
+
+
 				    }
 				});
 				</script>
