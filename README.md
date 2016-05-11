@@ -5,9 +5,10 @@ Fruitydo is a to do list app with a personal diary so you can track your progres
 Running on Red Hat's Openshift at [newtodo-alexskc.rhcloud.com](http://newtodo-alexskc.rhcloud.com/)
 
 ## Dependencies
-Fruitydo is built with Django 1.8 and Python 3.3, and won't run without the following apps. 
+Fruitydo is built with Django 1.8 and Python 3.3, and won't run without the following modules 
 * django-registration-redux
 * django-markup
+* markup
 
 By default, Fruitydo will try to detect your database backend if deployed to Openshift, and fallback to Postgresql if it can't find anything. This can be changed in the `project/settings.py` file, under `DATABASES`
 
