@@ -47,7 +47,7 @@ $(document).ready(function(){
 {% block content %}
 {% if user.is_authenticated %}
 <h1>Welcome back, {{ user.username }}</h1>
-<form action="{% url 'profilepage:create' 'task_title' %}" method="post">
+<form action="{% url 'profilepage:create' %}" method="post">
 	{% csrf_token %}
 	<input type="text" name="task_title">
 	<input type="submit" value="+" class="newtaskbutton">
@@ -56,7 +56,7 @@ $(document).ready(function(){
 <ul class="incompltetasks">
 	{% for task in user.task_set.all %}
 	{% if task.complete == 0 %}
-	<li><form action="{% url 'profilepage:complete' task.id %}" method="post" class="completeform">
+	<li><form action="{% url 'profilepage:complete' %}" method="post" class="completeform">
 			{% csrf_token %}
 			<input type="submit" value="✓" class="completebutton">
 		</form>

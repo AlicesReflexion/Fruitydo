@@ -10,13 +10,14 @@ from django_markup.markup import formatter
 def profile(request):
     return render(request, 'profilepage/index.html')
 
-def complete(request, task_id):
+def complete(request):
+    task_id = request.POST['task_id']
     task = get_object_or_404(Task, pk=task_id)
     task.complete = 1
     task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
-def create(request, task_title):
+def create(request):
     entered_title = request.POST['task_title']
     task = Task(User = request.user, task_title = entered_title, pub_date = datetime.now(), recurring = 0, complete = 0, due_date = datetime.now())
     task.save()
