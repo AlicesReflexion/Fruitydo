@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load randomgoal %}
 
 {% block customscripts %}
 <link rel="stylesheet" href="{% static 'jquery-ui-1.11.4.custom/jquery-ui.css' %}">
@@ -37,7 +38,7 @@ $(document).ready(function(){
 <h1>Welcome back, {{ user.username }}</h1>
 <form action="{% url 'profilepage:create' %}" method="post">
 	{% csrf_token %}
-	<input type="text" name="task_title" placeholder="{{ examplegoals|random }}">
+	<input type="text" name="task_title" placeholder="{% randomgoal %}">
 	<input type="submit" value="+" class="newtaskbutton">
 </form>
 </div>
