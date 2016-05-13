@@ -2,7 +2,7 @@
 
 Fruitydo is a to do list app with a personal diary so you can track your progress towards a goal.
 
-Running on Red Hat's Openshift at [newtodo-alexskc.rhcloud.com](http://newtodo-alexskc.rhcloud.com/)
+Running on Red Hat's Openshift at [fruitydo.alexskc.xyz](http://fruitydo.alexskc.xyz/)
 
 ## Dependencies
 Fruitydo is built with Django 1.8 and Python 3.3, and won't run without the following modules 
