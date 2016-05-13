@@ -46,7 +46,7 @@ body {
 }
 
 .navlink> a:hover, .auth > a:hover {
-	color: #000000;
+	color: #4b3621;
 }
 
 .auth {
@@ -130,6 +130,16 @@ h2 {
 }
 
 h3 {
+	color: #aad23f;
+}
+
+a {
+	color: #fbb03b;
+	text-decoration: none;
+	transition: .3s;
+}
+
+a:hover {
 	color: #aad23f;
 }
 
