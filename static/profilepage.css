@@ -2,19 +2,36 @@
 	display: inline;
 }
 
+.wrapper {
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.headertitle {
+	display: inline-block;
+	text-align: center;
+}
+
+.headertitle > form > input[type=text] {
+	width: calc(100% - 27px);
+}
+
 .completebutton, .newtaskbutton {
 	width: 20px;
 	height: 20px;
 	padding: 0;
 	border: none;
 	border-radius: 10px;
-	background-color: #ff5d76;
+	background-color: transparent;
+	color: #ff5d76;
 	transition: .3s;
 	font-weight: bold;
 }
 
 .completebutton:hover, .newtaskbutton:hover {
-	background-color: #acd343;
+	color: #acd343;
 }
 
 .eventbox {

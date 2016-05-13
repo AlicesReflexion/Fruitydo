@@ -32,12 +32,16 @@ $(document).ready(function(){
 
 {% block content %}
 {% if user.is_authenticated %}
+<div class="wrapper">
+<div class="headertitle">
 <h1>Welcome back, {{ user.username }}</h1>
 <form action="{% url 'profilepage:create' %}" method="post">
 	{% csrf_token %}
 	<input type="text" name="task_title" placeholder="{{ examplegoals|random }}">
 	<input type="submit" value="+" class="newtaskbutton">
 </form>
+</div>
+</div>
 <h2>Incomplete tasks</h2>
 <ul class="incompltetasks">
 	{% for task in user.task_set.all %}
