@@ -6,6 +6,7 @@
 <link rel="stylesheet" href="{% static 'profilepage.css' %}">
 <script src="{% static 'jquery-ui-1.11.4.custom/external/jquery/jquery.js' %}"></script>
 <script src="{% static 'jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
+<script src="{% static 'js-cookie.js' %}"></script>
 <script>
 	$(function() {
 		$( ".datepicker" ).datepicker();
@@ -14,22 +15,7 @@
 		    $(this).datepicker('option', 'dateFormat', "yy-mm-dd");
 		})
 	});
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie != '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
-            var cookie = jQuery.trim(cookies[i]);
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-var csrftoken = getCookie('csrftoken');
+var csrftoken = Cookies.get('csrftoken');
 
 $(document).ready(function(){
     $('.editbutton').click(function(){
