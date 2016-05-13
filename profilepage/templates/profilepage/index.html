@@ -35,7 +35,7 @@ $(document).ready(function(){
 <h1>Welcome back, {{ user.username }}</h1>
 <form action="{% url 'profilepage:create' %}" method="post">
 	{% csrf_token %}
-	<input type="text" name="task_title">
+	<input type="text" name="task_title" placeholder="{{ examplegoals|random }}">
 	<input type="submit" value="+" class="newtaskbutton">
 </form>
 <h2>Incomplete tasks</h2>

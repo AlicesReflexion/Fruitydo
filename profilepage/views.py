@@ -7,8 +7,20 @@ from datetime import datetime
 from django_markup.filter import MarkupFilter
 from django_markup.markup import formatter
 
+examplegoals = [
+        'Write a book',
+        'Learn to program',
+        'Run a marathon',
+        'Learn French',
+        'Start a blog',
+        'Learn Sign Language',
+        'Clean the house',
+        'Visit Japan',
+        'Quit smoking'
+        ]
+
 def profile(request):
-    return render(request, 'profilepage/index.html')
+    return render(request, 'profilepage/index.html', {'examplegoals':examplegoals})
 
 def complete(request):
     task_id = request.POST['task_id']
