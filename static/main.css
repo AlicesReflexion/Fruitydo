@@ -120,3 +120,19 @@ height: 15px;
 	margin-right: auto;
 	margin-left: auto;
 }
+
+h1 {
+	color: #ff5d76;
+}
+
+h2 {
+	color: #fbb03b;
+}
+
+h3 {
+	color: #aad23f;
+}
+
+p {
+	color: #4B3621;
+}
