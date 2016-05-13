@@ -1,0 +1,62 @@
+.completeform {
+	display: inline;
+}
+
+.completebutton, .newtaskbutton {
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	border: none;
+	border-radius: 10px;
+	background-color: #ff5d76;
+	transition: .3s;
+	font-weight: bold;
+}
+
+.completebutton:hover, .newtaskbutton:hover {
+	background-color: #acd343;
+}
+
+.eventbox {
+	height: 190px;
+	width: 280px;
+	overflow: auto;
+}
+
+.eventbox > p {
+	margin: 2px 0 2px 0;
+}
+
+.eventbox > h1,
+.eventbox > h2,
+.eventbox > h3 {
+	margin: 4px 0 4px 0;
+}
+
+.desc_input {
+	height: 190px;
+	width: 280px;
+	resize: none;
+	position: absolute;
+	top: 0;
+}
+
+.desc_input_form {
+	display: none;
+}
+
+.editbuttoncontainer {
+	width: 290px;
+	text-align: right;
+}
+
+.task_calendar {
+	height: 213px;
+	position: relative;
+}
+
+.editorbuttons {
+	width: 290px;
+	height: 0px;
+	text-align: right;
+}
