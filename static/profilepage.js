@@ -11,6 +11,7 @@ $(document).ready(function(){
 	$('.editbutton').click(function(){
 		words = this.id.split('-');
 		$("#form-" + words[1]).css({"display":"inline"});
+		$("#event" + words[1]).css({"display":"none"});
 		$("#" + this.id).css({"display":"none"});
 	});
 });
