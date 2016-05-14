@@ -30,6 +30,9 @@ def event_create(request):
     entered_description = request.POST['event_description']
     entered_task = request.POST['task']
     entered_date = request.POST['pub_date']
+    task = Task.objects.get(id=entered_task)
+    if task.User != request.user:
+        return HttpResponse("An unexpected error occured.")
     returnevent = Event.objects.filter(pub_date = entered_date, Task_id = entered_task)
     if not returnevent:
         event = Event(event_description = entered_description, pub_date = entered_date, Task = get_object_or_404(Task, pk=entered_task))
@@ -42,22 +45,24 @@ def event_create(request):
 def event_fetch(request):
     user = request.user
     date = request.POST['date']
-    task = request.POST['task']
-    returnevent = Event.objects.filter(pub_date = date, Task_id = task)
-    if not returnevent:
-        return HttpResponse("Nothing happened on this day!")
+    try:
+        task = Task.objects.get(id = request.POST['task'], User_id = user.id)
+    except Task.DoesNotExist:
+        return "An unexpected error occured."
+    try:
+        returnevent = Event.objects.get(pub_date = date, Task_id = task.id)
+    except Event.DoesNotExist:
+        return "Nothing happened on this date!"
     else:
-        formatted = (formatter(returnevent[0].event_description, filter_name='markdown'))
-        return HttpResponse(formatted)
+        return returnevent.event_description
+
+
+def event_fetch_fancy(request):
+    string = event_fetch(request)
+    string = formatter(string, filter_name='markdown')
+    return HttpResponse(string)
 
 def event_fetch_raw(request):
-    user = request.user
-    date = request.POST['date']
-    task = request.POST['task']
-    returnevent = Event.objects.filter(pub_date = date, Task_id = task)
-    if not returnevent:
-        return HttpResponse("Nothing happened on this day!")
-    else:
-        return HttpResponse(returnevent[0].event_description)
-
+    string = event_fetch(request)
+    return HttpResponse(string)
 # Create your views here.

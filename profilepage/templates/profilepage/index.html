@@ -56,7 +56,7 @@
 				$('.datepicker').datepicker({
 				    onSelect: function(dateText)
 				    {
-$.post("{% url 'profilepage:event_fetch' %}", {
+$.post("{% url 'profilepage:event_fetch_fancy' %}", {
 	date: dateText,
 	task: "{{ task.id }}",
 	csrfmiddlewaretoken: csrftoken
