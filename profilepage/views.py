@@ -8,7 +8,11 @@ from django_markup.filter import MarkupFilter
 from django_markup.markup import formatter
 
 def profile(request):
-    return render(request, 'profilepage/index.html')
+    tasks = Task.objects.filter(User = request.user)
+    completedtasks = tasks.filter(complete = True)
+    incompletetasks = tasks.filter(complete = False)
+    print(incompletetasks)
+    return render(request, 'profilepage/index.html', {'completedtasks':completedtasks, 'incompletetasks':incompletetasks})
 
 def complete(request):
     task_id = request.POST['task_id']

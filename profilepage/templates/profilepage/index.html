@@ -34,42 +34,43 @@ $(document).ready(function(){
 {% block content %}
 {% if user.is_authenticated %}
 <div class="wrapper">
-<div class="headertitle">
-<h1>Welcome back, {{ user.username }}</h1>
-<form action="{% url 'profilepage:create' %}" method="post">
-	{% csrf_token %}
-	<input type="text" name="task_title" placeholder="{% randomgoal %}">
-	<input type="submit" value="+" class="newtaskbutton">
-</form>
-</div>
+    <div class="headertitle">
+	<h1>Welcome back, {{ user.username }}</h1>
+	<form action="{% url 'profilepage:create' %}" method="post">
+	    {% csrf_token %}
+	    <input type="text" name="task_title" placeholder="{% randomgoal %}">
+	    <input type="submit" value="+" class="newtaskbutton">
+	</form>
+    </div>
 </div>
 <h2>Incomplete tasks</h2>
-<ul class="incompltetasks">
-	{% for task in user.task_set.all %}
-	{% if task.complete == 0 %}
-	<li><form action="{% url 'profilepage:complete' %}" method="post" class="completeform">
+<ul class="incompltetasks">{% for task in incompletetasks %}
+    <li>
+	<form action="{% url 'profilepage:complete' %}" method="post" class="completeform">
+	    {% csrf_token %}
+	    <input type="submit" value="✓" class="completebutton">
+	</form>
+	{{ task.task_title }}
+	<table class="task_calendar">
+	    <tr>
+		<td>
+		    <div class="datepicker" id="{{ task.id }}"></div>
+		</td>
+		<td>
+		    <div class="eventbox" id="event{{ task.id }}"></div>
+		    <div class="editbuttoncontainer">
+			<input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
+		    </div>
+		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 			{% csrf_token %}
-			<input type="submit" value="✓" class="completebutton">
-		</form>
-		{{ task.task_title }}
-		<table class="task_calendar">
-			<tr>
-			    <td>
-			    				    <div class="datepicker" id="{{ task.id }}"></div>
-				</td>
-				<td><div class="eventbox" id="event{{ task.id }}"></div>
-				    <div class="editbuttoncontainer">
-					<input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
-				    </div>
-				    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
-					{% csrf_token %}
-					<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
-					<div class="editorbuttons">
-					    <input type="hidden" name="task" value="{{task.id}}">
-					    <input type="hidden" name="pub_date" id="desc{{task.id}}">
-					<input type="submit" value="Save" class="saveeventbutton">
-				</div></form>
-<script>
+			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
+			<div class="editorbuttons">
+			    <input type="hidden" name="task" value="{{task.id}}">
+			    <input type="hidden" name="pub_date" id="desc{{task.id}}">
+			    <input type="submit" value="Save" class="saveeventbutton">
+			</div>
+		    </form>
+		    <script>
 				$('.datepicker').datepicker({
 				    onSelect: function(dateText)
 				    {
@@ -95,27 +96,19 @@ $.post("{% url 'profilepage:event_fetch_raw' %}", {
 
 				    }
 				});
-				</script>
-
-				</td>
-		</tr>
-		</table>
-	</li>
-	{% endif %}
-	{% endfor %}
+		    </script>
+		</td>
+	    </tr>
+	</table>
+    </li>{% endfor %}
 </ul>
 <h2>Complete tasks</h2>
 <ul class="completetasks">
-	{% for task in user.task_set.all %}
-	{% if task.complete == 1 %}
+	{% for task in  completedtasks %}
 	<li>{{ task.task_title }}</li>
-	<ul>
-		{% for event in task.event_set.all %}
-		<li>{{ event.event_description }}</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
-	{% endfor %}
+	    <ul>{% for event in task.event_set.all %}
+		<li>{{ event.event_description }}</li>{% endfor %}
+	    </ul>{% endfor %}
 </ul>
 {% endif %}
 {% endblock %}
