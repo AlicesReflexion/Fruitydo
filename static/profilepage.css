@@ -9,6 +9,10 @@
 	text-align: center;
 }
 
+.incompletetasks {
+	list-style: none;
+}
+
 .headertitle {
 	display: inline-block;
 	text-align: center;
@@ -48,7 +52,8 @@
 .eventbox > h2,
 .eventbox > h3 {
 	margin: 4px 0 4px 0;
-	color: #4b3621; 
+	color: #4b3621;
+	display: block;
 }
 
 .desc_input {
@@ -77,4 +82,8 @@
 	width: 290px;
 	height: 0px;
 	text-align: right;
+}
+
+h3 {
+	display: inline;
 }

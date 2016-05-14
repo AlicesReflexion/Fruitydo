@@ -26,13 +26,13 @@
     </div>
 </div>
 <h2>Incomplete tasks</h2>
-<ul class="incompltetasks">{% for task in incompletetasks %}
+<ul class="incompletetasks">{% for task in incompletetasks %}
     <li>
 	<form action="{% url 'profilepage:complete' %}" method="post" class="completeform">
 	    {% csrf_token %}
 	    <input type="submit" value="✓" class="completebutton">
 	</form>
-	{{ task.task_title }}
+	<h3>{{ task.task_title }}</h3>
 	<table class="task_calendar">
 	    <tr>
 		<td>
