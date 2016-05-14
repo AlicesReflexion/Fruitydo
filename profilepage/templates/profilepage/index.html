@@ -30,6 +30,7 @@
     <li>
 	<form action="{% url 'profilepage:complete' %}" method="post" class="completeform">
 	    {% csrf_token %}
+	    <input type="hidden" value="{{task.id}}" name="task_id">
 	    <input type="submit" value="✓" class="completebutton">
 	</form>
 	<h3>{{ task.task_title }}</h3>

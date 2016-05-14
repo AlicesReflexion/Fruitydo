@@ -14,8 +14,9 @@ def profile(request):
     return render(request, 'profilepage/index.html', {'completedtasks':completedtasks, 'incompletetasks':incompletetasks})
 
 def complete(request):
+    user = request.user
     task_id = request.POST['task_id']
-    task = get_object_or_404(Task, pk=task_id)
+    task = get_object_or_404(Task, id=task_id, User_id = user.id)
     task.complete = 1
     task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
