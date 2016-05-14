@@ -11,7 +11,6 @@ def profile(request):
     tasks = Task.objects.filter(User = request.user)
     completedtasks = tasks.filter(complete = True)
     incompletetasks = tasks.filter(complete = False)
-    print(incompletetasks)
     return render(request, 'profilepage/index.html', {'completedtasks':completedtasks, 'incompletetasks':incompletetasks})
 
 def complete(request):
