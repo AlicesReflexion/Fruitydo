@@ -7,7 +7,9 @@ $(function() {
 });
 
 $(function() {
-	$(".accordion").accordion();
+	$(".accordion").accordion({
+		collapsible: true
+	});
 });
 var csrftoken = Cookies.get('csrftoken');
 
