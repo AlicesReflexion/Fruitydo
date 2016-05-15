@@ -5,6 +5,10 @@ $(function() {
 		$(this).datepicker('option', 'dateFormat', "yy-mm-dd");
 	})
 });
+
+$(function() {
+	$(".accordion").accordion();
+});
 var csrftoken = Cookies.get('csrftoken');
 
 $(document).ready(function(){

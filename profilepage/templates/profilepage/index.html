@@ -26,14 +26,15 @@
     </div>
 </div>
 <h2>Incomplete tasks</h2>
-<ul class="incompletetasks">{% for task in incompletetasks %}
-    <li>
+<div class="incompletetasks accordion">{% for task in incompletetasks %}
+    <h3>
 	<form action="{% url 'profilepage:complete' %}" method="post" class="completeform">
 	    {% csrf_token %}
 	    <input type="hidden" value="{{task.id}}" name="task_id">
 	    <input type="submit" value="✓" class="completebutton">
 	</form>
-	<h3>{{ task.task_title }}</h3>
+	{{ task.task_title }}</h3>
+    <div>
 	<table class="task_calendar">
 	    <tr>
 		<td>
@@ -83,8 +84,8 @@ $.post("{% url 'profilepage:event_fetch_raw' %}", {
 		</td>
 	    </tr>
 	</table>
-    </li>{% endfor %}
-</ul>
+    </div>{% endfor %}
+</div>
 <h2>Complete tasks</h2>
 <ul class="completetasks">
 	{% for task in  completedtasks %}
