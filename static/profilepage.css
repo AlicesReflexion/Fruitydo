@@ -107,3 +107,12 @@ tr {
 .ui-datepicker-inline {
 	border: 0;
 }
+
+.headertitle > form > input.dueinput {
+	width: 100%;
+	display: block;
+}
+
+.duecalendar {
+	display: none;
+}

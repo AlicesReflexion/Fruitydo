@@ -23,7 +23,8 @@ def complete(request):
 
 def create(request):
     entered_title = request.POST['task_title']
-    task = Task(User = request.user, task_title = entered_title, pub_date = datetime.now(), recurring = 0, complete = 0, due_date = datetime.now())
+    entered_date = request.POST['duedate']
+    task = Task(User = request.user, task_title = entered_title, pub_date = datetime.now(), recurring = 0, complete = 0, due_date = entered_date)
     task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 

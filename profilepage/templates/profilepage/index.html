@@ -22,6 +22,8 @@
 	    {% csrf_token %}
 	    <input type="text" name="task_title" placeholder="{% randomgoal %}">
 	    <input type="submit" value="+" class="newtaskbutton">
+	    <input type="text" name="duedate" placeholder="Due Date" class="dueinput"> 
+	    <div class="duecalendar"></div>
 	</form>
     </div>
 </div>

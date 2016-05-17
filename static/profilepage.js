@@ -4,6 +4,18 @@ $(function() {
 		$(this).datepicker('option', 'altField', "#desc" + this.id);
 		$(this).datepicker('option', 'dateFormat', "yy-mm-dd");
 	})
+	$(".duecalendar").datepicker({
+		altField: ".dueinput",
+		dateFormat: "yy-mm-dd",
+	});
+
+	$(".dueinput").focus(function(){
+		$(".duecalendar").slideDown(400);
+	});
+
+	$(".dueinput").focusout(function(){
+		$(".duecalendar").slideUp(400);
+	})
 });
 
 $(function() {
