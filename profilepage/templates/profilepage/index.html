@@ -42,17 +42,13 @@
 		</td>
 		<td>
 		    <div class="eventbox" id="event{{ task.id }}"></div>
-		    <div class="editbuttoncontainer">
-			<input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
-		    </div>
+		    <input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
 		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 			{% csrf_token %}
 			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
-			<div class="editorbuttons">
-			    <input type="hidden" name="task" value="{{task.id}}">
-			    <input type="hidden" name="pub_date" id="desc{{task.id}}">
-			    <input type="submit" value="Save" class="saveeventbutton">
-			</div>
+			<input type="hidden" name="task" value="{{task.id}}">
+			<input type="hidden" name="pub_date" id="desc{{task.id}}">
+			<input type="submit" value="Save" class="saveeventbutton">
 		    </form>
 		    <script>
 				$('.datepicker').datepicker({
