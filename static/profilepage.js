@@ -1,8 +1,8 @@
 $(function() {
-	$(".datepicker").datepicker();
 	$(".datepicker").each(function() {
 		$(this).datepicker('option', 'altField', "#desc" + this.id);
 		$(this).datepicker('option', 'dateFormat', "yy-mm-dd");
+		$(this).datepicker('option', 'beforeShowDay', highlightdays)
 	})
 });
 
@@ -21,3 +21,10 @@ $(document).ready(function(){
 		$("#" + this.id).css({"display":"none"});
 	});
 });
+
+function highlightdays(date) {
+	if ($.datepicker.formatDate("yy-mm-dd", date) == '2016-05-05')
+		return [true, 'event']
+	else
+		return [true, '']
+}

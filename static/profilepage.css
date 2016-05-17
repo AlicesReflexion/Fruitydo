@@ -107,3 +107,7 @@ tr {
 .ui-datepicker-inline {
 	border: 0;
 }
+
+.event > a {
+	background-color: red !important;
+}
