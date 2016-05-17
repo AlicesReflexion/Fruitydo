@@ -108,6 +108,6 @@ tr {
 	border: 0;
 }
 
-.event > a {
-	background-color: red !important;
+.event > a.ui-state-default {
+	background-color: red;
 }

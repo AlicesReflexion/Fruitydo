@@ -2,7 +2,7 @@ $(function() {
 	$(".datepicker").each(function() {
 		$(this).datepicker('option', 'altField', "#desc" + this.id);
 		$(this).datepicker('option', 'dateFormat', "yy-mm-dd");
-		$(this).datepicker('option', 'beforeShowDay', highlightdays)
+		$(this).datepicker('option', 'beforeShowDay', function(date){return highlightdays(date, dates)});
 	})
 });
 
@@ -22,9 +22,14 @@ $(document).ready(function(){
 	});
 });
 
-function highlightdays(date) {
-	if ($.datepicker.formatDate("yy-mm-dd", date) == '2016-05-05')
-		return [true, 'event']
-	else
-		return [true, '']
+var dates = ['2016-05-05', '2016-05-12', '2016-05-18'];
+
+function highlightdays(date, highdates) {
+
+	for (var i = 0; i < highdates.length; i++) {
+		if ($.datepicker.formatDate("yy-mm-dd", date) == highdates[i]) {
+			return [true, 'event'];
+		}
+	}
+	return [true, ''];
 }
