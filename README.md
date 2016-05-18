@@ -8,7 +8,10 @@ Running on Red Hat's Openshift at [fruitydo.alexskc.xyz](http://fruitydo.alexskc
 Fruitydo is built with Django 1.8 and Python 3.3, and won't run without the following modules 
 * django-registration-redux
 * django-markup
-* markup
+* markdown
+* django-agpl
+
+You can either install them manually, or with `pip install -r requirements.txt`.
 
 By default, Fruitydo will try to detect your database backend if deployed to Openshift, and fallback to Postgresql if it can't find anything. This can be changed in the `project/settings.py` file, under `DATABASES`
 
