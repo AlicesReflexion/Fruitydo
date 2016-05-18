@@ -9,7 +9,6 @@ Fruitydo is built with Django 1.8 and Python 3.3, and won't run without the foll
 * django-registration-redux
 * django-markup
 * markdown
-* django-agpl
 
 You can either install them manually, or with `pip install -r requirements.txt`.
 

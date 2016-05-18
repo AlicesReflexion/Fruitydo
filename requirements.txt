@@ -3,4 +3,3 @@ Django-On-OpenShift-with-Django-1.8==0.1
 django-markup
 markdown
 django-registration-redux
-django-apl
