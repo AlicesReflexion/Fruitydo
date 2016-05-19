@@ -32,6 +32,8 @@ def event_create(request):
     if not returnevent:
         event = Event(event_description = entered_description, pub_date = entered_date, Task = get_object_or_404(Task, pk=entered_task))
         event.save()
+        task.complete = completed
+        task.save()
     else:
         returnevent[0].event_description = entered_description
         task.complete = completed
