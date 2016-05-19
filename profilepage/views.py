@@ -8,7 +8,7 @@ from django_markup.filter import MarkupFilter
 from django_markup.markup import formatter
 
 def profile(request):
-    tasks = Task.objects.filter(User = request.user)
+    tasks = Task.objects.filter(User = request.user).order_by('due_date')
     incompletetasks = tasks.filter(complete = False)
     for task in tasks:
         task.overdue = True
