@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load staticfiles %}
-{% load randomgoal %}
 
 {% block customscripts %}
 <link rel="stylesheet" href="{% static 'jquery-ui-1.11.4.custom/jquery-ui.css' %}">
@@ -11,24 +10,10 @@
 <script src="{% static 'profilepage.js' %}"></script>
 {% endblock %}
 
-{% block title %}Profile{% endblock %}
-
 {% block content %}
 {% if user.is_authenticated %}
-<div class="wrapper">
-    <div class="headertitle">
-	<h1>Welcome back, {{ user.username }}</h1>
-	<form action="{% url 'profilepage:create' %}" method="post">
-	    {% csrf_token %}
-	    <input type="text" name="task_title" placeholder="{% randomgoal %}">
-	    <input type="submit" value="+" class="newtaskbutton">
-	    <input type="text" name="duedate" placeholder="Due Date" class="dueinput"> 
-	    <div class="duecalendar"></div>
-	</form>
-    </div>
-</div>
-<h2>What have we got to do today?</h2>
-<div class="incompletetasks accordion">{% for task in incompletetasks %}
+<h2>Done. (For now?)</h2>
+<div class="completetasks accordion">{% for task in completetasks %}
     <h3>{{ task.task_title }}</h3>
     <div>
 	<table class="task_calendar">
@@ -51,10 +36,10 @@
 		</td>
 	    </tr>
 	</table>
-    </div>{% endfor %}
+    </div>
+    {% endfor %}
 </div>
-
-<h2><a href="{% url 'profilepage:done' %}">What've we got done?</a></h2>
+<h2><a href="{% url 'profilepage:profile'}">What's left to do?</a></h2>
 {% endif %}
 {% endblock %}
 
