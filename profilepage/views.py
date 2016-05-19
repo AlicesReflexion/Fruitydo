@@ -20,13 +20,10 @@ def create(request):
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
 def event_create(request):
+    completed = bool("markcomplete" in request.POST)
+    print(completed)
     entered_description = request.POST['event_description']
     entered_task = request.POST['task']
-    completed = request.POST['markcomplete']
-    if completed == "on":
-        completed = True
-    else:
-        completed = False
     entered_date = request.POST['pub_date']
     task = Task.objects.get(id=entered_task)
     if task.User != request.user:
