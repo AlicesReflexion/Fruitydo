@@ -66,6 +66,9 @@ $(document).ready(function(){
 			$.post("/accounts/profile/task_delete", {
 				task: taskid,
 				csrfmiddlewaretoken: csrftoken,
+			})
+			.done(function(){
+				location.reload();
 			});
 		}
 	});
