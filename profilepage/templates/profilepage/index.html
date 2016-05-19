@@ -51,14 +51,6 @@
 	</table>
     </div>{% endfor %}
 </div>
-<h2>Complete tasks</h2>
-<ul class="completetasks">
-	{% for task in  completedtasks %}
-	<li>{{ task.task_title }}</li>
-	    <ul>{% for event in task.event_set.all %}
-		<li>{{ event.event_description }}</li>{% endfor %}
-	    </ul>{% endfor %}
-</ul>
 {% endif %}
 {% endblock %}
 
