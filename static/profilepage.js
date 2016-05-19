@@ -5,6 +5,7 @@ $(function() {
 	$(".datepicker").each(function() {
 		$(this).datepicker('option', 'altField', "#desc" + this.id);
 		$(this).datepicker('option', 'dateFormat', "yy-mm-dd");
+		dates = fetchdates(this.id, $.datepicker.formatDate("mm",$(this).datepicker("getDate")));
 		$(this).datepicker('option', 'beforeShowDay', function(date){return highlightdays(date, dates)});
 		$(this).datepicker('option', 'onSelect', insertdesc)
 	})
@@ -77,8 +78,6 @@ $(document).ready(function(){
 	});
 
 });
-
-var dates = fetchdates(34,05);
 
 function fetchdates(taskid, month) {
 	$.post("/accounts/profile/event_dates", {
