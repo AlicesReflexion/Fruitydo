@@ -57,18 +57,6 @@ $.post("{% url 'profilepage:event_fetch_fancy' %}", {
 .done(function(data){
     $('#event{{ task.id }}').html(data);
 });
-
-
-$.post("{% url 'profilepage:event_fetch_raw' %}", {
-	date: dateText,
-	task: "{{ task.id }}",
-	csrfmiddlewaretoken: csrftoken
-})
-.done(function(rawdata){
-    $('#textarea{{ task.id }}').val(rawdata);
-});
-
-
 				    }
 				});
 		    </script>
