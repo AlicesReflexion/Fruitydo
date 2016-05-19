@@ -13,14 +13,6 @@ def profile(request):
     incompletetasks = tasks.filter(complete = False)
     return render(request, 'profilepage/index.html', {'completedtasks':completedtasks, 'incompletetasks':incompletetasks})
 
-def complete(request):
-    user = request.user
-    task_id = request.POST['task_id']
-    task = get_object_or_404(Task, id=task_id, User_id = user.id)
-    task.complete = 1
-    task.save()
-    return HttpResponseRedirect(reverse('profilepage:profile'))
-
 def create(request):
     entered_title = request.POST['task_title']
     task = Task(User = request.user, task_title = entered_title, pub_date = datetime.now(), recurring = 0, complete = 0, due_date = datetime.now())
@@ -30,6 +22,11 @@ def create(request):
 def event_create(request):
     entered_description = request.POST['event_description']
     entered_task = request.POST['task']
+    completed = request.POST['markcomplete']
+    if completed == "on":
+        completed = True
+    else:
+        completed = False
     entered_date = request.POST['pub_date']
     task = Task.objects.get(id=entered_task)
     if task.User != request.user:
@@ -40,7 +37,9 @@ def event_create(request):
         event.save()
     else:
         returnevent[0].event_description = entered_description
+        task.complete = completed
         returnevent[0].save()
+        task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
 def event_fetch(request):

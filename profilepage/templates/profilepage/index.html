@@ -27,13 +27,7 @@
 </div>
 <h2>Incomplete tasks</h2>
 <div class="incompletetasks accordion">{% for task in incompletetasks %}
-    <h3>
-	<form action="{% url 'profilepage:complete' %}" method="post" class="completeform">
-	    {% csrf_token %}
-	    <input type="hidden" value="{{task.id}}" name="task_id">
-	    <input type="submit" value="✓" class="completebutton">
-	</form>
-	{{ task.task_title }}</h3>
+    <h3>{{ task.task_title }}</h3>
     <div>
 	<table class="task_calendar">
 	    <tr>
@@ -48,6 +42,7 @@
 			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
 			<input type="hidden" name="task" value="{{task.id}}">
 			<input type="hidden" name="pub_date" id="desc{{task.id}}">
+			<label>Done for now?<input type="checkbox" name="markcomplete"></label>
 			<input type="submit" value="Save" class="saveeventbutton">
 		    </form>
 		    <script>
