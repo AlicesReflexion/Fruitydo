@@ -1,3 +1,5 @@
+$.ajaxSetup({async:false});
+//DEPRECATED. DON'T DO THIS.
 $(function() {
 	$(".datepicker").datepicker();
 	$(".datepicker").each(function() {
@@ -74,25 +76,20 @@ $(document).ready(function(){
 		}
 	});
 
-	fetchdates(32, 05);
-
 });
 
-var dates = ['2016-05-05', '2016-05-12', '2016-05-18'];
+var dates = fetchdates(34,05);
 
 function fetchdates(taskid, month) {
-$.post("/accounts/profile/event_dates", {
-	task: taskid,
-	csrfmiddlewaretoken: csrftoken,
-	month: month
-	},null,'json')
-	.done(function(data){
-		alert(data);
-	});
+	$.post("/accounts/profile/event_dates", {
+		task: taskid,
+		csrfmiddlewaretoken: csrftoken,
+		month: month
+		},function(data){returndates = data;},'json');
+	return returndates;
 }
 
 function highlightdays(date, highdates) {
-
 	for (var i = 0; i < highdates.length; i++) {
 		if ($.datepicker.formatDate("yy-mm-dd", date) == highdates[i]) {
 			return [true, 'event'];
