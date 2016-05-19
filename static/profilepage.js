@@ -74,19 +74,22 @@ $(document).ready(function(){
 		}
 	});
 
+	fetchdates(32, 05);
 
-	$.post("/accounts/profile/event_dates", {
-		task: 32,
-		csrfmiddlewaretoken: csrftoken,
-		month: 05
-	},
-	null,'json')
-	.done(function(data){
-		alert(data[1]);
-	});
 });
 
 var dates = ['2016-05-05', '2016-05-12', '2016-05-18'];
+
+function fetchdates(taskid, month) {
+$.post("/accounts/profile/event_dates", {
+	task: taskid,
+	csrfmiddlewaretoken: csrftoken,
+	month: month
+	},null,'json')
+	.done(function(data){
+		alert(data);
+	});
+}
 
 function highlightdays(date, highdates) {
 
