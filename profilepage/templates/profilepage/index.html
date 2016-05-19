@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load randomgoal %}
+{% load overdue %}
 
 {% block customscripts %}
 <link rel="stylesheet" href="{% static 'jquery-ui-1.11.4.custom/jquery-ui.css' %}">
@@ -29,7 +30,7 @@
 </div>
 <h2>What have we got to do today?</h2>
 <div class="incompletetasks accordion">{% for task in incompletetasks %}
-    <h3>{{ task.task_title }}</h3>
+    <h3>{{ task.task_title }} {{ task|overdue }}</h3>
     <div>
 	<table class="task_calendar">
 	    <tr>

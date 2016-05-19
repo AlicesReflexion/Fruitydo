@@ -10,6 +10,8 @@ from django_markup.markup import formatter
 def profile(request):
     tasks = Task.objects.filter(User = request.user)
     incompletetasks = tasks.filter(complete = False)
+    for task in tasks:
+        task.overdue = True
     return render(request, 'profilepage/index.html', {'incompletetasks':incompletetasks})
 
 def done(request):
