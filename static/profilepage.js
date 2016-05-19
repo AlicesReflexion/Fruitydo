@@ -33,4 +33,15 @@ $(document).ready(function(){
 		});
 
 	});
+
+	$('.deletetaskbutton').click(function(){
+		var words = this.id.split('-');
+		var taskid = words[1];
+		if (confirm('Are you sure you want to delete this task? This cannot be undone.')) {
+			$.post("/accounts/profile/task_delete", {
+				task: taskid,
+				csrfmiddlewaretoken: csrftoken,
+			});
+		}
+	});
 });

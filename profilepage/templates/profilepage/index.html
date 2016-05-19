@@ -44,6 +44,7 @@
 			<input type="hidden" name="pub_date" id="desc{{task.id}}">
 			<label>Done for now?<input type="checkbox" name="markcomplete"></label>
 			<input type="submit" value="Save" class="saveeventbutton">
+			<input type="button" value="Delete" name="delete" class="deletetaskbutton" id="deletetask-{{ task.id }}">
 		    </form>
 		    <script>
 				$('.datepicker').datepicker({

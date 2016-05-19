@@ -39,6 +39,12 @@ def event_create(request):
         task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
+def task_delete(request):
+    user = request.user
+    task = get_object_or_404(Task, User_id = user.id, id = request.POST['task'])
+    task.delete()
+    return HttpResponseRedirect(reverse('profilepage:profile'))
+
 def event_fetch(request):
     user = request.user
     date = request.POST['date']
