@@ -46,21 +46,6 @@
 			<input type="submit" value="Save" class="saveeventbutton">
 			<input type="button" value="Delete" name="delete" class="deletetaskbutton" id="deletetask-{{ task.id }}">
 		    </form>
-		    <script>
-				$('.datepicker').datepicker({
-				    onSelect: function(dateText)
-				    {
-$.post("{% url 'profilepage:event_fetch_fancy' %}", {
-	date: dateText,
-	task: "{{ task.id }}",
-	csrfmiddlewaretoken: csrftoken
-})
-.done(function(data){
-    $('#event{{ task.id }}').html(data);
-});
-				    }
-				});
-		    </script>
 		</td>
 	    </tr>
 	</table>

@@ -3,6 +3,7 @@ $(function() {
 	$(".datepicker").each(function() {
 		$(this).datepicker('option', 'altField', "#desc" + this.id);
 		$(this).datepicker('option', 'dateFormat', "yy-mm-dd");
+		$(this).datepicker('option', 'onSelect', insertdesc)
 	})
 });
 
@@ -12,6 +13,19 @@ $(function() {
 	});
 });
 var csrftoken = Cookies.get('csrftoken');
+
+function insertdesc(dateText)
+{
+	taskid = this.id
+	$.post("/accounts/profile/event_fetch_fancy", {
+		date: dateText,
+		task: taskid,
+		csrfmiddlewaretoken: csrftoken
+	})
+	.done(function(data){
+		$('#event' + taskid).html(data);
+	});
+}
 
 $(document).ready(function(){
 	$('.editbutton').click(function(){
@@ -31,7 +45,6 @@ $(document).ready(function(){
 		.done(function(rawdata){
 			$("#textarea" + taskid).val(rawdata);
 		});
-
 	});
 
 	$('.deletetaskbutton').click(function(){
