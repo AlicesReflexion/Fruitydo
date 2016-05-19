@@ -9,9 +9,13 @@ from django_markup.markup import formatter
 
 def profile(request):
     tasks = Task.objects.filter(User = request.user)
-    completedtasks = tasks.filter(complete = True)
     incompletetasks = tasks.filter(complete = False)
-    return render(request, 'profilepage/index.html', {'completedtasks':completedtasks, 'incompletetasks':incompletetasks})
+    return render(request, 'profilepage/index.html', {'incompletetasks':incompletetasks})
+
+def done(request):
+    tasks = Task.objects.filter(User = request.user)
+    completetasks = tasks.filter(complete = True)
+    return render(request, 'profilepage/completed.html', {'completetasks':completetasks})
 
 def create(request):
     entered_title = request.POST['task_title']

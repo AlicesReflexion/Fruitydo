@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^profile/task_delete', views.task_delete, name='task_delete'),
     url(r'^profile/create_task', views.create, name='create'),
     url(r'^profile/create_event', views.event_create, name='event_create'),
+    url(r'^profile/done', views.done, name='done'),
     url(r'^profile', views.profile, name='profile'),
     ]
