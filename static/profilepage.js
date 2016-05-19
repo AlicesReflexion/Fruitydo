@@ -7,6 +7,7 @@ $(function() {
 		$(this).datepicker('option', 'dateFormat', "yy-mm-dd");
 		dates = fetchdates(this.id, $.datepicker.formatDate("mm",$(this).datepicker("getDate")));
 		$(this).datepicker('option', 'beforeShowDay', function(date){return highlightdays(date, dates)});
+		$(this).datepicker('option', 'onChangeMonthYear', changemonth)
 		$(this).datepicker('option', 'onSelect', insertdesc)
 	})
 	$(".duecalendar").datepicker({
@@ -41,6 +42,12 @@ function insertdesc(dateText)
 	.done(function(data){
 		$('#event' + taskid).html(data);
 	});
+	dates = fetchdates(this.id, $.datepicker.formatDate("mm",$(this).datepicker("getDate")));
+
+}
+
+function changemonth(year, month){
+	dates = fetchdates(this.id, month)
 }
 
 $(document).ready(function(){
