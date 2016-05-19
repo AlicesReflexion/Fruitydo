@@ -8,26 +8,27 @@ from django_markup.filter import MarkupFilter
 from django_markup.markup import formatter
 
 def profile(request):
-    tasks = Task.objects.filter(User = request.user)
-    completedtasks = tasks.filter(complete = True)
+    tasks = Task.objects.filter(User = request.user).order_by('due_date')
     incompletetasks = tasks.filter(complete = False)
-    return render(request, 'profilepage/index.html', {'completedtasks':completedtasks, 'incompletetasks':incompletetasks})
+    for task in tasks:
+        task.overdue = True
+    return render(request, 'profilepage/index.html', {'incompletetasks':incompletetasks})
 
-def complete(request):
-    user = request.user
-    task_id = request.POST['task_id']
-    task = get_object_or_404(Task, id=task_id, User_id = user.id)
-    task.complete = 1
-    task.save()
-    return HttpResponseRedirect(reverse('profilepage:profile'))
+def done(request):
+    tasks = Task.objects.filter(User = request.user)
+    completetasks = tasks.filter(complete = True)
+    return render(request, 'profilepage/completed.html', {'completetasks':completetasks})
 
 def create(request):
     entered_title = request.POST['task_title']
-    task = Task(User = request.user, task_title = entered_title, pub_date = datetime.now(), recurring = 0, complete = 0, due_date = datetime.now())
+    entered_date = request.POST['duedate']
+    task = Task(User = request.user, task_title = entered_title, pub_date = datetime.now(), recurring = 0, complete = 0, due_date = entered_date)
     task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
 def event_create(request):
+    completed = bool("markcomplete" in request.POST)
+    print(completed)
     entered_description = request.POST['event_description']
     entered_task = request.POST['task']
     entered_date = request.POST['pub_date']
@@ -38,9 +39,19 @@ def event_create(request):
     if not returnevent:
         event = Event(event_description = entered_description, pub_date = entered_date, Task = get_object_or_404(Task, pk=entered_task))
         event.save()
+        task.complete = completed
+        task.save()
     else:
         returnevent[0].event_description = entered_description
+        task.complete = completed
         returnevent[0].save()
+        task.save()
+    return HttpResponseRedirect(reverse('profilepage:profile'))
+
+def task_delete(request):
+    user = request.user
+    task = get_object_or_404(Task, User_id = user.id, id = request.POST['task'])
+    task.delete()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
 def event_fetch(request):

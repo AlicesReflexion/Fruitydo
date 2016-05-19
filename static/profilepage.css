@@ -110,4 +110,14 @@ tr {
 
 .event > a.ui-state-default {
 	background-color: red;
+
+}
+
+.headertitle > form > input.dueinput {
+	width: 100%;
+	display: block;
+}
+
+.duecalendar {
+	display: none;
 }
