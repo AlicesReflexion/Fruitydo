@@ -6,6 +6,8 @@ from .models import Task, Event
 from datetime import datetime
 from django_markup.filter import MarkupFilter
 from django_markup.markup import formatter
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 def profile(request):
     tasks = Task.objects.filter(User = request.user).order_by('due_date')
@@ -47,6 +49,16 @@ def event_create(request):
         returnevent[0].save()
         task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
+
+def event_dates(request):
+    user = request.user
+    task = get_object_or_404(Task, User_id = user.id, id = request.POST['task'])
+    events = Event.objects.filter(Task_id = task.id, pub_date__month = request.POST['month'])
+    dates = []
+    for event in events:
+        dates.append(event.pub_date)
+    data = json.dumps(dates, cls=DjangoJSONEncoder)
+    return HttpResponse(data)
 
 def task_delete(request):
     user = request.user

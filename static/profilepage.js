@@ -73,6 +73,17 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+
+	$.post("/accounts/profile/event_dates", {
+		task: 32,
+		csrfmiddlewaretoken: csrftoken,
+		month: 05
+	},
+	null,'json')
+	.done(function(data){
+		alert(data[1]);
+	});
 });
 
 var dates = ['2016-05-05', '2016-05-12', '2016-05-18'];
