@@ -1,17 +1,15 @@
-html {
-	height: 100%;
-}
-
 body {
 	background-color: #ffffff;
 	font-family: sans-serif;
 	margin: 0;
 	margin-bottom: 30px;
+	/* Leave space for the footer at the bottom. */
 	min-height: calc(100% - 30px);
 }
 
 .navbar {
 	position: fixed;
+	/* Display from edge to edge. */
 	left: 0;
 	top: 0;
 	margin: 0;
@@ -22,11 +20,13 @@ body {
 	height: 35px;
 	background-color: #ffffff;
 	box-shadow: 0 0 5px #888888;
+	/* Make it appear over the body. */
 	z-index: 5;
-	display: inline;
+	display: block;
 }
 
 .navbar > li {
+	/* Make all the links appear in one line. */
 	display: inline-block;
 	font-size: 16px;
 	padding-left: 5px;
@@ -49,22 +49,28 @@ body {
 	color: #4b3621;
 }
 
+/* Log in/Log out button */
 .auth {
-	float; right;
+	float: right;
 	text-align: right;
 	position: absolute;
 	right: 0;
 	bottom: -8px;
 }
 
+/* The actual "body" that's not the navbar or footer. */
 .content {
 
 background-color: #faf9fb;
 box-shadow: 0 0 10px #888888;
 width: 100%;
+/* Expand to full height. 
+ 60px for navbar and padding, 20px for footer, 10px bottom padding.
+ Dunno where the last 10px comes from... */
 min-height: calc(100vh - 100px);
 height: 100%;
 margin: 0;
+/* So content doesn't appear under the navbar. */
 padding: 60px 0 10px 0;
 position: static;
 z-index: 1;
@@ -79,8 +85,9 @@ background-color: #ffffff;
 height: 15px;
 }
 
+/* Actually a link, not a button. */
 .registerbutton {
-	font-color: #ff5d76;
+	color: #ff5d76;
 	border-color: #ff5d76;
 	border: 5px solid;
 	border-radius: 5px;
@@ -104,6 +111,8 @@ height: 15px;
 .lander {
 	width: 80%;
 	max-width: 980px;
+	/* For low resolution displays. */
+	max-height: 50%;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
@@ -116,6 +125,8 @@ height: 15px;
 .textblock {
 	width: 90%;
 	max-width: 980px;
+
+	/*center.*/
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
@@ -150,14 +161,15 @@ p {
 input[type=text], input[type=password], input[type=email]{
 	background-color: transparent;
 	border-style: solid;
-	border-width: 0px 0px 1px 0px;
+	/* Underline-style inputs.*/
+	border-width: 0 0 1px 0;
 	border-color: #AAAAAA;
 	transition: .1s;
 	color: #AAAAAA;
 }
 
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
-	border-width: 0px 0px 2px 0px;
+	border-width: 0 0 2px 0;
 	border-color: #fbb03b;
 	color: #ff5d76;
 }

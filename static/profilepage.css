@@ -2,6 +2,7 @@
 	display: inline;
 }
 
+/* div to center the title/new task form. */
 .wrapper {
 	display: block;
 	margin-right: auto;
@@ -11,6 +12,7 @@
 
 .incompletetasks {
 	width: 50%;
+	/* Width of the calendar widget and textbox. */
 	min-width: 700px;
 	max-width: 960px;
 	margin-right: auto;
@@ -23,27 +25,31 @@
 }
 
 .headertitle > form > input[type=text] {
+	/* 27px: The size of the "+" button */
 	width: calc(100% - 27px);
 }
 
-.completebutton, .newtaskbutton {
+.newtaskbutton {
 	width: 20px;
 	height: 20px;
 	padding: 0;
+	margin: 0;
 	border: none;
-	border-radius: 10px;
 	background-color: transparent;
 	color: #ff5d76;
 	transition: .3s;
 	font-weight: bold;
 }
 
-.completebutton:hover, .newtaskbutton:hover {
+.newtaskbutton:hover {
 	color: #acd343;
 }
 
+
 .eventbox {
+	/* 31px: The height of the edit/save/done buttons. */
 	height: calc(100% - 31px);
+	/* The same width as the datepicker widget. */
 	width: 280px;
 	overflow: auto;
 	display: block;
@@ -53,6 +59,7 @@
 	margin: 2px 0 2px 0;
 }
 
+/* Headings are colored and have huge margins elsewhere. */
 .eventbox > h1,
 .eventbox > h2,
 .eventbox > h3 {
@@ -61,6 +68,7 @@
 	display: block;
 }
 
+/* 31px: The height of the edit/save/done buttons. */
 .desc_input {
 	height: calc(100% - 31px);
 	width: 280px;
@@ -70,36 +78,20 @@
 	padding: 0;
 }
 
+/* Hidden until the user hits the "edit" button. */
 .desc_input_form {
 	display: none;
 }
 
-.editbuttoncontainer {
-	width: 290px;
-	text-align: right;
-}
-
-.editorbuttons {
-	width: 290px;
-	height: 0px;
-	text-align: right;
-}
-
-h3 {
-	display: inline;
-}
-
 .task_calendar {
+	/* Bizarro tiny border on tables by default. */
 	border-collapse: collapse;
 }
 
+/* trying to fit the box properly. */
 td {
 	padding: 0;
 	vertical-align: top;
-	height: 100%;
-}
-
-tr {
 	height: 100%;
 }
 
@@ -107,16 +99,19 @@ tr {
 	border: 0;
 }
 
-.event > a.ui-state-default {
+/* Highlight dates with events. */
+.event > .ui-state-default {
 	background-color: red;
 
 }
 
-.headertitle > form > input.dueinput {
+.headertitle > form > .dueinput {
+	/* Displayed under the titlebar/button. */
 	width: 100%;
 	display: block;
 }
 
+/* Not displayed until the user decides to input a due date. */
 .duecalendar {
 	display: none;
 }
