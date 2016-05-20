@@ -1,34 +1,42 @@
+import json
+from datetime import datetime
 from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.models import User
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
-from .models import Task, Event
-from datetime import datetime
-from django_markup.filter import MarkupFilter
 from django_markup.markup import formatter
-import json
 from django.core.serializers.json import DjangoJSONEncoder
+from .models import Task, Event
 
 def profile(request):
-    tasks = Task.objects.filter(User = request.user).order_by('due_date')
-    incompletetasks = tasks.filter(complete = False)
+    """Returns the profile/todo page"""
+    tasks = Task.objects.filter(User=request.user).order_by('due_date')
+    incompletetasks = tasks.filter(complete=False)
     for task in tasks:
         task.overdue = True
     return render(request, 'profilepage/index.html', {'incompletetasks':incompletetasks})
 
 def done(request):
-    tasks = Task.objects.filter(User = request.user)
-    completetasks = tasks.filter(complete = True)
+    """Marks a task as done"""
+    tasks = Task.objects.filter(User=request.user)
+    completetasks = tasks.filter(complete=True)
     return render(request, 'profilepage/completed.html', {'completetasks':completetasks})
 
 def create(request):
+    """Creates a task"""
     entered_title = request.POST['task_title']
     entered_date = request.POST['duedate']
-    task = Task(User = request.user, task_title = entered_title, pub_date = datetime.now(), recurring = 0, complete = 0, due_date = entered_date)
+    task = Task(
+        User=request.user,
+        task_title=entered_title,
+        pub_date=datetime.now(),
+        recurring=0,
+        complete=0,
+        due_date=entered_date)
     task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
 def event_create(request):
+    """Creates an event for a task."""
     completed = bool("markcomplete" in request.POST)
     print(completed)
     entered_description = request.POST['event_description']
@@ -37,9 +45,12 @@ def event_create(request):
     task = Task.objects.get(id=entered_task)
     if task.User != request.user:
         return HttpResponse("An unexpected error occured.")
-    returnevent = Event.objects.filter(pub_date = entered_date, Task_id = entered_task)
+    returnevent = Event.objects.filter(pub_date=entered_date, Task_id=entered_task)
     if not returnevent:
-        event = Event(event_description = entered_description, pub_date = entered_date, Task = get_object_or_404(Task, pk=entered_task))
+        event = Event(
+            event_description=entered_description,
+            pub_date=entered_date,
+            Task=get_object_or_404(Task, pk=entered_task))
         event.save()
         task.complete = completed
         task.save()
@@ -51,9 +62,10 @@ def event_create(request):
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
 def event_dates(request):
+    """Returns dates where events occured for a given task in a given month"""
     user = request.user
-    task = get_object_or_404(Task, User_id = user.id, id = request.POST['task'])
-    events = Event.objects.filter(Task_id = task.id, pub_date__month = request.POST['month'])
+    task = get_object_or_404(Task, User_id=user.id, id=request.POST['task'])
+    events = Event.objects.filter(Task_id=task.id, pub_date__month=request.POST['month'])
     dates = []
     for event in events:
         dates.append(event.pub_date)
@@ -61,20 +73,22 @@ def event_dates(request):
     return HttpResponse(data)
 
 def task_delete(request):
+    """Delete the given task."""
     user = request.user
-    task = get_object_or_404(Task, User_id = user.id, id = request.POST['task'])
+    task = get_object_or_404(Task, User_id=user.id, id=request.POST['task'])
     task.delete()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
 def event_fetch(request):
+    """Return the description for the given event."""
     user = request.user
     date = request.POST['date']
     try:
-        task = Task.objects.get(id = request.POST['task'], User_id = user.id)
+        task = Task.objects.get(id=request.POST['task'], User_id=user.id)
     except Task.DoesNotExist:
         return "An unexpected error occured."
     try:
-        returnevent = Event.objects.get(pub_date = date, Task_id = task.id)
+        returnevent = Event.objects.get(pub_date=date, Task_id=task.id)
     except Event.DoesNotExist:
         return "Nothing happened on this date!"
     else:
@@ -82,11 +96,13 @@ def event_fetch(request):
 
 
 def event_fetch_fancy(request):
+    """Return a markdown-formatted version of the requested event."""
     string = event_fetch(request)
     string = formatter(string, filter_name='markdown')
     return HttpResponse(string)
 
 def event_fetch_raw(request):
+    """Return an unformatted version of the requested event."""
     string = event_fetch(request)
     return HttpResponse(string)
 # Create your views here.
