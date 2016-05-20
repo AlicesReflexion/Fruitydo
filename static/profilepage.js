@@ -5,8 +5,10 @@ $(function() {
   $(".datepicker").each(function() {
     $(this).datepicker('option', 'altField', "#desc" + this.id);
     $(this).datepicker('option', 'dateFormat', "yy-mm-dd");
-    dates = fetchdates(this.id, $.datepicker.formatDate("mm",$(this).datepicker("getDate")));
-    $(this).datepicker('option', 'beforeShowDay', function(date){return highlightdays(date, dates)});
+    dates = fetchdates(this.id, $.datepicker.formatDate("mm", $(this).datepicker("getDate")));
+    $(this).datepicker('option', 'beforeShowDay', function(date) {
+      return highlightdays(date, dates);
+    });
     $(this).datepicker('option', 'onChangeMonthYear', changemonth);
     $(this).datepicker('option', 'onSelect', insertdesc);
   });
@@ -41,7 +43,7 @@ function insertdesc(dateText) {
   .done(function(data) {
     $('#event' + taskid).html(data);
   });
-  dates = fetchdates(this.id, $.datepicker.formatDate("mm",$(this).datepicker("getDate")));
+  dates = fetchdates(this.id, $.datepicker.formatDate("mm", $(this).datepicker("getDate")));
 }
 
 function changemonth(year, month) {
