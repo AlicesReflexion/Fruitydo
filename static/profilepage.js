@@ -1,46 +1,45 @@
 // NON-ASYNC REQUESTS ARE DEPRECATED. DON'T DO THIS.
 $.ajaxSetup({async: false});
+var csrftoken = Cookies.get('csrftoken');
+
 $(function() {
   $(".datepicker").datepicker();
   $(".datepicker").each(function() {
-    $(this).datepicker('option', 'altField', "#desc" + this.id);
-    $(this).datepicker('option', 'dateFormat', "yy-mm-dd");
-    dates = fetchdates(this.id, $.datepicker.formatDate("yy-mm", $(this).datepicker("getDate")));
-    $(this).datepicker('option', 'beforeShowDay', function(date) {
-      return highlightdays(date, dates);
+    var yymm = $.datepicker.formatDate("yy-mm", $(this).datepicker("getDate"));
+    var dates = fetchdates(this.id, yymm);
+    $(this).datepicker('option', {
+      altField: "#desc" + this.id,
+      dateFormat: "yy-mm-dd",
+      beforeShowDay: function(date) {
+	return highlightday(date, dates);
+      },
+      onChangeMonthYear: function(year, month) {
+	yymm = year + "-" + month;
+	dates = fetchdates(this.id, yymm);
+      },
+      onSelect: insertdesc
     });
-    $(this).datepicker('option', 'onChangeMonthYear', changemonth);
-    $(this).datepicker('option', 'onSelect', insertdesc);
   });
+});
+
+$(document).ready(function() {
+  $(".accordion").accordion({
+    collapsible: true
+  });
+  $('.editbutton').click(showedit);
+  $('.deletetaskbutton').click(deletetask);
+
+  // Due date input calendar.
   $(".duecalendar").datepicker({
     altField: ".dueinput",
     dateFormat: "yy-mm-dd"
   });
-
   $(".dueinput").focus(function() {
     $(".duecalendar").slideDown(400);
   });
-
   $(".dueinput").focusout(function() {
     $(".duecalendar").slideUp(400);
   });
-});
-
-$(function() {
-  $(".accordion").accordion({
-    collapsible: true
-  });
-});
-var csrftoken = Cookies.get('csrftoken');
-
-function changemonth(year, month) {
-  dates = fetchdates(this.id, year + "-" + month);
-}
-
-$(document).ready(function() {
-  $('.editbutton').click(showedit);
-
-  $('.deletetaskbutton').click(deletetask);
 });
 
 /**
@@ -135,12 +134,12 @@ function fetchdates(taskid, month) {
  * Highlightes dates in datepicker widget.
  *
  * @param {date} date object to check for highlighting.
- * @param {array} array of date strins to highlight in "yy-mm-dd" format.
+ * @param {array} highdates array of strings representing dates to highlight in "yy-mm-dd"
  * @return {array} with true/false for selectable and css name.
  */
-function highlightdays(date, array) {
-  for (var i = 0; i < array.length; i++) {
-    if ($.datepicker.formatDate("yy-mm-dd", date) === array[i]) {
+function highlightday(date, highdates) {
+  for (var i = 0; i < highdates.length; i++) {
+    if ($.datepicker.formatDate("yy-mm-dd", date) === highdates[i]) {
       return [true, 'event'];
     }
   }
