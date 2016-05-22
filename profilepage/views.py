@@ -65,7 +65,11 @@ def event_dates(request):
     """Returns dates where events occured for a given task in a given month"""
     user = request.user
     task = get_object_or_404(Task, User_id=user.id, id=request.POST['task'])
-    events = Event.objects.filter(Task_id=task.id, pub_date__month=request.POST['month'])
+    yymm = request.POST['month']
+    yymm = yymm.split("-")
+    year = yymm[0]
+    month = yymm[1]
+    events = Event.objects.filter(Task_id=task.id, pub_date__year=year, pub_date__month=month)
     dates = []
     for event in events:
         dates.append(event.pub_date)

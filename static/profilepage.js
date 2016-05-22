@@ -5,7 +5,7 @@ $(function() {
   $(".datepicker").each(function() {
     $(this).datepicker('option', 'altField', "#desc" + this.id);
     $(this).datepicker('option', 'dateFormat', "yy-mm-dd");
-    dates = fetchdates(this.id, $.datepicker.formatDate("mm", $(this).datepicker("getDate")));
+    dates = fetchdates(this.id, $.datepicker.formatDate("yy-mm", $(this).datepicker("getDate")));
     $(this).datepicker('option', 'beforeShowDay', function(date) {
       return highlightdays(date, dates);
     });
@@ -33,21 +33,8 @@ $(function() {
 });
 var csrftoken = Cookies.get('csrftoken');
 
-function insertdesc(dateText) {
-  var taskid = this.id;
-  $.post("/accounts/profile/event_fetch_fancy", {
-    date: dateText,
-    task: taskid,
-    csrfmiddlewaretoken: csrftoken
-  })
-  .done(function(data) {
-    $('#event' + taskid).html(data);
-  });
-  dates = fetchdates(this.id, $.datepicker.formatDate("mm", $(this).datepicker("getDate")));
-}
-
 function changemonth(year, month) {
-  dates = fetchdates(this.id, month);
+  dates = fetchdates(this.id, year + "-" + month);
 }
 
 $(document).ready(function() {
@@ -86,10 +73,28 @@ $(document).ready(function() {
 });
 
 /**
+ * inserts description for the relevant event into the associated div.
+ *
+ * @param {string} dateText String representing the date of the event in "yy-mm-dd".
+ * @this {datepicker}
+ */
+function insertdesc(dateText) {
+  var taskid = this.id;
+  $.post("/accounts/profile/event_fetch_fancy", {
+    date: dateText,
+    task: taskid,
+    csrfmiddlewaretoken: csrftoken
+  })
+  .done(function(data) {
+    $('#event' + taskid).html(data);
+  });
+}
+
+/**
  * Gets array of dates to highlight from the server.
  *
  * @param {int} taskid id of the task to return.
- * @param {int} month calendar month for filtering the dates.
+ * @param {int} month string representing month with dates in "yy-mm" format.
  * @return {returndates} array of date strings in "yy-mm-dd" format.
  */
 function fetchdates(taskid, month) {
