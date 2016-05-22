@@ -1,4 +1,4 @@
-// ASYNC REQUESTS ARE DEPRECATED. DON'T DO THIS.
+// NON-ASYNC REQUESTS ARE DEPRECATED. DON'T DO THIS.
 $.ajaxSetup({async: false});
 $(function() {
   $(".datepicker").datepicker();
@@ -40,19 +40,7 @@ function changemonth(year, month) {
 $(document).ready(function() {
   $('.editbutton').click(showedit);
 
-  $('.deletetaskbutton').click(function() {
-    var words = this.id.split('-');
-    var taskid = words[1];
-    if (confirm('Are you sure you want to delete this task? This cannot be undone.')) {
-      $.post("/accounts/profile/task_delete", {
-        task: taskid,
-        csrfmiddlewaretoken: csrftoken
-      })
-      .done(function() {
-        location.reload();
-      });
-    }
-  });
+  $('.deletetaskbutton').click(deletetask);
 });
 
 /**
@@ -83,6 +71,27 @@ function showedit() {
   .done(function(rawdata) {
     $("#textarea" + taskid).val(rawdata);
   });
+}
+
+/**
+ * Deletes the selected task.
+ *
+ * {this} input button with class deletetaskbutton.
+ */
+function deletetask() {
+  // id of the input is deletetask-{{taskid}}
+  var words = this.id.split('-');
+  var taskid = words[1];
+
+  if (confirm('Are you sure you want to delete this task? This cannot be undone.')) {
+    $.post("/accounts/profile/task_delete", {
+      task: taskid,
+      csrfmiddlewaretoken: csrftoken
+    })
+    .done(function() {
+      location.reload();
+    });
+  }
 }
 
 /**
