@@ -38,24 +38,7 @@ function changemonth(year, month) {
 }
 
 $(document).ready(function() {
-  $('.editbutton').click(function() {
-    var words = this.id.split('-');
-    var taskid = words[1];
-    $("#form-" + taskid).css({display: "inline"});
-    $("#event" + taskid).css({display: "none"});
-    $("#" + this.id).css({display: "none"});
-
-    var pickeddate = $("#" + taskid).datepicker("getDate");
-    var datetext = $.datepicker.formatDate('yy-mm-dd', pickeddate);
-    $.post("/accounts/profile/event_fetch_raw", {
-      date: datetext,
-      task: taskid,
-      csrfmiddlewaretoken: csrftoken
-    })
-    .done(function(rawdata) {
-      $("#textarea" + taskid).val(rawdata);
-    });
-  });
+  $('.editbutton').click(showedit);
 
   $('.deletetaskbutton').click(function() {
     var words = this.id.split('-');
@@ -71,6 +54,36 @@ $(document).ready(function() {
     }
   });
 });
+
+/**
+ * Shows the edit controls for this event.
+ *
+ * {this} input with class editbutton
+ */
+function showedit() {
+  // id of the input is edit_button-{{taskid}}
+  var words = this.id.split('-');
+  var taskid = words[1];
+
+  // hide edit button and display edit controls.
+  $("#form-" + taskid).css({display: "inline"});
+  $("#event" + taskid).css({display: "none"});
+  $(this).css({display: "none"});
+
+  // get current date from associated datepicker, format in "yy-mm-dd"
+  var pickeddate = $("#" + taskid).datepicker("getDate");
+  var datetext = $.datepicker.formatDate('yy-mm-dd', pickeddate);
+
+  // get the unformatted markdown so it can be inserted in the textarea.
+  $.post("/accounts/profile/event_fetch_raw", {
+    date: datetext,
+    task: taskid,
+    csrfmiddlewaretoken: csrftoken
+  })
+  .done(function(rawdata) {
+    $("#textarea" + taskid).val(rawdata);
+  });
+}
 
 /**
  * inserts description for the relevant event into the associated div.
