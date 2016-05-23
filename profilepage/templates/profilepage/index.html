@@ -28,7 +28,7 @@
 	</form>
     </div>
 </div>
-<h2>What have we got to do today?</h2>
+<h2 class="tasks-header">What have we got to do today?</h2>
 <div class="incompletetasks accordion">{% for task in incompletetasks %}
     <h3>{{ task.task_title }} {{ task|overdue }}</h3>
     <div>
@@ -55,7 +55,7 @@
     </div>{% endfor %}
 </div>
 
-<h2><a href="{% url 'profilepage:done' %}">What've we got done?</a></h2>
+<h2 class="tasks-header"><a href="{% url 'profilepage:done' %}">What've we got done?</a></h2>
 {% endif %}
 {% endblock %}
 
