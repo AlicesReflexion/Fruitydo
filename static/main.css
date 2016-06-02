@@ -64,7 +64,7 @@ body {
 background-color: #faf9fb;
 box-shadow: 0 0 10px #888888;
 width: 100%;
-/* Expand to full height. 
+/* Expand to full height.
  60px for navbar and padding, 20px for footer, 10px bottom padding.
  Dunno where the last 10px comes from... */
 min-height: calc(100vh - 100px);
@@ -172,4 +172,12 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
 	border-width: 0 0 2px 0;
 	border-color: #fbb03b;
 	color: #ff5d76;
+}
+
+.howto > p:nth-of-type(2n) {
+	text-align: right;
+}
+
+.howto > p:nth-of-type(2n+1) {
+	text-align: left;
 }

@@ -95,6 +95,7 @@
 .task_calendar {
 	/* Bizarro tiny border on tables by default. */
 	border-collapse: collapse;
+	display: inline;
 }
 
 /* trying to fit the box properly. */
@@ -194,6 +195,10 @@ tr {
 	text-align: center;
 	font-weight: bold;
 	transition: .3s;
+}
+
+.ui-accordion-content {
+	text-align: center;
 }
 
 .ui-accordion-header.ui-state-default {
