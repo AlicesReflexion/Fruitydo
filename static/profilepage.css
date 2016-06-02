@@ -53,7 +53,7 @@
 .eventbox {
 	/* 31px: The height of the edit/save/done buttons.
 	 * 20px: top and bottom margin.*/
-	height: calc(100% - 51px);
+	height: calc(215px - 51px);
 	/* The same width as the datepicker widget. */
 	width: 310px;
 	overflow: auto;
@@ -62,6 +62,7 @@
 	border-radius: 10px;
 	margin: 10px;
 	padding: 5px;
+	text-align: left;
 }
 
 .eventbox > p {
