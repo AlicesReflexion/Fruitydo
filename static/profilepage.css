@@ -65,6 +65,10 @@
 	text-align: left;
 }
 
+.editbuttons {
+	text-align: right;
+}
+
 .eventbox > p {
 	margin: 2px 0 2px 0;
 }
@@ -80,12 +84,13 @@
 
 /* 31px: The height of the edit/save/done buttons. */
 .desc_input {
-	height: calc(100% - 31px);
+	height: calc(215px - 51px);
 	width: 310px;
 	resize: none;
 	display: block;
 	margin: 0;
 	padding: 0;
+	box-shadow: inset, 3px, 3px, 3px, 3px, black;
 }
 
 /* Hidden until the user hits the "edit" button. */

@@ -28,6 +28,7 @@ $(document).ready(function() {
   });
   $('.editbutton').click(showedit);
   $('.deletetaskbutton').click(deletetask);
+  $('.cancelbutton').click(hideedit);
 
   // Due date input calendar.
   $(".duecalendar").datepicker({
@@ -70,6 +71,20 @@ function showedit() {
   .done(function(rawdata) {
     $("#textarea" + taskid).val(rawdata);
   });
+}
+
+/**
+ * hide the edit controls for this even.
+ *
+ * {this} input with class cancelbutton
+ */
+function hideedit() {
+  var words = this.id.split('-');
+  var taskid = words[1];
+
+  $("#form-" + taskid).css({display: "none"});
+  $("#event" + taskid).css({display: "block"});
+  $("#edit_button-" + taskid).css({display: "inline"});
 }
 
 /**

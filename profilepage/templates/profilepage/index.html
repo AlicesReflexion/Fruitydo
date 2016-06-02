@@ -39,6 +39,7 @@
 		</td>
 		<td>
 		    <div class="eventbox" id="event{{ task.id }}"></div>
+		    <div class="editbuttons">
 		    <input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
 		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 			{% csrf_token %}
@@ -48,7 +49,9 @@
 			<label>Done for now?<input type="checkbox" name="markcomplete"></label>
 			<input type="submit" value="Save" class="saveeventbutton">
 			<input type="button" value="Delete" name="delete" class="deletetaskbutton" id="deletetask-{{ task.id }}">
+			<input type="button" value="Cancel" name="cancel" class="cancelbutton" id="cancel-{{task.id}}">
 		    </form>
+		    </div>
 		</td>
 	    </tr>
 	</table>
