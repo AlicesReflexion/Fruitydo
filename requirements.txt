@@ -1,5 +1,5 @@
 Django==1.8.2
-Django-On-OpenShift-with-Django-1.8==0.1
 django-markup
 markdown
 django-registration-redux
+psycopg2
