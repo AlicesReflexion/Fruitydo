@@ -7,15 +7,23 @@ $(function() {
   $(".datepicker").each(function() {
     var yymm = $.datepicker.formatDate("yy-mm", $(this).datepicker("getDate"));
     var dates = fetchdates(this.id, yymm);
+    var eventdates = dates.eventdates;
+    var duedate = dates.due_date;
     $(this).datepicker('option', {
       altField: "#desc" + this.id,
       dateFormat: "yy-mm-dd",
       beforeShowDay: function(date) {
-	return highlightday(date, dates, 'event');
+        var highlightevent = highlightday(date, eventdates, 'event');
+        var highlightdue = highlightday(date, duedate, 'due');
+        var compare = [true, ""].toString();
+        if (highlightevent.toString() === compare) {
+          return highlightdue;
+        }
+        return highlightevent;
       },
       onChangeMonthYear: function(year, month) {
-	yymm = year + "-" + month;
-	dates = fetchdates(this.id, yymm);
+        yymm = year + "-" + month;
+        dates = fetchdates(this.id, yymm);
       },
       onSelect: insertdesc
     });
