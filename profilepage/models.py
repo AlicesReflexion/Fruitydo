@@ -4,8 +4,8 @@ from django.contrib.auth.models import User
 class Task(models.Model):
         User = models.ForeignKey(User, on_delete=models.CASCADE)
         task_title = models.CharField(max_length=200)
-        pub_date = models.DateTimeField('date published')
-        due_date = models.DateTimeField('due date')
+        pub_date = models.DateField('date published')
+        due_date = models.DateField('due date')
         recurring = models.IntegerField()
         complete = models.BooleanField('Complete', default=0)
         #1=Every day
