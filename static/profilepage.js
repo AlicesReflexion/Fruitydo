@@ -24,6 +24,8 @@ $(function() {
       onChangeMonthYear: function(year, month) {
         yymm = year + "-" + month;
         dates = fetchdates(this.id, yymm);
+        eventdates = dates.eventdates;
+        duedate = dates.due_date;
       },
       onSelect: insertdesc
     });
