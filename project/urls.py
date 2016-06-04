@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^accounts/', include('profilepage.urls', namespace="profilepage")),
+    url(r'^demo', include('demopage.urls', namespace="demopage"))
 ]
