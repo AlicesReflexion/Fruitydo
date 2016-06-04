@@ -70,10 +70,11 @@ def event_dates(request):
     year = yymm[0]
     month = yymm[1]
     events = Event.objects.filter(Task_id=task.id, pub_date__year=year, pub_date__month=month)
-    dates = []
+    eventdates = []
     for event in events:
-        dates.append(event.pub_date)
-    data = json.dumps(dates, cls=DjangoJSONEncoder)
+        eventdates.append(event.pub_date)
+    alldates = {'eventdates': eventdates, 'due_date': [task.due_date]}
+    data = json.dumps(alldates, cls=DjangoJSONEncoder)
     return HttpResponse(data)
 
 def task_delete(request):

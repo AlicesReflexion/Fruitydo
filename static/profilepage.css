@@ -125,6 +125,14 @@ tr {
 	background-color: #dddddd;
 }
 
+.ui-datepicker-calendar > tbody > tr > td.due > a.ui-state-default {
+	background-color: #ff5d76;
+}
+
+.ui-datepicker-calendar > tbody > tr > td.due > a.ui-state-active {
+	color: #ffffff;
+}
+
 .ui-datepicker-calendar > tbody > tr > td > .ui-state-default {
 	text-align: center;
 	border-radius: 30px;

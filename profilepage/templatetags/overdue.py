@@ -6,7 +6,7 @@ register = template.Library()
 
 @register.filter
 def overdue(value):
-        if value.due_date.date() < timezone.now().date():
+        if value.due_date < timezone.now().date():
                 return "OVERDUE"
         else:
                 return ""

@@ -7,15 +7,25 @@ $(function() {
   $(".datepicker").each(function() {
     var yymm = $.datepicker.formatDate("yy-mm", $(this).datepicker("getDate"));
     var dates = fetchdates(this.id, yymm);
+    var eventdates = dates.eventdates;
+    var duedate = dates.due_date;
     $(this).datepicker('option', {
       altField: "#desc" + this.id,
       dateFormat: "yy-mm-dd",
       beforeShowDay: function(date) {
-	return highlightday(date, dates);
+        var highlightevent = highlightday(date, eventdates, 'event');
+        var highlightdue = highlightday(date, duedate, 'due');
+        var compare = [true, ""].toString();
+        if (highlightevent.toString() === compare) {
+          return highlightdue;
+        }
+        return highlightevent;
       },
       onChangeMonthYear: function(year, month) {
-	yymm = year + "-" + month;
-	dates = fetchdates(this.id, yymm);
+        yymm = year + "-" + month;
+        dates = fetchdates(this.id, yymm);
+        eventdates = dates.eventdates;
+        duedate = dates.due_date;
       },
       onSelect: insertdesc
     });
@@ -150,12 +160,13 @@ function fetchdates(taskid, month) {
  *
  * @param {date} date object to check for highlighting.
  * @param {array} highdates array of strings representing dates to highlight in "yy-mm-dd"
+ * @param {string} objclass class to give the date
  * @return {array} with true/false for selectable and css name.
  */
-function highlightday(date, highdates) {
+function highlightday(date, highdates, objclass) {
   for (var i = 0; i < highdates.length; i++) {
     if ($.datepicker.formatDate("yy-mm-dd", date) === highdates[i]) {
-      return [true, 'event'];
+      return [true, objclass];
     }
   }
   return [true, ''];
