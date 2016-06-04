@@ -73,7 +73,6 @@ def event_dates(request):
     eventdates = []
     for event in events:
         eventdates.append(event.pub_date)
-    print(eventdates)
     alldates = {'eventdates': eventdates, 'due_date': [task.due_date]}
     data = json.dumps(alldates, cls=DjangoJSONEncoder)
     return HttpResponse(data)
