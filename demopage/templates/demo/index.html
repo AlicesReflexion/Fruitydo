@@ -9,16 +9,17 @@
 <script src="{% static 'jquery-ui-1.11.4.custom/external/jquery/jquery.js' %}"></script>
 <script src="{% static 'jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'js-cookie.js' %}"></script>
-<script src="{% static 'profilepage.js' %}"></script>
+<script src="{% static 'demopage.js' %}"></script>
 {% endblock %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Demo{% endblock %}
 
 {% block content %}
-{% if user.is_authenticated %}
 <div class="wrapper">
     <div class="headertitle">
-	<h1>Welcome back, {{ user.username }}</h1>
+	<h1>Fruitydo Demo</h1>
+	<h3>THIS IS A DEMO. NONE OF YOU CHANGES ARE SAVED.</h3>
+	<h3>To migrate your changes to a permanent account, click <a href="#">here</a>.</h3>
 	<form action="{% url 'profilepage:create' %}" method="post">
 	    {% csrf_token %}
 	    <input type="text" name="task_title" placeholder="{% randomgoal %}">
@@ -27,7 +28,7 @@
 	    <div class="duecalendar"></div>
 	</form>
     </div>
-</div>
+</div>{% comment %}
 <h2 class="tasks-header">What have we got to do today?</h2>
 <div class="incompletetasks accordion">{% for task in incompletetasks %}
     <h3>{{ task.task_title }} {{ task|overdue }}</h3>
@@ -57,8 +58,6 @@
 	</table>
     </div>{% endfor %}
 </div>
-
-<h2 class="tasks-header"><a href="{% url 'profilepage:done' %}">What've we got done?</a></h2>
-{% endif %}
+{% endcomment %}
 {% endblock %}
 
