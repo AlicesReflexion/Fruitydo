@@ -18,7 +18,7 @@
 <div class="wrapper">
     <div class="headertitle">
 	<h1>Fruitydo Demo</h1>
-	<h3>THIS IS A DEMO. NONE OF YOU CHANGES ARE SAVED.</h3>
+	<h3>THIS IS A DEMO. NONE OF YOUR CHANGES ARE SAVED.</h3>
 	<h3>To migrate your changes to a permanent account, click <a href="#">here</a>.</h3>
 	<form method="post">
 	    {% csrf_token %}
@@ -27,6 +27,8 @@
 	    <input type="text" name="duedate" placeholder="Due Date" class="dueinput"> 
 	    <div class="duecalendar"></div>
 	</form>
+    </div>
+    <div class="incompletetasks accordion">
     </div>
 </div>{% comment %}
 <h2 class="tasks-header">What have we got to do today?</h2>
