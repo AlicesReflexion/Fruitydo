@@ -20,10 +20,10 @@
 	<h1>Fruitydo Demo</h1>
 	<h3>THIS IS A DEMO. NONE OF YOU CHANGES ARE SAVED.</h3>
 	<h3>To migrate your changes to a permanent account, click <a href="#">here</a>.</h3>
-	<form action="{% url 'profilepage:create' %}" method="post">
+	<form method="post">
 	    {% csrf_token %}
-	    <input type="text" name="task_title" placeholder="{% randomgoal %}">
-	    <input type="submit" value="+" class="newtaskbutton">
+	    <input type="text" name="task_title" placeholder="{% randomgoal %}" class="task_title">
+	    <input type="button" value="+" class="newtaskbutton">
 	    <input type="text" name="duedate" placeholder="Due Date" class="dueinput"> 
 	    <div class="duecalendar"></div>
 	</form>
