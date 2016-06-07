@@ -1,4 +1,4 @@
-![Fruitydo logo](https://raw.githubusercontent.com/alexskc/Fruitydo/master/static/logo-large.png)
+![Fruitydo logo](https://raw.githubusercontent.com/alexskc/Fruitydo/master/resources/logo-large.png)
 
 Fruitydo is a to do list app with a personal diary so you can track your progress towards a goal.
 
