@@ -236,19 +236,19 @@ tr {
 }
 
 .editbutton {
-	background-image: url("/static/pencilicon.png");
+	background-image: url("/static/icons/pencilicon.png");
 }
 
 .deletetaskbutton {
-	background-image: url("/static/trashicon.png");
+	background-image: url("/static/icons/trashicon.png");
 }
 
 .saveeventbutton {
-	background-image: url("/static/saveicon.png");
+	background-image: url("/static/icons/saveicon.png");
 }
 
 .cancelbutton {
-	background-image: url("/static/cancelicon.png");
+	background-image: url("/static/icons/cancelicon.png");
 }
 
 .taskbuttons {
@@ -267,7 +267,7 @@ tr {
 }
 
 .expandbutton {
-	background-image: url("/static/expandicon.png");
+	background-image: url("/static/icons/expandicon.png");
 }
 
 input[type=checkbox]{
