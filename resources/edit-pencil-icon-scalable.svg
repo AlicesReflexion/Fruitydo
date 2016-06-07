@@ -13,7 +13,7 @@
    width="20.170164"
    id="svg4240"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="edit-pencil-icon.svg"
+   sodipodi:docname="edit-pencil-icon-scalable.svg"
    inkscape:export-filename="/home/alex/build/newtodo/static/pencilicon.png"
    inkscape:export-xdpi="142.7562"
    inkscape:export-ydpi="142.7562">
@@ -46,9 +46,9 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:zoom="129.94441"
-     inkscape:cx="10.085082"
-     inkscape:cy="18.170838"
+     inkscape:zoom="32.486103"
+     inkscape:cx="12.790006"
+     inkscape:cy="12.393665"
      inkscape:window-x="14"
      inkscape:window-y="46"
      inkscape:window-maximized="0"
@@ -69,7 +69,7 @@
          id="document-edit"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="ccccccccsssscccccccccsccsccc"
-         style="fill:#fb8675;fill-opacity:1" />
+         style="fill:#ff5d76;fill-opacity:1" />
     </g>
   </g>
 </svg>

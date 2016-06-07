@@ -247,3 +247,27 @@ tr {
 	padding: 0;
 	margin-right: 15px;
 }
+
+.deletetaskbutton {
+	background-color: transparent;
+	background-image: url("/static/trashicon.png");
+	border: none;
+	color: transparent;
+	width: 16px;
+	height: 16px;
+	background-size: 16px;
+	padding: 0;
+	margin-right: 5px;
+}
+
+.saveeventbutton {
+	background-color: transparent;
+	background-image: url("/static/saveicon.png");
+	border: none;
+	color: transparent;
+	width: 16px;
+	height: 16px;
+	background-size: 16px;
+	padding: 0;
+	margin-right: 5px;
+}
