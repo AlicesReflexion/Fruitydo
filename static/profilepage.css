@@ -84,11 +84,11 @@
 
 /* 31px: The height of the edit/save/done buttons. */
 .desc_input {
-	height: calc(215px - 51px);
-	width: 310px;
+	height: calc(215px - 41px);
+	width: 301px;
 	resize: none;
 	display: block;
-	margin: 0;
+	margin: 10px;
 	padding: 0;
 	box-shadow: inset, 3px, 3px, 3px, 3px, black;
 }
@@ -270,4 +270,31 @@ tr {
 	background-size: 16px;
 	padding: 0;
 	margin-right: 5px;
+}
+
+.cancelbutton {
+	background-color: transparent;
+	background-image: url("/static/cancelicon.png");
+	border: none;
+	color: transparent;
+	width: 16px;
+	height: 16px;
+	background-size: 16px;
+	padding: 0;
+	margin-right: 15px;
+}
+
+input[type=checkbox]{
+	display: none;
+}
+
+input[type=checkbox] + label span {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	border: 1px solid #ff5d76;
+}
+
+input[type=checkbox]:checked + label span {
+	border: 1px solid #fbb03b;
 }

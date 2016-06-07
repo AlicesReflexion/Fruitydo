@@ -46,7 +46,8 @@
 			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
 			<input type="hidden" name="task" value="{{task.id}}">
 			<input type="hidden" name="pub_date" id="desc{{task.id}}">
-			<label>Done for now?<input type="checkbox" name="markcomplete"></label>
+			<input type="checkbox" name="markcomplete" id="markcomplete{{task.id}}"></label>
+			<label for="markcomplete{{task.id}}"><span><span></span></span>Done for now?</label>
 			<input type="submit" value="Save" class="saveeventbutton">
 			<input type="button" value="Delete" name="delete" class="deletetaskbutton" id="deletetask-{{ task.id }}">
 			<input type="button" value="Cancel" name="cancel" class="cancelbutton" id="cancel-{{task.id}}">
