@@ -235,9 +235,8 @@ tr {
 	display: none;
 }
 
-.taskbuttons.editbutton {
+.editbutton {
 	background-image: url("/static/pencilicon.png");
-	margin-right: 15px;
 }
 
 .deletetaskbutton {
@@ -248,9 +247,8 @@ tr {
 	background-image: url("/static/saveicon.png");
 }
 
-.taskbuttons.cancelbutton {
+.cancelbutton {
 	background-image: url("/static/cancelicon.png");
-	margin-right: 15px;
 }
 
 .taskbuttons {
@@ -262,6 +260,14 @@ tr {
 	background-size: 16px;
 	padding: 0;
 	margin-right: 5px;
+}
+
+.taskbuttons.leftmost {
+	margin-right: 15px;
+}
+
+.expandbutton {
+	background-image: url("/static/expandicon.png");
 }
 
 input[type=checkbox]{

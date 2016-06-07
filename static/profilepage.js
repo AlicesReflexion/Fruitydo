@@ -64,6 +64,7 @@ function showedit() {
   var taskid = words[1];
 
   // hide edit button and display edit controls.
+  $(".expandbutton.leftmost").hide("fade", 50);
   $(this).hide("fade", 50, function() {
     $("#hiddenbuttons-" + taskid).show("slide", {direction: "right"}, 200);
   });
@@ -99,6 +100,7 @@ function hideedit() {
       200,
       function() {
         $("#edit_button-" + taskid).show("fade", 50);
+        $(".expandbutton.leftmost").show("fade", 50);
       });
   $("#event" + taskid).show();
   $("#textarea" + taskid).hide();

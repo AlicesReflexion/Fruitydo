@@ -39,20 +39,21 @@
 		</td>
 		<td>
 		    <div class="eventbox" id="event{{ task.id }}"></div>
-		    <div class="editbuttons">
-		    
+		    <div class="editbuttons"> 
 		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 			{% csrf_token %}
 			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
 			<input type="button" value="edit" class="editbutton taskbuttons" id="edit_button-{{ task.id }}">
+			<input type="button" value="expand" class="expandbutton taskbuttons leftmost">
 			<div id="hiddenbuttons-{{task.id}}" class="hiddenbuttons">
 			<input type="hidden" name="task" value="{{task.id}}">
 			<input type="hidden" name="pub_date" id="desc{{task.id}}">
-			<input type="checkbox" name="markcomplete" id="markcomplete{{task.id}}"></label>
+			<input type="checkbox" name="markcomplete" id="markcomplete{{task.id}}">
 			<label for="markcomplete{{task.id}}"><span><span></span></span>Done for now?</label>
 			<input type="submit" value="Save" class="saveeventbutton taskbuttons">
 			<input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons" id="deletetask-{{ task.id }}">
-			<input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons" id="cancel-{{task.id}}">
+			<input type="button" value="expand" name="expand" class="expandbutton taskbuttons">
+			<input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost" id="cancel-{{task.id}}">
 			</div>
 		    </form>
 		    </div>
