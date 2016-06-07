@@ -64,9 +64,11 @@ function showedit() {
   var taskid = words[1];
 
   // hide edit button and display edit controls.
-  $("#form-" + taskid).css({display: "inline"});
-  $("#event" + taskid).css({display: "none"});
-  $(this).css({display: "none"});
+  $(this).hide("fade", 50, function() {
+    $("#hiddenbuttons-" + taskid).show("slide", {direction: "right"}, 200);
+  });
+  $("#textarea" + taskid).show();
+  $("#event" + taskid).hide();
 
   // get current date from associated datepicker, format in "yy-mm-dd"
   var pickeddate = $("#" + taskid).datepicker("getDate");
@@ -92,9 +94,14 @@ function hideedit() {
   var words = this.id.split('-');
   var taskid = words[1];
 
-  $("#form-" + taskid).css({display: "none"});
-  $("#event" + taskid).css({display: "block"});
-  $("#edit_button-" + taskid).css({display: "inline"});
+  $("#hiddenbuttons-" + taskid).hide("slide",
+      {direction: "right"},
+      200,
+      function() {
+        $("#edit_button-" + taskid).show("fade", 50);
+      });
+  $("#event" + taskid).show();
+  $("#textarea" + taskid).hide();
 }
 
 /**
