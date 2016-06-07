@@ -75,7 +75,7 @@ function showedit() {
   var datetext = $.datepicker.formatDate('yy-mm-dd', pickeddate);
 
   // get the unformatted markdown so it can be inserted in the textarea.
-  $.post("/accounts/profile/event_fetch_raw", {
+  $.post("/todo/event_fetch_raw", {
     date: datetext,
     task: taskid,
     csrfmiddlewaretoken: csrftoken
@@ -115,7 +115,7 @@ function deletetask() {
   var taskid = words[1];
 
   if (confirm('Are you sure you want to delete this task? This cannot be undone.')) {
-    $.post("/accounts/profile/task_delete", {
+    $.post("/todo/task_delete", {
       task: taskid,
       csrfmiddlewaretoken: csrftoken
     })
@@ -133,7 +133,7 @@ function deletetask() {
  */
 function insertdesc(dateText) {
   var taskid = this.id;
-  $.post("/accounts/profile/event_fetch_fancy", {
+  $.post("/todo/event_fetch_fancy", {
     date: dateText,
     task: taskid,
     csrfmiddlewaretoken: csrftoken
@@ -152,7 +152,7 @@ function insertdesc(dateText) {
  */
 function fetchdates(taskid, month) {
   var returndates;
-  $.post("/accounts/profile/event_dates", {
+  $.post("/todo/event_dates", {
     task: taskid,
     csrfmiddlewaretoken: csrftoken,
     month: month
