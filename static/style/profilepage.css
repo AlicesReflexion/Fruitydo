@@ -57,7 +57,7 @@
 	/* The same width as the datepicker widget. */
 	width: 310px;
 	overflow: auto;
-	display: block;
+	display: none;
 	background-color: #dddddd;
 	border-radius: 10px;
 	margin: 10px;
@@ -87,14 +87,10 @@
 	height: calc(215px - 41px);
 	width: 301px;
 	resize: none;
-	display: none;
+	display: inline;
 	margin: 10px;
 	padding: 0;
 	box-shadow: inset, 3px, 3px, 3px, 3px, black;
-}
-
-.hiddenbuttons {
-	display: none;
 }
 
 .task_calendar {
@@ -237,6 +233,7 @@ tr {
 
 .editbutton {
 	background-image: url("/static/icons/pencilicon.png");
+	display: none;
 }
 
 .deletetaskbutton {
@@ -268,6 +265,7 @@ tr {
 
 .expandbutton {
 	background-image: url("/static/icons/expandicon.png");
+	display: none;
 }
 
 input[type=checkbox]{

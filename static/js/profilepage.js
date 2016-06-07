@@ -36,9 +36,7 @@ $(document).ready(function() {
   $(".accordion").accordion({
     collapsible: true
   });
-  $('.editbutton').click(showedit);
   $('.deletetaskbutton').click(deletetask);
-  $('.cancelbutton').click(hideedit);
 
   // Due date input calendar.
   $(".duecalendar").datepicker({
@@ -52,59 +50,6 @@ $(document).ready(function() {
     $(".duecalendar").slideUp(400);
   });
 });
-
-/**
- * Shows the edit controls for this event.
- *
- * {this} input with class editbutton
- */
-function showedit() {
-  // id of the input is edit_button-{{taskid}}
-  var words = this.id.split('-');
-  var taskid = words[1];
-
-  // hide edit button and display edit controls.
-  $(".expandbutton.leftmost").hide("fade", 50);
-  $(this).hide("fade", 50, function() {
-    $("#hiddenbuttons-" + taskid).show("slide", {direction: "right"}, 200);
-  });
-  $("#textarea" + taskid).show();
-  $("#event" + taskid).hide();
-
-  // get current date from associated datepicker, format in "yy-mm-dd"
-  var pickeddate = $("#" + taskid).datepicker("getDate");
-  var datetext = $.datepicker.formatDate('yy-mm-dd', pickeddate);
-
-  // get the unformatted markdown so it can be inserted in the textarea.
-  $.post("/todo/event_fetch_raw", {
-    date: datetext,
-    task: taskid,
-    csrfmiddlewaretoken: csrftoken
-  })
-  .done(function(rawdata) {
-    $("#textarea" + taskid).val(rawdata);
-  });
-}
-
-/**
- * hide the edit controls for this even.
- *
- * {this} input with class cancelbutton
- */
-function hideedit() {
-  var words = this.id.split('-');
-  var taskid = words[1];
-
-  $("#hiddenbuttons-" + taskid).hide("slide",
-      {direction: "right"},
-      200,
-      function() {
-        $("#edit_button-" + taskid).show("fade", 50);
-        $(".expandbutton.leftmost").show("fade", 50);
-      });
-  $("#event" + taskid).show();
-  $("#textarea" + taskid).hide();
-}
 
 /**
  * Deletes the selected task.
@@ -142,6 +87,15 @@ function insertdesc(dateText) {
   })
   .done(function(data) {
     $('#event' + taskid).html(data);
+  });
+
+  $.post("/todo/event_fetch_raw", {
+    date: dateText,
+    task: taskid,
+    csrfmiddlewaretoken: csrftoken
+  })
+  .done(function(rawdata) {
+    $('#textarea' + taskid).val(rawdata);
   });
 }
 
