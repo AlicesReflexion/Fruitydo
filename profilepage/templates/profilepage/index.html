@@ -44,15 +44,15 @@
 		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 			{% csrf_token %}
 			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
-			<input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
+			<input type="button" value="edit" class="editbutton taskbuttons" id="edit_button-{{ task.id }}">
 			<div id="hiddenbuttons-{{task.id}}" class="hiddenbuttons">
 			<input type="hidden" name="task" value="{{task.id}}">
 			<input type="hidden" name="pub_date" id="desc{{task.id}}">
 			<input type="checkbox" name="markcomplete" id="markcomplete{{task.id}}"></label>
 			<label for="markcomplete{{task.id}}"><span><span></span></span>Done for now?</label>
-			<input type="submit" value="Save" class="saveeventbutton">
-			<input type="button" value="Delete" name="delete" class="deletetaskbutton" id="deletetask-{{ task.id }}">
-			<input type="button" value="Cancel" name="cancel" class="cancelbutton" id="cancel-{{task.id}}">
+			<input type="submit" value="Save" class="saveeventbutton taskbuttons">
+			<input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons" id="deletetask-{{ task.id }}">
+			<input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons" id="cancel-{{task.id}}">
 			</div>
 		    </form>
 		    </div>

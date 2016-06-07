@@ -235,33 +235,26 @@ tr {
 	display: none;
 }
 
-.editbutton {
-	background-color: transparent;
+.taskbuttons.editbutton {
 	background-image: url("/static/pencilicon.png");
-	border: none;
-	color: transparent;
-	width: 16px;
-	height: 16px;
-	background-size: 16px;
-	padding: 0;
 	margin-right: 15px;
 }
 
 .deletetaskbutton {
-	background-color: transparent;
 	background-image: url("/static/trashicon.png");
-	border: none;
-	color: transparent;
-	width: 16px;
-	height: 16px;
-	background-size: 16px;
-	padding: 0;
-	margin-right: 5px;
 }
 
 .saveeventbutton {
-	background-color: transparent;
 	background-image: url("/static/saveicon.png");
+}
+
+.taskbuttons.cancelbutton {
+	background-image: url("/static/cancelicon.png");
+	margin-right: 15px;
+}
+
+.taskbuttons {
+	background-color: transparent;
 	border: none;
 	color: transparent;
 	width: 16px;
@@ -269,18 +262,6 @@ tr {
 	background-size: 16px;
 	padding: 0;
 	margin-right: 5px;
-}
-
-.cancelbutton {
-	background-color: transparent;
-	background-image: url("/static/cancelicon.png");
-	border: none;
-	color: transparent;
-	width: 16px;
-	height: 16px;
-	background-size: 16px;
-	padding: 0;
-	margin-right: 15px;
 }
 
 input[type=checkbox]{
