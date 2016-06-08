@@ -83,7 +83,12 @@ $(document).ready(function() {
   });
 
   $(".largecontrols>.deletetaskbutton").click(function() {
-    deletebutton = $("#form-" + currentediting).parent().find(".deletetaskbutton");
+    var deletebutton = $("#form-" + currentediting).parent().find(".deletetaskbutton");
     deletebutton.click();
+  });
+
+  $(".largecontrols>.saveeventbutton").click(function() {
+    var savebutton = $("#form-" + currentediting).parent().find(".saveeventbutton");
+    savebutton.click();
   });
 });
