@@ -1,4 +1,5 @@
 var editmode = false;
+var currentediting = 0;
 
 /**
  * hide the edit controls for this even.
@@ -36,6 +37,7 @@ function showedit() {
  */
 function showlarge() {
   var taskid = $(this).parent().parent().find("input[name=task]").val();
+  currentediting = taskid;
   var form = $("#form-" + taskid);
   var eventbox = form.parent().find(".eventbox");
   if (editmode === false) {
@@ -78,5 +80,10 @@ $(document).ready(function() {
 
   $(".accordion").accordion({
     collapsible: true
+  });
+
+  $(".largecontrols>.deletetaskbutton").click(function() {
+    deletebutton = $("#form-" + currentediting).parent().find(".deletetaskbutton");
+    deletebutton.click();
   });
 });

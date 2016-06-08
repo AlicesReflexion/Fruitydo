@@ -49,10 +49,7 @@ $(document).ready(function() {
  * {this} input button with class deletetaskbutton.
  */
 function deletetask() {
-  // id of the input is deletetask-{{taskid}}
-  var words = this.id.split('-');
-  var taskid = words[1];
-
+  var taskid = $(this).parent().parent().parent().parent().find(".datepicker").get()[0].id;
   if (confirm('Are you sure you want to delete this task? This cannot be undone.')) {
     $.post("/todo/task_delete", {
       task: taskid,

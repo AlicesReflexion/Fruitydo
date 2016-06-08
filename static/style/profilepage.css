@@ -330,6 +330,7 @@ input[type=checkbox]:checked + label span {
 	border-radius: 15px;
 	padding: 20px;
 	margin: 32px;
+	overflow: auto;
 }
 
 .largetextarea {
