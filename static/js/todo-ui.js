@@ -6,18 +6,12 @@ var editmode = false;
  * {this} input with class cancelbutton
  */
 function hideedit() {
-  var words = this.id.split('-');
-  var taskid = words[1];
-
-  $("#hiddenbuttons-" + taskid).hide("slide",
-      {direction: "right"},
-      200,
-      function() {
-        $("#edit_button-" + taskid).show("fade", 50);
-        $(".expandbutton.leftmost").show("fade", 50);
-      });
-  $("#event" + taskid).show();
-  $("#textarea" + taskid).hide();
+  var form = $(this).parent().parent().find(".desc_input_form");
+  $(this).parent().hide("slide", {direction: "right"}, 200, function() {
+    $(this).parent().parent().find(".viewcontrols").show("fade", 50);
+  });
+  form.parent().find(".eventbox").show();
+  form.hide();
   editmode = false;
 }
 
@@ -27,17 +21,13 @@ function hideedit() {
  * {this} input with class editbutton
  */
 function showedit() {
-  // id of the input is edit_button-{{taskid}}
-  var words = this.id.split('-');
-  var taskid = words[1];
+  var form = $(this).parent().parent().find(".desc_input_form");
 
-  // hide edit button and display edit controls.
-  $(".expandbutton.leftmost").hide("fade", 50);
-  $(this).hide("fade", 50, function() {
-    $("#hiddenbuttons-" + taskid).show("slide", {direction: "right"}, 200);
+  $(this).parent().hide("fade", 50, function() {
+    form.show();
+    form.parent().find(".eventbox").hide();
+    $(this).parent().find(".editcontrols").show("slide", {direction: "right"}, 200);
   });
-  $("#textarea" + taskid).show();
-  $("#event" + taskid).hide();
   editmode = true;
 }
 /**
@@ -46,21 +36,25 @@ function showedit() {
  * {this} button with class expandbutton
  */
 function showlarge() {
-  var words = this.id.split('-');
-  var taskid = words[1];
   var html = "";
+  var form = $(this).parent().parent().find(".desc_input_form");
   if (editmode === false) {
-    html = $("#event" + taskid).html();
+    html = $(form).parent().find(".eventbox").html();
+    console.log(html);
     $(".largeeditor").html(html);
+    $(".largeeditor").show("slide", {direction: "up"}, 250, function() {
+      $(".largecontrols.viewcontrols").show("slide", {direction: "up"}, 150);
+    });
   } else {
     var textarea = "<textarea class=\"largetextarea\"></textarea>";
-    html = $("#textarea" + taskid).val();
+    html = form.find(".desc_input").val();
+    console.log(html);
     $(".largeeditor").html(textarea);
     $(".largetextarea").val(html);
+    $(".largeeditor").show("slide", {direction: "up"}, 250, function() {
+      $(".largecontrols.editcontrols").show("slide", {direction: "up"}, 150);
+    });
   }
-  $(".largeeditor").show("slide", {direction: "up"}, 250, function() {
-    $(".largecontrols").show("slide", {direction: "up"}, 150);
-  });
   $(".fade").show("fade", 250);
 }
 
@@ -75,8 +69,8 @@ function hidelarge() {
 }
 
 $(document).ready(function() {
-  $('.hiddenbuttons, .desc_input').hide();
-  $('.eventbox, .editbutton, .expandbutton').show();
+  $('.editcontrols, .desc_input_form').hide();
+  $('.viewcontrols, .eventbox').show();
   $('.editbutton').click(showedit);
   $('.cancelbutton').click(hideedit);
   $('.expandbutton').click(showlarge);

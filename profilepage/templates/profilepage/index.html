@@ -9,7 +9,7 @@
 <script src="{% static 'js/jquery-ui-1.11.4.custom/external/jquery/jquery.js' %}"></script>
 <script src="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'js/js-cookie.js' %}"></script>
-<script src="{% static 'js/profilepage.js' %}"></script>
+{% comment %}<script src="{% static 'js/profilepage.js' %}"></script>{% endcomment %}
 <script src="{% static 'js/todo-ui.js' %}"></script>
 {% endblock %}
 
@@ -36,41 +36,48 @@
 	<table class="task_calendar">
 	    <tr>
 		<td>
-		    <div class="datepicker" id="{{ task.id }}"></div>
+		    <div class="datepicker"></div>
 		</td>
 		<td>
-		    <div class="eventbox" id="event{{ task.id }}"></div>
-		    <div class="editbuttons"> 
+		    <div class="eventbox"></div>
 		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 			{% csrf_token %}
-			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
-			<input type="button" value="edit" class="editbutton taskbuttons" id="edit_button-{{ task.id }}">
-			<input type="button" value="expand" id ="expand-{{task.id}}" class="expandbutton taskbuttons leftmost">
-			<div id="hiddenbuttons-{{task.id}}" class="hiddenbuttons">
-			<input type="hidden" name="task" value="{{task.id}}">
-			<input type="hidden" name="pub_date" id="desc{{task.id}}">
-			<input type="checkbox" name="markcomplete" id="markcomplete{{task.id}}">
-			<label for="markcomplete{{task.id}}"><span><span></span></span>Done for now?</label>
-			<input type="submit" value="Save" class="saveeventbutton taskbuttons">
-			<input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons" id="deletetask-{{ task.id }}">
-			<input type="button" value="expand" name="expand" id="expand-{{task.id}}" class="expandbutton taskbuttons">
-			<input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost" id="cancel-{{task.id}}">
-			</div>
+			<textarea class="desc_input" name="event_description"></textarea>
+			<input type="hidden" name="task">
+			<input type="hidden" name="pub_date">	
 		    </form>
+		    <div class="editcontrols">
+			<input type="checkbox" name="markcomplete" form="form-{{task.id}}">
+			<label for="markcomplete"><span><span></span></span>Done for now?</label>
+			<input type="submit" value="Save" class="saveeventbutton taskbuttons" form="form-{{task.id}}">
+			<form action="{% url 'profilepage:task_delete' %}" method="post" class="delete_form">
+			    <input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons">
+			</form>
+			<input type="button" value="expand" name="expand" class="expandbutton taskbuttons">
+			<input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost">
+		    </div>
+		    <div class="viewcontrols">
+			<input type="button" value="edit" class="editbutton taskbuttons">
+			<input type="button" value="expand" class="expandbutton taskbuttons leftmost">
 		    </div>
 		</td>
 	    </tr>
 	</table>
     </div>{% endfor %}
-</div>
+</div><div class="largecontainer">
 <div class="largeeditor"></div>
-<div class="largecontrols">
+<div class="largecontrols editcontrols">
     <input type="button" name="save" value="Save" class="saveeventbutton taskbuttons">
     <input type="button" name="delete" value="Delete" class="deletetaskbutton taskbuttons">
     <input type="button" name="contract" value="Contract" class="contractbutton taskbuttons">
     <input type="button" name="cancel" value="Cancel" class="cancelbutton taskbuttons">
 </div>
+<div class="largecontrols viewcontrols">
+    <input type="button" name="edit" value="Edit" class="editbutton taskbuttons">
+    <input type="button" name="contract" value="Contract" class="contractbutton taskbuttons">
+</div>
 <div class="fade"></div>
+</div>
 
 <h2 class="tasks-header"><a href="{% url 'profilepage:done' %}">What've we got done?</a></h2>
 {% endif %}
