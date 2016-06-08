@@ -22,10 +22,9 @@ function hideedit() {
  */
 function showedit() {
   var form = $(this).parent().parent().find(".desc_input_form");
-
+  form.show();
+  form.parent().find(".eventbox").hide();
   $(this).parent().hide("fade", 50, function() {
-    form.show();
-    form.parent().find(".eventbox").hide();
     $(this).parent().find(".editcontrols").show("slide", {direction: "right"}, 200);
   });
   editmode = true;
