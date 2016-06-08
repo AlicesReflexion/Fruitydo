@@ -1,6 +1,8 @@
 var editmode = false;
 var currentediting = 0;
 
+
+
 /**
  * hide the edit controls for this even.
  *
@@ -13,6 +15,8 @@ function hideedit() {
   });
   form.parent().find(".eventbox").show();
   form.hide();
+  $(".largetextarea").hide();
+  $(".largepreview").show();
   editmode = false;
 }
 
@@ -25,6 +29,8 @@ function showedit() {
   var form = $(this).parent().parent().find(".desc_input_form");
   form.show();
   form.parent().find(".eventbox").hide();
+  $(".largetextarea").show();
+  $(".largepreview").hide();
   $(this).parent().hide("fade", 50, function() {
     $(this).parent().find(".editcontrols").show("slide", {direction: "right"}, 200);
   });
@@ -40,8 +46,9 @@ function showlarge() {
   currentediting = taskid;
   var form = $("#form-" + taskid);
   var eventbox = form.parent().find(".eventbox");
+  $(".largepreview").html(eventbox.html());
+  $(".largetextarea").val(form.parent().find(".desc_input").val());
   if (editmode === false) {
-    $(".largeeditor").html(eventbox.html());
     $(".largeeditor").show("slide", {direction: "up"}, 250, function() {
       $(".largecontrols.viewcontrols").show("slide", {direction: "up"}, 150);
     });
@@ -90,5 +97,29 @@ $(document).ready(function() {
   $(".largecontrols>.saveeventbutton").click(function() {
     var savebutton = $("#form-" + currentediting).parent().find(".saveeventbutton");
     savebutton.click();
+  });
+
+  $(".largecontrols>.editbutton").click(function() {
+    var editbutton = $("#form-" + currentediting).parent().find(".editbutton");
+    editbutton.click();
+    $(this).parent().hide("slide", {direction: "up"}, 100, function() {
+      $(".largecontrols.editcontrols").show("slide", {direction: "up"}, 100);
+    });
+  });
+
+  $(".largecontrols>.cancelbutton").click(function() {
+    var cancelbutton = $("#form-" + currentediting).parent().find(".cancelbutton");
+    cancelbutton.click();
+    $(this).parent().hide("slide", {direction: "up"}, 100, function() {
+      $(".largecontrols.viewcontrols").show("slide", {direction: "up"}, 100);
+    });
+  });
+
+  $(".largetextarea").keypress(function() {
+    $("#form-" + currentediting).find(".desc_input").val($(this).val());
+  });
+
+  $("#form-" + currentediting).find("desc_input").keypress(function() {
+    $(".largetextarea").val($(this).val());
   });
 });

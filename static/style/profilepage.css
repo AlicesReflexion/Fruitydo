@@ -337,6 +337,7 @@ input[type=checkbox]:checked + label span {
 	resize: none;
 	width: calc(100% - 40px + 19px);
 	height: 100%;
+	display: none;
 }
 
 .largecontrols.viewcontrols, .largecontrols.editcontrols {
