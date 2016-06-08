@@ -69,9 +69,20 @@ function hidelarge() {
 
 $(document).ready(function() {
   $('td>.editcontrols, .desc_input_form').hide();
-  $('td>.viewcontrols, .eventbox').show();
+  $('.eventbox').show();
   $('.editbutton').click(showedit);
   $('.cancelbutton').click(hideedit);
   $('.expandbutton').click(showlarge);
   $('.fade, .contractbutton').click(hidelarge);
+
+  $(".dueinput").focus(function() {
+    $(".duecalendar").slideDown(400);
+  });
+  $(".dueinput").focusout(function() {
+    $(".duecalendar").slideUp(400);
+  });
+
+  $(".accordion").accordion({
+    collapsible: true
+  });
 });

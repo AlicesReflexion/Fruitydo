@@ -34,21 +34,12 @@ $(function() {
 });
 
 $(document).ready(function() {
-  $(".accordion").accordion({
-    collapsible: true
-  });
   $('.deletetaskbutton').click(deletetask);
 
   // Due date input calendar.
   $(".duecalendar").datepicker({
     altField: ".dueinput",
     dateFormat: "yy-mm-dd"
-  });
-  $(".dueinput").focus(function() {
-    $(".duecalendar").slideDown(400);
-  });
-  $(".dueinput").focusout(function() {
-    $(".duecalendar").slideUp(400);
   });
 });
 

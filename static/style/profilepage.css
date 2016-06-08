@@ -65,10 +65,6 @@
 	text-align: left;
 }
 
-.editbuttons {
-	text-align: right;
-}
-
 .eventbox > p {
 	margin: 2px 0 2px 0;
 }
@@ -100,10 +96,6 @@
 
 .delete_form {
 	display: inline;
-}
-
-.viewcontrols {
-	display: none;
 }
 
 .viewcontrols, .editcontrols {
@@ -355,10 +347,12 @@ input[type=checkbox]:checked + label span {
 
 .largecontrols.editcontrols {
 	left: calc(85vw + 7.5vw + 32px - 64px - 20px - 20px);
+	width: 97px;
 }
 
 .largecontrols.viewcontrols {
 	left: calc(85vw + 7.5vw + 32px - 32px - 20px);
+	width: 47px;
 }
 
 .fade{
