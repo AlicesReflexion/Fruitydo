@@ -40,27 +40,38 @@ function showedit() {
   $("#event" + taskid).hide();
   editmode = true;
 }
-
+/**
+ * Shows the fullscreen editor/viewer.
+ *
+ * {this} button with class expandbutton
+ */
 function showlarge() {
   var words = this.id.split('-');
   var taskid = words[1];
+  var html = "";
   if (editmode === false) {
-    var html = $("#event" + taskid).html();
+    html = $("#event" + taskid).html();
     $(".largeeditor").html(html);
-  }
-  else {
-    var textarea = "<textarea class=\"largetextarea\"></textarea>"
-    var html = $("#textarea" + taskid).val();
+  } else {
+    var textarea = "<textarea class=\"largetextarea\"></textarea>";
+    html = $("#textarea" + taskid).val();
     $(".largeeditor").html(textarea);
     $(".largetextarea").val(html);
   }
-  $(".largeeditor").show("slide", {direction: "up"});
-  $(".fade").show("fade");
+  $(".largeeditor").show("slide", {direction: "up"}, 250, function() {
+    $(".largecontrols").show("slide", {direction: "up"}, 150);
+  });
+  $(".fade").show("fade", 250);
 }
 
+/**
+ * hides large editor/viewer
+ */
 function hidelarge() {
-  $(".largeeditor").hide("slide", {direction: "up"});
-  $(".fade").hide("fade");
+  $(".largecontrols").hide("slide", {direction: "up"}, 150, function() {
+    $(".largeeditor").hide("slide", {direction: "up"}, 250);
+  });
+  $(".fade").hide("fade", 250);
 }
 
 $(document).ready(function() {
@@ -69,6 +80,6 @@ $(document).ready(function() {
   $('.editbutton').click(showedit);
   $('.cancelbutton').click(hideedit);
   $('.expandbutton').click(showlarge);
-  $('.fade').click(hidelarge);
+  $('.fade, .contractbutton').click(hidelarge);
 });
 

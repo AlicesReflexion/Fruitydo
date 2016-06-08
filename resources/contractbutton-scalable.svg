@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="11.550781"
+   version="1.1"
+   viewBox="0 0 11.55078 11.550781"
+   width="11.55078"
+   id="svg2"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="contractbutton-scalable.svg"
+   inkscape:export-filename="/home/alex/build/newtodo/static/expandicon.png"
+   inkscape:export-xdpi="249.33379"
+   inkscape:export-ydpi="249.33379">
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3172"
+     inkscape:window-height="1740"
+     id="namedview13"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="90.509668"
+     inkscape:cx="5.5178663"
+     inkscape:cy="5.8833662"
+     inkscape:window-x="14"
+     inkscape:window-y="46"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg2" />
+  <desc
+     id="desc6" />
+  <defs
+     id="defs8" />
+  <path
+     style="fill:#ff5d76;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.44999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 0.7929688,6.2734378 0,0.5507812 3.544922,0 L 0,11.162109 l 0.3886719,0.388672 4.4042969,-4.4042964 0,3.6777344 0.550782,0 0,-4.5507812 -4.550782,0 z"
+     id="path5306"
+     inkscape:connector-curvature="0" />
+  <path
+     style="fill:#ff5d76;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.44999999;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+     d="m 11.16231,-2.187e-4 -4.404503,4.4040101 0,-3.67749502 -0.550807,0 0,4.55048492 4.550993,0 0,-0.550746 -3.545087,0 L 11.551,0.38842783 11.16231,-2.187e-4 Z"
+     id="two-fingers-resize-out"
+     inkscape:connector-curvature="0" />
+</svg>

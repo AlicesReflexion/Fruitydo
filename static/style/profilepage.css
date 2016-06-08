@@ -269,6 +269,10 @@ tr {
 	display: none;
 }
 
+.contractbutton {
+	background-image: url("/static/icons/contracticon.png");
+}
+
 input[type=checkbox]{
 	display: none;
 }
@@ -306,6 +310,14 @@ input[type=checkbox]:checked + label span {
 	resize: none;
 	width: calc(100% - 40px + 19px);
 	height: 100%;
+}
+
+.largecontrols {
+	display: none;
+	z-index: 999;
+	position: absolute;
+	top: calc(85vh + 7.5vh + 32px);
+	left: calc(85vw + 7.5vw + 32px - 64px - 20px - 20px);
 }
 
 .fade{
