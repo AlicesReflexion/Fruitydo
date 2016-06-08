@@ -241,12 +241,24 @@ tr {
 	background-image: url("/static/icons/trashicon.png");
 }
 
+.largecontrols > .deletetaskbutton {
+	background-image: url("/static/icons/trashicon-white.png");
+}
+
 .saveeventbutton {
 	background-image: url("/static/icons/saveicon.png");
 }
 
+.largecontrols > .saveeventbutton {
+	background-image: url("/static/icons/saveicon-white.png");
+}
+
 .cancelbutton {
 	background-image: url("/static/icons/cancelicon.png");
+}
+
+.largecontrols > .cancelbutton {
+	background-image: url("/static/icons/cancelicon-white.png");
 }
 
 .taskbuttons {
@@ -271,6 +283,10 @@ tr {
 
 .contractbutton {
 	background-image: url("/static/icons/contracticon.png");
+}
+
+.largecontrols > .contractbutton {
+	background-image: url("/static/icons/contracticon-white.png");
 }
 
 input[type=checkbox]{
@@ -299,7 +315,7 @@ input[type=checkbox]:checked + label span {
 	z-index: 999;
 	display: none;
 	/*max-width: 960px;*/
-	background-color: #ffffff;
+	background-color: #faf9fb;
 	box-shadow: 0 0 5px #888888;
 	border-radius: 15px;
 	padding: 20px;
@@ -316,7 +332,7 @@ input[type=checkbox]:checked + label span {
 	display: none;
 	z-index: 999;
 	position: absolute;
-	top: calc(85vh + 7.5vh + 32px);
+	top: calc(85vh + 7.5vh + 28px);
 	left: calc(85vw + 7.5vw + 32px - 64px - 20px - 20px);
 }
 
