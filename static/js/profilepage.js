@@ -34,7 +34,7 @@ $(function() {
 });
 
 $(document).ready(function() {
-  $('.deletetaskbutton').click(deletetask);
+  $('td>.editcontrols>form>.deletetaskbutton').click(deletetask);
 
   // Due date input calendar.
   $(".duecalendar").datepicker({

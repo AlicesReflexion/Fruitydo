@@ -36,20 +36,15 @@ function showedit() {
  * {this} button with class expandbutton
  */
 function showlarge() {
-  var html = "";
-  var form = $(this).parent().parent().find(".desc_input_form");
+  var taskid = $(this).parent().parent().find("input[name=task]").val();
+  var form = $("#form-" + taskid);
+  var eventbox = form.parent().find(".eventbox");
   if (editmode === false) {
-    html = $(form).parent().find(".eventbox").html();
-    $(".largeeditor").html(html);
+    $(".largeeditor").html(eventbox.html());
     $(".largeeditor").show("slide", {direction: "up"}, 250, function() {
       $(".largecontrols.viewcontrols").show("slide", {direction: "up"}, 150);
     });
   } else {
-    var textarea = "<textarea class=\"largetextarea\"></textarea>";
-    html = form.find(".desc_input").val();
-    console.log(html);
-    $(".largeeditor").html(textarea);
-    $(".largetextarea").val(html);
     $(".largeeditor").show("slide", {direction: "up"}, 250, function() {
       $(".largecontrols.editcontrols").show("slide", {direction: "up"}, 150);
     });
@@ -70,8 +65,8 @@ function hidelarge() {
 $(document).ready(function() {
   $('td>.editcontrols, .desc_input_form').hide();
   $('.eventbox').show();
-  $('.editbutton').click(showedit);
-  $('.cancelbutton').click(hideedit);
+  $('td>.viewcontrols>.editbutton').click(showedit);
+  $('td>.editcontrols>.cancelbutton').click(hideedit);
   $('.expandbutton').click(showlarge);
   $('.fade, .contractbutton').click(hidelarge);
 
