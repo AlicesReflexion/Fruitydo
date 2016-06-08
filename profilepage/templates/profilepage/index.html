@@ -9,7 +9,7 @@
 <script src="{% static 'js/jquery-ui-1.11.4.custom/external/jquery/jquery.js' %}"></script>
 <script src="{% static 'js/jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'js/js-cookie.js' %}"></script>
-{% comment %}<script src="{% static 'js/profilepage.js' %}"></script>{% endcomment %}
+<script src="{% static 'js/profilepage.js' %}"></script>
 <script src="{% static 'js/todo-ui.js' %}"></script>
 {% endblock %}
 
@@ -36,15 +36,15 @@
 	<table class="task_calendar">
 	    <tr>
 		<td>
-		    <div class="datepicker"></div>
+		    <div class="datepicker" id="{{task.id}}"></div>
 		</td>
 		<td>
 		    <div class="eventbox"></div>
 		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
 			{% csrf_token %}
 			<textarea class="desc_input" name="event_description"></textarea>
-			<input type="hidden" name="task">
-			<input type="hidden" name="pub_date">	
+			<input type="hidden" name="task" value="{{task.id}}">
+			<input type="hidden" name="pub_date" id="desc{{task.id}}">	
 		    </form>
 		    <div class="editcontrols">
 			<input type="checkbox" name="markcomplete" form="form-{{task.id}}">

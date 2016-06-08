@@ -5,6 +5,7 @@ var csrftoken = Cookies.get('csrftoken');
 $(function() {
   $(".datepicker").datepicker();
   $(".datepicker").each(function() {
+    console.log("#desc" + this.id);
     var yymm = $.datepicker.formatDate("yy-mm", $(this).datepicker("getDate"));
     var dates = fetchdates(this.id, yymm);
     var eventdates = dates.eventdates;
@@ -80,13 +81,15 @@ function deletetask() {
  */
 function insertdesc(dateText) {
   var taskid = this.id;
+  var div = $(this).parent().parent().find(".eventbox");
+  var textarea = $(this).parent().parent().find(".desc_input");
   $.post("/todo/event_fetch_fancy", {
     date: dateText,
     task: taskid,
     csrfmiddlewaretoken: csrftoken
   })
   .done(function(data) {
-    $('#event' + taskid).html(data);
+    div.html(data);
   });
 
   $.post("/todo/event_fetch_raw", {
@@ -95,7 +98,7 @@ function insertdesc(dateText) {
     csrfmiddlewaretoken: csrftoken
   })
   .done(function(rawdata) {
-    $('#textarea' + taskid).val(rawdata);
+    textarea.val(rawdata);
   });
 }
 
