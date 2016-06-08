@@ -70,9 +70,9 @@
 }
 
 /* Headings are colored and have huge margins elsewhere. */
-.eventbox > h1, .largeeditor > h1,
-.eventbox > h2, .largeeditor > h2,
-.eventbox > h3, .largeeditor > h3
+.eventbox > h1, .largepreview > h1,
+.eventbox > h2, .largepreview> h2,
+.eventbox > h3, .largepreview > h3
 {
 	margin: 4px 0 4px 0;
 	color: #4b3621;
