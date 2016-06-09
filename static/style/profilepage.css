@@ -11,12 +11,12 @@
 }
 
 .incompletetasks {
-	width: 50%;
+	min-width: 340px;
 	/* Width of the calendar widget and textbox. */
-	min-width: 700px;
-	max-width: 960px;
+	max-width: 700px;
 	margin-right: auto;
 	margin-left: auto;
+	height: auto;
 }
 
 .headertitle {
@@ -55,12 +55,13 @@
 	 * 20px: top and bottom margin.*/
 	height: calc(215px - 51px);
 	/* The same width as the datepicker widget. */
-	width: 310px;
+	width: 280px;
 	overflow: auto;
 	display: none;
 	background-color: #dddddd;
 	border-radius: 10px;
-	margin: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	padding: 5px;
 	text-align: left;
 }
@@ -85,13 +86,10 @@
 	width: 301px;
 	resize: none;
 	display: inline;
-	margin: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	padding: 0;
 	box-shadow: inset, 3px, 3px, 3px, 3px, black;
-}
-
-.desc_input_form {
-	display: inline;
 }
 
 .delete_form {
@@ -103,16 +101,22 @@
 }
 
 .task_calendar {
-	/* Bizarro tiny border on tables by default. */
-	border-collapse: collapse;
-	display: inline;
+	display: inline-block;
+	width: 100%;
+	padding-left: 0 !important;
+	padding-right: 0 !important;
 }
 
-/* trying to fit the box properly. */
-td {
-	padding: 0;
+.calendarcontainer {
+	display: inline-table;
 	vertical-align: top;
-	height: 100%;
+	width: 278.4px;
+	height: 241.95px;
+}
+
+.editorcontainer {
+	display: inline-table;
+	vertical-align: top;
 }
 
 /* Necessary for the textarea and div to resize properly. */
@@ -281,10 +285,6 @@ tr {
 	background-size: 16px;
 	padding: 0;
 	margin-right: 5px;
-}
-
-.taskbuttons.leftmost {
-	margin-right: 15px;
 }
 
 .expandbutton {

@@ -71,10 +71,10 @@ function hidelarge() {
 }
 
 $(document).ready(function() {
-  $('td>.editcontrols, .desc_input_form').hide();
+  $('.editorcontainer>.editcontrols, .desc_input_form').hide();
   $('.eventbox').show();
-  $('td>.viewcontrols>.editbutton').click(showedit);
-  $('td>.editcontrols>.cancelbutton').click(hideedit);
+  $('.editorcontainer>.viewcontrols>.editbutton').click(showedit);
+  $('.editorcontainer>.editcontrols>.cancelbutton').click(hideedit);
   $('.expandbutton').click(showlarge);
   $('.fade, .contractbutton').click(hidelarge);
 

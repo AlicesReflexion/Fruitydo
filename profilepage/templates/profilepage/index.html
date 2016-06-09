@@ -32,39 +32,36 @@
 <h2 class="tasks-header">What have we got to do today?</h2>
 <div class="incompletetasks accordion">{% for task in incompletetasks %}
     <h3>{{ task.task_title }} {{ task|overdue }}</h3>
-    <div>
-	<table class="task_calendar">
-	    <tr>
-		<td>
-		    <div class="datepicker" id="{{task.id}}"></div>
-		</td>
-		<td>
-		    <div class="eventbox"></div>
-		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
-			{% csrf_token %}
-			<textarea class="desc_input" name="event_description"></textarea>
-			<input type="hidden" name="task" value="{{task.id}}">
-			<input type="hidden" name="pub_date" id="desc{{task.id}}">	
-		    </form>
-		    <div class="editcontrols">
-			<input type="checkbox" name="markcomplete" form="form-{{task.id}}">
-			<label for="markcomplete"><span><span></span></span>Done for now?</label>
-			<input type="submit" value="Save" class="saveeventbutton taskbuttons" form="form-{{task.id}}">
-			<form action="{% url 'profilepage:task_delete' %}" method="post" class="delete_form">
-			    <input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons">
-			</form>
-			<input type="button" value="expand" name="expand" class="expandbutton taskbuttons">
-			<input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost">
-		    </div>
-		    <div class="viewcontrols">
-			<input type="button" value="edit" class="editbutton taskbuttons">
-			<input type="button" value="expand" class="expandbutton taskbuttons leftmost">
-		    </div>
-		</td>
-	    </tr>
-	</table>
+    <div class="task_calendar">
+	<div class="calendarcontainer">
+	    <div class="datepicker" id="{{task.id}}"></div>
+	</div>
+	<div class="editorcontainer">
+	    <div class="eventbox"></div>
+	    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
+		{% csrf_token %}
+		<textarea class="desc_input" name="event_description"></textarea>
+		<input type="hidden" name="task" value="{{task.id}}">
+		<input type="hidden" name="pub_date" id="desc{{task.id}}">	
+	    </form>
+	    <div class="editcontrols">
+		<input type="checkbox" name="markcomplete" form="form-{{task.id}}">
+		<label for="markcomplete"><span><span></span></span>Done for now?</label>
+		<input type="submit" value="Save" class="saveeventbutton taskbuttons" form="form-{{task.id}}">
+		<form action="{% url 'profilepage:task_delete' %}" method="post" class="delete_form">
+		    <input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons">
+		</form>
+		<input type="button" value="expand" name="expand" class="expandbutton taskbuttons">
+		<input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost">
+	    </div>
+	    <div class="viewcontrols">
+		<input type="button" value="edit" class="editbutton taskbuttons">
+		<input type="button" value="expand" class="expandbutton taskbuttons leftmost">
+	    </div>
+	</div>
     </div>{% endfor %}
-</div><div class="largecontainer">
+</div>
+<div class="largecontainer">
     <div class="largeeditor"><textarea class="largetextarea"></textarea><div class="largepreview"></div></div>
 <div class="largecontrols editcontrols">
     <input type="button" name="save" value="Save" class="saveeventbutton taskbuttons">
@@ -77,9 +74,7 @@
     <input type="button" name="contract" value="Contract" class="contractbutton taskbuttons">
 </div>
 <div class="fade"></div>
-</div>
 
 <h2 class="tasks-header"><a href="{% url 'profilepage:done' %}">What've we got done?</a></h2>
 {% endif %}
 {% endblock %}
-
