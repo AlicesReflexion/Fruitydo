@@ -5,7 +5,6 @@ var csrftoken = Cookies.get('csrftoken');
 $(function() {
   $(".datepicker").datepicker();
   $(".datepicker").each(function() {
-    console.log("#desc" + this.id);
     var yymm = $.datepicker.formatDate("yy-mm", $(this).datepicker("getDate"));
     var dates = fetchdates(this.id, yymm);
     var eventdates = dates.eventdates;
