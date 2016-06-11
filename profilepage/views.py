@@ -7,6 +7,9 @@ from django_markup.markup import formatter
 from django.core.serializers.json import DjangoJSONEncoder
 from .models import Task, Event
 
+NOEVENT = "Nothing happened on this date."
+ERROR = "An unexpected error occured"
+
 def profile(request):
     """Returns the profile/todo page"""
     tasks = Task.objects.filter(User=request.user).order_by('due_date')
@@ -91,17 +94,17 @@ def event_fetch(request):
     try:
         task = Task.objects.get(id=request.POST['task'], User_id=user.id)
     except Task.DoesNotExist:
-        return "An unexpected error occured."
+        responsedata = {'fancy': ERROR, 'raw': ERROR}
     try:
         returnevent = Event.objects.get(pub_date=date, Task_id=task.id)
     except Event.DoesNotExist:
-        return HttpResponse("Nothing happened on this date!")
+        responsedata = {'fancy': NOEVENT, 'raw': NOEVENT}
     else:
         fancy = formatter(returnevent.event_description, filter_name='markdown')
         raw = returnevent.event_description
         responsedata = {'fancy': fancy, 'raw':raw}
-        finalresponse = json.dumps(responsedata, cls=DjangoJSONEncoder)
-        return HttpResponse(finalresponse)
+    finalresponse = json.dumps(responsedata, cls=DjangoJSONEncoder)
+    return HttpResponse(finalresponse)
 
 def event_fetch_fancy(request):
     """Return a markdown-formatted version of the requested event."""
