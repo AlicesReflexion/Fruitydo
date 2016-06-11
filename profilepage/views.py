@@ -95,7 +95,7 @@ def event_fetch(request):
     try:
         returnevent = Event.objects.get(pub_date=date, Task_id=task.id)
     except Event.DoesNotExist:
-        return "Nothing happened on this date!"
+        return HttpResponse("Nothing happened on this date!")
     else:
         fancy = formatter(returnevent.event_description, filter_name='markdown')
         raw = returnevent.event_description
