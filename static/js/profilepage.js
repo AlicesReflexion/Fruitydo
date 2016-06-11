@@ -71,22 +71,15 @@ function insertdesc(dateText) {
   var taskid = this.id;
   var div = $(this).parent().parent().find(".eventbox");
   var textarea = $(this).parent().parent().find(".desc_input");
-  $.post("/todo/event_fetch_fancy", {
+  $.post("/todo/event_fetch", {
     date: dateText,
     task: taskid,
     csrfmiddlewaretoken: csrftoken
   })
   .done(function(data) {
-    div.html(data);
-  });
-
-  $.post("/todo/event_fetch_raw", {
-    date: dateText,
-    task: taskid,
-    csrfmiddlewaretoken: csrftoken
-  })
-  .done(function(rawdata) {
-    textarea.val(rawdata);
+    data = JSON.parse(data);
+    div.html(data.fancy);
+    textarea.val(data.raw);
   });
 }
 

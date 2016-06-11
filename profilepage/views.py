@@ -97,8 +97,11 @@ def event_fetch(request):
     except Event.DoesNotExist:
         return "Nothing happened on this date!"
     else:
-        return returnevent.event_description
-
+        fancy = formatter(returnevent.event_description, filter_name='markdown')
+        raw = returnevent.event_description
+        responsedata = {'fancy': fancy, 'raw':raw}
+        finalresponse = json.dumps(responsedata, cls=DjangoJSONEncoder)
+        return HttpResponse(finalresponse)
 
 def event_fetch_fancy(request):
     """Return a markdown-formatted version of the requested event."""
