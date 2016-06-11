@@ -71,6 +71,10 @@ function hidelarge() {
 }
 
 $(document).ready(function() {
+  $.get("/static/js/largeeditor.html", function(data) {
+    $("body").append(data);
+  });
+
   $('.editorcontainer>.editcontrols, .desc_input_form').hide();
   $('.eventbox').show();
   $('.editorcontainer>.viewcontrols>.editbutton').click(showedit);
