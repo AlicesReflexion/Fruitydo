@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="textblock">
+        <h1>Settings</h1>
+        <ul>
+        {% if user.userpreference.otp == False %}
+        <li><a href="{% url 'userprefs:enable_otp' %}">Enable Two Factor Authentication</a></li>
+        {% else %}
+        <li><a href="{% url 'userprefs:disable_otp' %}">Disable Two Factor Authentication</a></li>
+        {% endif %}
+</div>
+{% endblock %}

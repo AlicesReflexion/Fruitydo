@@ -2,11 +2,21 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .models import Userpreference
+from django.contrib import messages
 import pyotp
 import qrcode
 
+def settings_page(request):
+    return render(request, 'userprefs/settingspage.html')
+
 def enable_otp(request):
     return render(request, 'userprefs/enableotp.html')
+
+def disable_otp(request):
+    request.user.userpreference.otp = False
+    request.user.userpreference.save()
+    messages.success(request, "Disabled Two Factor Authentication.")
+    return HttpResponseRedirect(reverse('userprefs:settings_page'))
 
 def otp_qrcode(request):
     otpkey = pyotp.TOTP(request.user.userpreference.otpkey)
@@ -23,6 +33,7 @@ def confirm_otp(request):
     if confirmcode == otpkey.now():
         user.userpreference.otp = True
         user.userpreference.save()
-        return HttpResponseRedirect(reverse('profilepage:profile'))
+        messages.success(request, "Enabled Two Factor Authentication.")
     else:
-        return HttpResponse("Codes do not appear to match.")
+        messages.error(request, "Key does not match.")
+    return HttpResponseRedirect(reverse('userprefs:settings_page'))
