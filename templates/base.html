@@ -13,9 +13,10 @@
     <li class="navtitle"><a href="{% url 'home' %}"><img height="30" width="98" src="{% static 'logo-small.png' %}" alt="newtodologo"></a></li>
     <li class="navlink"><a href="{% url 'about' %}">About</a></li>
     <li class="navlink"><a href="{% url 'help' %}">Help</a></li>
-      {% if user.is_authenticated %}
+    {% if user.is_authenticated %} 
       <li class="auth"><a href="{% url 'auth_logout' %}">Logout</a></li>
-      {% else %}
+      <li class="auth"><a href="{% url 'userprefs:settings_page' %}">Settings</a></li>
+    {% else %}
       <li class="auth"><a href="{% url 'auth_login' %}">Log In</a></li>
   {% endif %}
 </ul>
