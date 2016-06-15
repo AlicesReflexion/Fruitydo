@@ -3,3 +3,4 @@ django-markup
 markdown
 django-registration-redux
 psycopg2
+pyotp
