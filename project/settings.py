@@ -41,6 +41,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = (
     'django.contrib.admin',
+    'fd_register',
     'userprefs',
     'django_markup',
     'django.contrib.auth',

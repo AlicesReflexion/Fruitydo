@@ -14,7 +14,7 @@
     <li class="navlink"><a href="{% url 'about' %}">About</a></li>
     <li class="navlink"><a href="{% url 'help' %}">Help</a></li>
     {% if user.is_authenticated %} 
-      <li class="auth"><a href="#">Logout</a></li>
+    <li class="auth"><a href="{% url 'fd_register:logout' %}">Logout</a></li>
       <li class="auth"><a href="{% url 'userprefs:settings_page' %}">Settings</a></li>
     {% else %}
       <li class="auth"><a href="#">Log In</a></li>
