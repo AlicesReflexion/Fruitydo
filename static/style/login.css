@@ -1,0 +1,15 @@
+.logindiv {
+	width: 95%;
+	max-width: 500px;
+	margin-right: auto;
+	margin-left: auto;
+	text-align: center;
+}
+
+.loginform > input {
+	display: block;
+	font-size: 20px;
+	width: 100%;
+	padding: 5px;
+	margin: 5px;
+}
