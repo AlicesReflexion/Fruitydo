@@ -8,5 +8,8 @@ def logout(request):
     logoutaccount(request)
     return HttpResponseRedirect(reverse('home'))
 
+def login(request):
+    return render(request, 'fd_register/login.html')
+
 
 # Create your views here.
