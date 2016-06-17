@@ -4,6 +4,8 @@ from . import views
 
 app_name = 'userprefs'
 urlpatterns = [
+    url(r'^change_password', views.change_password, name='change_password'),
+    url(r'^changepassword_confirm', views.changepassword_confirm, name='changepassword_confirm'),
     url(r'^enable_otp/qr_code.png', views.otp_qrcode, name='otp_qrcode'),
     url(r'^enable_otp/confirm_otp', views.confirm_otp, name='confirm_otp'),
     url(r'^enable_otp', views.enable_otp, name='enable_otp'),

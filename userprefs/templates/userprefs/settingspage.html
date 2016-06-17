@@ -4,6 +4,7 @@
 <div class="textblock">
         <h1>Settings</h1>
         <ul>
+                <li><a href="{% url 'userprefs:change_password' %}">Change Password</a></li>
         {% if user.userpreference.otp == False %}
         <li><a href="{% url 'userprefs:enable_otp' %}">Enable Two Factor Authentication</a></li>
         {% else %}

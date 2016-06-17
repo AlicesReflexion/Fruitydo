@@ -12,6 +12,23 @@ def settings_page(request):
 def enable_otp(request):
     return render(request, 'userprefs/enableotp.html')
 
+def change_password(request):
+    return render(request, 'userprefs/changepassword.html')
+
+def changepassword_confirm(request):
+    oldpass = request.POST['currentpass']
+    newpass = request.POST['newpass']
+    newpass_confirm = request.POST['newpass_confirm']
+    if not request.user.check_password(oldpass):
+        messages.error(request, "Incorrect current password.")
+    elif newpass != newpass_confirm:
+        messages.error(request, "New passwords do not match.")
+    else:
+        request.user.set_password(newpass)
+        request.user.save()
+        messages.success(request, "Successfully changed password.")
+    return HttpResponseRedirect(reverse('userprefs:settings_page'))
+
 def disable_otp(request):
     request.user.userpreference.otp = False
     request.user.userpreference.save()
