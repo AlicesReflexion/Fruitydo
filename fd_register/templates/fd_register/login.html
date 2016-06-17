@@ -6,15 +6,24 @@
 {% endblock %}
 
 {% block content %}
-<div class="logindiv">
+<div class="logindiv">{% if not otp_required %}
 <h1>Login</h1>
-<form class="loginform" method="post">
+<form class="loginform" method="post" action="{% url 'fd_register:confirm_login' %}">
         {% csrf_token %}
         <input type="text" name="username" placeholder="Username" class="username">
         <input type="password" name="password" placeholder="Password" class="password">
-        <input type="text" name="otpkey" placeholder="Two Factor Key" class="otpkey">
         <input type="submit" value="Login" class="loginbutton">
 </form>
 <p>Don't have an account? <a href="#">Register!</a>
+{% else %}
+<h1>Enter Two-Factor Authentication Token</h1>
+<form class="loginform" method="post" action="{% url 'fd_register:confirm_login' %}">
+{% csrf_token %}
+<input type="hidden" value="{{username}}" name="username">
+<input type="hidden" value="{{password}}" name="password">
+<input type="text" name="otpkey" placeholder="2FA Token" class="otp">
+<input type="submit" value="Login" class="loginbutton">
+</form>
+{% endif %}
 </div>
 {% endblock %}
