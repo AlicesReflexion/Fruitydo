@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="registerdiv">
+        <h1>Register</h1>
+        <form class="registerform" method="post" action="{% url 'fd_register:confirm_register' %}">
+                {% csrf_token %}
+                <input type="text" name="username" placeholder="Username" class="username">
+                <input type="email" name="email" placeholder="you@example.com" class="email">
+                <input type="password" name="password" class="password">
+                <input type="password" name="confirm_password" class="password">
+                <input type="submit" value="Register">
+        </form>
+{% endblock %}

@@ -1,0 +1,6 @@
+Welcome to Fruitydo,
+
+Before you can log in, you still need to verify your account's email address.
+To do that, follow the link below, or copy and paste the URL if you can't click it.
+
+{{activationurl}}?emailcode={{emailcode}}
