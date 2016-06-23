@@ -16,7 +16,7 @@ import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+EMAIL_AVAILABLE = 'OPENSHIFT_SMTP_URL' in os.environ
 ON_PAAS = 'OPENSHIFT_REPO_DIR' in os.environ
 
 if ON_PAAS:
@@ -123,6 +123,16 @@ else:
         }
     }
 
+
+if EMAIL_AVAILABLE:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = os.environ['OPENSHIFT_SMTP_URL']
+    EMAIL_PORT = 465
+    EMAIL_HOST_USER = os.environ['OPENSHIFT_SMTP_LOGIN']
+    EMAIL_HOST_PASSWROD = os.environ['OPENSHIFT_SMTP_PASSWORD']
+    EMAIL_USE_TLS = True
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
