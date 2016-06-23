@@ -83,7 +83,7 @@ def confirm_email(request):
     except Userpreference.DoesNotExist:
         return HttpResponse("pls")
     user = userpref.user
-    if user.is_active == False:
+    if not user.is_active:
         user.is_active = True
         user.save()
         return HttpResponse(user)
