@@ -14,7 +14,7 @@
         <input type="password" name="password" placeholder="Password" class="password">
         <input type="submit" value="Login" class="loginbutton">
 </form>
-<p>Don't have an account? <a href="#">Register!</a>
+<p>Don't have an account? <a href="{% url 'fd_register:register' %}">Register!</a>
 <p><a href="#">Forgot your password?</a>
 {% else %}
 <h1>Enter Two-Factor Authentication Token</h1>
