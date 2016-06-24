@@ -99,7 +99,7 @@ def reset_password(request):
         reseturl = request.build_absolute_uri(reverse('fd_register:confirm_reset'))
         emailcode = user.userpreference.activationurl
         message_template = get_template("fd_register/reset.txt")
-        message = message_template.render({'reseturl':reseturl,'emailcode':emailcode})
+        message = message_template.render({'reseturl':reseturl, 'emailcode':emailcode})
         send_mail("Fruitydo password reset",
                   message,
                   "noreply@fruitydo.alexskc.xyz",
@@ -109,4 +109,26 @@ def reset_password(request):
     return render(request, "fd_register/reset_password.html")
 
 def confirm_reset(request):
-    return HttpResponse("wew")
+    if 'emailcode' in request.GET:
+        if 'password' and 'confirm_password' not in request.POST:
+            reseturl = reverse('fd_register:confirm_reset') + "?emailcode=" + request.GET['emailcode']
+            return render(request, "fd_register/confirm_reset.html", {'reseturl':reseturl})
+        else:
+            emailcode = request.GET['emailcode']
+            try:
+                userpref = Userpreference.objects.get(activationurl=emailcode)
+            except Userpreference.DoesNotExist:
+                return HttpResponse("Invalid reset code.")
+            user = userpref.user
+            password = request.POST['password']
+            confirm_password = request.POST['confirm_password']
+            if password == confirm_password:
+                user.set_password(password)
+                userpref.activationurl = pyotp.random_base32()
+                userpref.save()
+                user.save()
+                return HttpResponse("password changed")
+            else:
+                return HttpResponse("Passwords do not match.")
+    else:
+        return HttpResponse("Error: No reset code")
