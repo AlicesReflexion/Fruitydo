@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from .models import Userpreference
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 import pyotp
 import qrcode
 
@@ -26,6 +27,7 @@ def changepassword_confirm(request):
     else:
         request.user.set_password(newpass)
         request.user.save()
+        update_session_auth_hash(request, request.user)
         messages.success(request, "Successfully changed password.")
     return HttpResponseRedirect(reverse('userprefs:settings_page'))
 
