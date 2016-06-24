@@ -43,7 +43,7 @@ def confirm_login(request):
                 loginaccount(request, user)
                 return HttpResponseRedirect(reverse("profilepage:profile"))
         else: return HttpResponse("Inactive user account.")
-    else: return HttpResponseRedirect(reverse("home"))
+    else: return HttpResponseRedirect(reverse("fd_register:login"))
 
 def register(request):
     return render(request, 'fd_register/register.html')
@@ -69,7 +69,7 @@ def send_email(user, request):
     message_template = get_template("fd_register/email.txt")
     activationurl = request.build_absolute_uri(reverse('fd_register:confirm_email'))
     emailcode = user.userpreference.activationurl
-    message = message_template.render({'activationurl': activationurl, 'emailcode':emailcode})
+    message = message_template.render({'activationurl':activationurl, 'emailcode':emailcode})
     send_mail("Verify your email address with Fruitydo",
               message,
               "noreply@fruitydo.alexskc.xyz",
@@ -81,11 +81,32 @@ def confirm_email(request):
     try:
         userpref = Userpreference.objects.get(activationurl=emailcode)
     except Userpreference.DoesNotExist:
-        return HttpResponse("pls")
+        return HttpResponse("Activation code does not exist")
     user = userpref.user
     if not user.is_active:
         user.is_active = True
+        userpref.activationurl = pyotp.random_base32()
+        userpref.save()
         user.save()
-        return HttpResponse(user)
+        return HttpResponseRedirect('profilepage:profile')
     else:
-        return HttpResponse("pls")
+        return HttpResponse("User account already activated")
+
+def reset_password(request):
+    if 'email' in request.POST:
+        email = request.POST['email']
+        user = User.objects.get(email=email)
+        reseturl = request.build_absolute_uri(reverse('fd_register:confirm_reset'))
+        emailcode = user.userpreference.activationurl
+        message_template = get_template("fd_register/reset.txt")
+        message = message_template.render({'reseturl':reseturl,'emailcode':emailcode})
+        send_mail("Fruitydo password reset",
+                  message,
+                  "noreply@fruitydo.alexskc.xyz",
+                  [user.email],
+                  fail_silently=False)
+        return HttpResponse("If a user with that email exists, a password reset email has been sent.")
+    return render(request, "fd_register/reset_password.html")
+
+def confirm_reset(request):
+    return HttpResponse("wew")

@@ -1,0 +1,7 @@
+A password reset request has been made for your Fruitydo account.
+
+If you have did not request this, you can safely ignore this email.
+
+If you did request this, follow the link below to reset your password:
+
+{{reseturl}}?emailcode={{emailcode}}
