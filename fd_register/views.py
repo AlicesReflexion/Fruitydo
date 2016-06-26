@@ -141,4 +141,4 @@ def confirm_reset(request):
                 return HttpResponseRedirect(reverse("fd_register:confirm_reset"))
     else:
         messages.error(request, "No reset code")
-        return HttpResponseRedirect(reverse("fd_register:confirm_reset"))
+        return render(request, "fd_register/confirm_reset.html")
