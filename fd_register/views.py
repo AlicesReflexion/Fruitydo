@@ -44,8 +44,11 @@ def confirm_login(request):
             elif otpkey == serverkey.now():
                 loginaccount(request, user)
                 return HttpResponseRedirect(reverse("profilepage:profile"))
-        else: return HttpResponse("Inactive user account.")
-    else: return HttpResponseRedirect(reverse("fd_register:login"))
+        else:
+            messages.error(request, "Inactive User account.")
+    else:
+        messages.error(request, "Incorrect username or password.")
+    return HttpResponseRedirect(reverse("fd_register:login"))
 
 def register(request):
     if request.user.is_authenticated():
