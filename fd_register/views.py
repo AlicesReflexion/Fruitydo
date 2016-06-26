@@ -143,7 +143,7 @@ def confirm_reset(request):
                 userpref = Userpreference.objects.get(activationurl=emailcode)
             except Userpreference.DoesNotExist:
                 messages.error(request, "Invalid reset code.")
-                return HttpResponseRedirect("home")
+                return HttpResponseRedirect(reverse("home"))
             user = userpref.user
             password = request.POST['password']
             confirm_password = request.POST['confirm_password']
@@ -152,6 +152,7 @@ def confirm_reset(request):
                 userpref.activationurl = pyotp.random_base32()
                 userpref.save()
                 user.save()
+                user = authenticate(username=user.username,password=password)
                 loginaccount(request, user)
                 messages.success(request, "Succesfully changed password")
                 return HttpResponseRedirect(reverse("profilepage:profile"))
