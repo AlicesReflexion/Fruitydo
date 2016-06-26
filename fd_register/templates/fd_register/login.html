@@ -15,7 +15,7 @@
         <input type="submit" value="Login" class="loginbutton">
 </form>
 <p>Don't have an account? <a href="{% url 'fd_register:register' %}">Register!</a>
-<p><a href="#">Forgot your password?</a>
+<p><a href="{% url 'fd_register:reset_password' %}">Forgot your password?</a>
 {% else %}
 <h1>Enter Two-Factor Authentication Token</h1>
 <form class="loginform" method="post" action="{% url 'fd_register:confirm_login' %}">
