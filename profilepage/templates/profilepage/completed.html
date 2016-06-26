@@ -17,30 +17,29 @@
 <div class="completetasks accordion">{% for task in completetasks %}
     <h3>{{ task.task_title }}</h3>
     <div>
-	<table class="task_calendar">
-	    <tr>
-		<td>
-		    <div class="datepicker" id="{{ task.id }}"></div>
-		</td>
-		<td>
-		    <div class="eventbox" id="event{{ task.id }}"></div>
-		    <input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
-		    <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
-			{% csrf_token %}
-			<textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
-			<input type="hidden" name="task" value="{{task.id}}">
-			<input type="hidden" name="pub_date" id="desc{{task.id}}">
-			<label>Done for now?<input type="checkbox" name="markcomplete"></label>
-			<input type="submit" value="Save" class="saveeventbutton">
-			<input type="button" value="Delete" name="delete" class="deletetaskbutton" id="deletetask-{{ task.id }}">
-		    </form>
-		</td>
-	    </tr>
-	</table>
+      <table class="task_calendar">
+      <tr>
+        <td>
+      <div class="datepicker" id="{{ task.id }}"></div>
+      </td>
+    <td>
+      <div class="eventbox" id="event{{ task.id }}"></div>
+        <input type="button" value="edit" class="editbutton" id="edit_button-{{ task.id }}">
+        <form action="{% url 'profilepage:event_create' %}" method="post" class="desc_input_form" id="form-{{task.id}}">
+          {% csrf_token %}
+      <textarea class="desc_input" id="textarea{{ task.id }}" name="event_description"></textarea>
+      <input type="hidden" name="task" value="{{task.id}}">
+      <input type="hidden" name="pub_date" id="desc{{task.id}}">
+      <label>Done for now?<input type="checkbox" name="markcomplete"></label>
+      <input type="submit" value="Save" class="saveeventbutton">
+      <input type="button" value="Delete" name="delete" class="deletetaskbutton" id="deletetask-{{ task.id }}">
+      </form>
+      </td>
+      </tr>
+    </table>
     </div>
     {% endfor %}
 </div>
 <h2><a href="{% url 'profilepage:profile' %}">What's left to do?</a></h2>
 {% endif %}
 {% endblock %}
-
