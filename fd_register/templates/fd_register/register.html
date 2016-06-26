@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block customscripts %}
+<link rel="stylesheet" href="{% static 'style/login.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="registerdiv">
@@ -7,8 +12,8 @@
                 {% csrf_token %}
                 <input type="text" name="username" placeholder="Username" class="username">
                 <input type="email" name="email" placeholder="you@example.com" class="email">
-                <input type="password" name="password" class="password">
-                <input type="password" name="confirm_password" class="password">
+                <input type="password" name="password" class="password" placeholder="Password">
+                <input type="password" name="confirm_password" class="password" placeholder="Confirm Password">
                 <input type="submit" value="Register">
         </form>
 </div>

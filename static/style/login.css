@@ -1,4 +1,4 @@
-.logindiv {
+.logindiv, .registerdiv, .resetdiv {
 	width: 95%;
 	max-width: 500px;
 	margin-right: auto;
@@ -6,7 +6,7 @@
 	text-align: center;
 }
 
-.loginform > input {
+.loginform > input, .registerform > input, .resetform > input {
 	display: block;
 	font-size: 20px;
 	width: 100%;
