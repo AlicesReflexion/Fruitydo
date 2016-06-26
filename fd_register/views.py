@@ -17,6 +17,8 @@ def logout(request):
     return HttpResponseRedirect(reverse('home'))
 
 def login(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('profilepage:profile'))
     return render(request, 'fd_register/login.html')
 
 def confirm_login(request):
@@ -46,9 +48,13 @@ def confirm_login(request):
     else: return HttpResponseRedirect(reverse("fd_register:login"))
 
 def register(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('profilepage:profile'))
     return render(request, 'fd_register/register.html')
 
 def cofirm_register(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('profilepage:profile'))
     username = request.POST['username'].lower()
     email = request.POST['email'].lower()
     password = request.POST['password']
@@ -77,6 +83,8 @@ def send_email(user, request):
               fail_silently=False)
 
 def confirm_email(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('profilepage:profile'))
     emailcode = request.GET['emailcode']
     try:
         userpref = Userpreference.objects.get(activationurl=emailcode)
@@ -88,11 +96,13 @@ def confirm_email(request):
         userpref.activationurl = pyotp.random_base32()
         userpref.save()
         user.save()
-        return HttpResponseRedirect('profilepage:profile')
+        return HttpResponseRedirect(reverse('profilepage:profile'))
     else:
         return HttpResponse("User account already activated")
 
 def reset_password(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('profilepage:profile'))
     if 'email' in request.POST:
         email = request.POST['email']
         try:
@@ -113,6 +123,8 @@ def reset_password(request):
     return render(request, "fd_register/reset_password.html")
 
 def confirm_reset(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect(reverse('profilepage:profile'))
     if 'emailcode' in request.GET:
         if 'password' and 'confirm_password' not in request.POST:
             reseturl = reverse('fd_register:confirm_reset') + "?emailcode=" + request.GET['emailcode']
