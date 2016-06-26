@@ -71,13 +71,15 @@ def cofirm_register(request):
         if settings.EMAIL_AVAILABLE:
             newuser.is_active = False
             newuser.save()
-            send_email(newuser, request)
+            send_email(request, newuser)
             return render(request, "fd_register/email_sent.html")
         else:
+            newuser.save()
+            newuser = authenticate(username=username,password=password)
             loginaccount(request, newuser)
             return HttpResponseRedirect(reverse("profilepage:profile"))
 
-def send_email(user, request):
+def send_email(request, user):
     message_template = get_template("fd_register/email.txt")
     activationurl = request.build_absolute_uri(reverse('fd_register:confirm_email'))
     emailcode = user.userpreference.activationurl
