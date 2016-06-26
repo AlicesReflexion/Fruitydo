@@ -62,6 +62,20 @@ def cofirm_register(request):
     email = request.POST['email'].lower()
     password = request.POST['password']
     confirm_password = request.POST['confirm_password']
+    try:
+        takenuser = User.objects.get(username=username)
+    except User.DoesNotExist:
+        takenuser = None
+    try:
+        takenemail = User.objects.get(email=email)
+    except User.DoesNotExist:
+        takenemail = None
+    if takenuser is not None:
+        messages.error(request, "That username is already taken.")
+    if takenemail is not None:
+        messages.error(request, "That email is already in use.")
+    if takenuser is not None or takenemail is not None:
+        return HttpResponseRedirect(reverse("fd_register:register"))
     if password == confirm_password:
         newuser = User.objects.create_user(
             username=username,
