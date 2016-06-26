@@ -72,7 +72,10 @@ def cofirm_register(request):
             newuser.is_active = False
             newuser.save()
             send_email(newuser, request)
-    return HttpResponse("ayylmao")
+            return render(request, "fd_register/email_sent.html")
+        else:
+            loginaccount(request, newuser)
+            return HttpResponseRedirect(reverse("profilepage:profile"))
 
 def send_email(user, request):
     message_template = get_template("fd_register/email.txt")
