@@ -118,7 +118,8 @@ def confirm_email(request):
         userpref.activationurl = pyotp.random_base32()
         userpref.save()
         user.save()
-        return HttpResponseRedirect(reverse('profilepage:profile'))
+        messages.success(request, "Email successfully confirmed. You can log in now."
+        return HttpResponseRedirect(reverse('fd_register:login'))
     else:
         return HttpResponse("User account already activated")
 
