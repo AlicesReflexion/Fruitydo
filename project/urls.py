@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^about', 'project.views.about', name='about'),
     url(r'^help', 'project.views.help', name='help'),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^accounts/', include('registration.backends.simple.urls')),
     url(r'^todo/', include('profilepage.urls', namespace="profilepage")),
+    url(r'^settings/', include('userprefs.urls', namespace="userprefs")),
+    url(r'^account/', include('fd_register.urls', namespace="fd_register")),
 ]
