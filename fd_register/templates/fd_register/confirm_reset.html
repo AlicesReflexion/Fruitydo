@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block customscripts %}
+<link rel="stylesheet" href="{% static 'style/login.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="newpassdiv">
