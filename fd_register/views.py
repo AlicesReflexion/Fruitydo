@@ -172,8 +172,9 @@ def confirm_reset(request):
                 return HttpResponseRedirect(reverse("profilepage:profile"))
             else:
                 messages.error(request, "Passwords do not match.")
-                # TODO: Include GET data in url
-                return HttpResponseRedirect(reverse("fd_register:confirm_reset"))
+                url = reverse("fd_register:confirm_reset")
+                url = url + "?emailcode=" + emailcode
+                return HttpResponseRedirect(url)
     else:
         messages.error(request, "No reset code")
         return render(request, "fd_register/confirm_reset.html")
