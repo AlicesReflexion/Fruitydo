@@ -129,7 +129,7 @@ if EMAIL_AVAILABLE:
     EMAIL_HOST = os.environ['OPENSHIFT_SMTP_URL']
     EMAIL_PORT = 465
     EMAIL_HOST_USER = os.environ['OPENSHIFT_SMTP_LOGIN']
-    EMAIL_HOST_PASSWROD = os.environ['OPENSHIFT_SMTP_PASSWORD']
+    EMAIL_HOST_PASSWORD = os.environ['OPENSHIFT_SMTP_PASSWORD']
     EMAIL_USE_TLS = True
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
