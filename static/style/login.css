@@ -1,9 +1,11 @@
 .logindiv, .registerdiv, .resetdiv, .newpassdiv {
 	width: 95%;
 	max-width: 500px;
-	margin-right: auto;
-	margin-left: auto;
 	text-align: center;
+	position: absolute;	
+	top: 25%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .loginform > input, .registerform > input, .resetform > input, .newpassform > input {
