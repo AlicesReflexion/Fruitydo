@@ -112,8 +112,7 @@ if ON_PAAS:
                 'PORT':     os.environ['OPENSHIFT_MYSQL_DB_PORT'],
             }
         }
-
-        
+ 
 else:
     # stock django, local development.
     DATABASES = {
@@ -127,7 +126,7 @@ else:
 if EMAIL_AVAILABLE:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_HOST = os.environ['OPENSHIFT_SMTP_URL']
-    EMAIL_PORT = 465
+    EMAIL_PORT = 587
     EMAIL_HOST_USER = os.environ['OPENSHIFT_SMTP_LOGIN']
     EMAIL_HOST_PASSWORD = os.environ['OPENSHIFT_SMTP_PASSWORD']
     EMAIL_USE_TLS = True
