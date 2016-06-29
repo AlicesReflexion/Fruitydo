@@ -10,8 +10,8 @@
 <h1>Reset Password</h1>
 <form class="newpassform" method="post" action="{{reseturl}}">
         {% csrf_token %}
-        <input type="password" name="password" class="password">
-        <input type="password" name="confirm_password" class="password">
+        <input type="password" name="password" class="password" placeholder="New Password">
+        <input type="password" name="confirm_password" class="password" placeholder="Confirm New Password">
         <input type="submit" class="submitbutton" value="Reset Passowrd">
 </form>
 </div>
