@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.views import defaults
+import project.settings
 
 urlpatterns = [
     url(r'^$', 'project.views.home', name='home'),
@@ -25,3 +27,10 @@ urlpatterns = [
     url(r'^settings/', include('userprefs.urls', namespace="userprefs")),
     url(r'^account/', include('fd_register.urls', namespace="fd_register")),
 ]
+
+#Test 404, 500, etc. pages by going to /404, /500, etc.
+if project.settings.DEBUG:
+    urlpatterns += [
+        url(r'^404/$', defaults.page_not_found, name='404'),
+        url(r'^500/$', defaults.server_error, name='500')
+    ]
