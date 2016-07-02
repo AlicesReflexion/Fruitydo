@@ -200,3 +200,23 @@ input[type=button]:hover, input[type=button]:focus, input[type=submit]:hover, in
 .howto > p:nth-of-type(2n+1) {
 	text-align: left;
 }
+
+ul.messages > li {
+	width: -moz-max-content;
+	border: 3px solid;
+	border-radius: 10px;
+	padding: 10px;
+	list-style-type: none;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+ul.messages > .error {
+	border-color: #ff2222;
+	background-color: #ffcccc;
+}
+
+ul.messages > .success {
+	border-color: #5ac54a;
+	background-color: #ccffcc;
+}
