@@ -92,6 +92,9 @@ def cofirm_register(request):
             newuser = authenticate(username=username,password=password)
             loginaccount(request, newuser)
             return HttpResponseRedirect(reverse("profilepage:profile"))
+    else:
+        messages.error(request, "Passwords do not match")
+        return HttpResponseRedirect(reverse("fd_register:register"))
 
 def send_email(request, user):
     message_template = get_template("fd_register/email.txt")
