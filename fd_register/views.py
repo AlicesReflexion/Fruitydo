@@ -62,21 +62,7 @@ def cofirm_register(request):
     email = request.POST['email'].lower()
     password = request.POST['password']
     confirm_password = request.POST['confirm_password']
-    try:
-        takenuser = User.objects.get(username=username)
-    except User.DoesNotExist:
-        takenuser = None
-    try:
-        takenemail = User.objects.get(email=email)
-    except User.DoesNotExist:
-        takenemail = None
-    if takenuser is not None:
-        messages.error(request, "That username is already taken.")
-    if takenemail is not None:
-        messages.error(request, "That email is already in use.")
-    if takenuser is not None or takenemail is not None:
-        return HttpResponseRedirect(reverse("fd_register:register"))
-    if password == confirm_password:
+    if test_user(request, username, password, confirm_password, email):
         newuser = User.objects.create_user(
             username=username,
             email=email,
@@ -89,12 +75,36 @@ def cofirm_register(request):
             return render(request, "fd_register/email_sent.html")
         else:
             newuser.save()
-            newuser = authenticate(username=username,password=password)
+            newuser = authenticate(username=username, password=password)
             loginaccount(request, newuser)
             return HttpResponseRedirect(reverse("profilepage:profile"))
     else:
-        messages.error(request, "Passwords do not match")
         return HttpResponseRedirect(reverse("fd_register:register"))
+
+def test_user(request, username, password, confirm_password, email):
+    user_works = True
+    try:
+        User.objects.get(username=username)
+        messages.error(request, "Username is already taken.")
+        user_works = False
+    except User.DoesNotExist:
+        pass
+    try:
+        User.objects.get(email=email)
+        messages.error(request, "Email is already taken.")
+    except User.DoesNotExist:
+        pass
+    if not 3 < len(username) < 32:
+        messages.error(request, "Username must be between 3 and 32 characters long.")
+        user_works = False
+    if not len(password) > 8:
+        messages.error(request, "Password must be at least 8 characters long.")
+        user_works = False
+    if password != confirm_password:
+        messages.error(request, "Passwords do not match.")
+        user_works = False
+    return user_works
+
 
 def send_email(request, user):
     message_template = get_template("fd_register/email.txt")
