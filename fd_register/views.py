@@ -10,6 +10,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from userprefs.models import Userpreference
 import pyotp
+import re
 from django.template.loader import get_template
 
 def logout(request):
@@ -102,6 +103,9 @@ def test_user(request, username, password, confirm_password, email):
         user_works = False
     if password != confirm_password:
         messages.error(request, "Passwords do not match.")
+        user_works = False
+    if not re.match(r'[^@]+@[^@]+\.[^@]+', email):
+        messages.error(request, "Not a valid email address")
         user_works = False
     return user_works
 
