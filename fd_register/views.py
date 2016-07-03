@@ -1,3 +1,4 @@
+import re
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -8,10 +9,10 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
+from django.template.loader import get_template
 from userprefs.models import Userpreference
 import pyotp
-import re
-from django.template.loader import get_template
+
 
 def logout(request):
     logoutaccount(request)
@@ -167,7 +168,8 @@ def confirm_reset(request):
         return HttpResponseRedirect(reverse('profilepage:profile'))
     if 'emailcode' in request.GET:
         if 'password' and 'confirm_password' not in request.POST:
-            reseturl = reverse('fd_register:confirm_reset') + "?emailcode=" + request.GET['emailcode']
+            reseturl = reverse('fd_register:confirm_reset')
+            reseturl += "?emailcode=" + request.GET['emailcode']
             return render(request, "fd_register/confirm_reset.html", {'reseturl':reseturl})
         else:
             emailcode = request.GET['emailcode']
@@ -184,7 +186,7 @@ def confirm_reset(request):
                 userpref.activationurl = pyotp.random_base32()
                 userpref.save()
                 user.save()
-                user = authenticate(username=user.username,password=password)
+                user = authenticate(username=user.username, password=password)
                 loginaccount(request, user)
                 messages.success(request, "Succesfully changed password")
                 return HttpResponseRedirect(reverse("profilepage:profile"))
