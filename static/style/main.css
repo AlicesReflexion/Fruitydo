@@ -189,7 +189,9 @@ input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
 }
 
 ul.messages > li {
-	width: -moz-max-content;
+	width: intrinsic; /* Safari/Webkit */
+	width: -moz-max-content; /* Mozilla */
+	width: -webkit-max-content; /* Chrome */
 	border: 3px solid;
 	border-radius: 10px;
 	padding: 10px;
