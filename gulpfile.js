@@ -11,8 +11,14 @@ var uglify = require('gulp-uglify');
 
 var paths = {
   styles: './resources/style/*.scss',
-  scripts: './resources/js/**/*'
+  scriptdeps: './resources/js/**/*',
+  scripts: './resources/js/**/*.js'
 };
+
+gulp.task('copydeps', function() {
+  return gulp.src(paths.scriptdeps, {base: './resources/js'})
+    .pipe(gulp.dest('./static/js'));
+});
 
 gulp.task('stylegen', function() {
   return gulp.src(paths.styles)
@@ -24,8 +30,9 @@ gulp.task('stylegen', function() {
     .pipe(gulp.dest('./static/style'));
 });
 
-gulp.task('jsgen', function() {
+gulp.task('jsgen', ['copydeps'], function() {
   return gulp.src(paths.scripts, {base: './resources/js'})
+    .pipe(uglify())
     .pipe(gulp.dest('./static/js'));
 });
 
