@@ -1,5 +1,4 @@
 *.pyc
 vpython27
 static/style
-static/js/*.js
-static/js/*.html
+static/js

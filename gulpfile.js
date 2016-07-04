@@ -11,7 +11,7 @@ var uglify = require('gulp-uglify');
 
 var paths = {
   styles: './resources/style/*.scss',
-  scripts: './resources/js/*.js'
+  scripts: './resources/js/**/*.js'
 };
 
 gulp.task('stylegen', function() {
@@ -25,7 +25,7 @@ gulp.task('stylegen', function() {
 });
 
 gulp.task('jsgen', function() {
-  return gulp.src(paths.scripts)
+  return gulp.src(paths.scripts, {base: './resources/js'})
     .pipe(uglify())
     .pipe(gulp.dest('./static/js'));
 });
