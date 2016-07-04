@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var sourcemaps = require('gulp-sourcemaps');
 
 // CSS plugins
 var cssnano = require('gulp-cssnano');
@@ -22,11 +21,9 @@ gulp.task('copydeps', function() {
 
 gulp.task('stylegen', function() {
   return gulp.src(paths.styles)
-    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({browsers: ['last 2 versions'], cascade: false}))
     .pipe(cssnano())
-    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./static/style'));
 });
 
