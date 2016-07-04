@@ -1,11 +1,17 @@
 var gulp = require('gulp');
+var sourcemaps = require('gulp-sourcemaps');
+
+// CSS plugins
 var cssnano = require('gulp-cssnano');
 var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var sourcemaps = require('gulp-sourcemaps');
+
+// JS plugins
+var uglify = require('gulp-uglify');
 
 var paths = {
-  styles: './resources/style/'
+  styles: './resources/style/*.scss',
+  scripts: './resources/js/*.js'
 };
 
 gulp.task('stylegen', function() {
@@ -18,8 +24,15 @@ gulp.task('stylegen', function() {
     .pipe(gulp.dest('./static/style'));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.styles, ['stylegen']);
+gulp.task('jsgen', function() {
+  return gulp.src(paths.scripts)
+    .pipe(uglify())
+    .pipe(gulp.dest('./static/js'));
 });
 
-gulp.task('default', ['watch', 'stylegen']);
+gulp.task('watch', function() {
+  gulp.watch(paths.styles, ['stylegen']);
+  gulp.watch(paths.scripts, ['jsgen']);
+});
+
+gulp.task('default', ['watch', 'stylegen', 'jsgen']);
