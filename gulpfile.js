@@ -8,10 +8,13 @@ var autoprefixer = require('gulp-autoprefixer');
 // JS plugins
 var uglify = require('gulp-uglify');
 
+var imagemin = require('gulp-imagemin');
+
 var paths = {
   styles: './resources/style/*.scss',
   scriptdeps: './resources/js/**/*',
-  scripts: './resources/js/**/*.js'
+  scripts: './resources/js/**/*.js',
+  images: './resources/branding/**/*.svg'
 };
 
 gulp.task('copydeps', function() {
@@ -33,9 +36,15 @@ gulp.task('jsgen', ['copydeps'], function() {
     .pipe(gulp.dest('./static/js'));
 });
 
+gulp.task('imggen', function() {
+  return gulp.src(paths.images, {base: './resources/branding'})
+    .pipe(imagemin())
+    .pipe(gulp.dest('./static/images'));
+});
+
 gulp.task('watch', function() {
   gulp.watch(paths.styles, ['stylegen']);
   gulp.watch(paths.scripts, ['jsgen']);
 });
 
-gulp.task('default', ['watch', 'stylegen', 'jsgen']);
+gulp.task('default', ['watch', 'stylegen', 'jsgen', 'imggen']);
