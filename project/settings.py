@@ -40,6 +40,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = (
+    'django_gulp',
     'django.contrib.admin',
     'fd_register',
     'userprefs',
