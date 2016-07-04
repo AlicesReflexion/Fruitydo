@@ -1,3 +1,19 @@
+/* Fruitydo brand colors. */
+$logo-colors: (
+#ff5d76,
+#ff6d70,
+#fb8675,
+#fb9e67,
+#fbb03b,
+#e6c531,
+#c6cc31,
+#aad23f
+);
+
+$primary-color: #ff5d76;
+$second-color: #fbb03b;
+$third-color: #aad23f;
+
 .completeform {
 	display: inline;
 }
@@ -40,13 +56,13 @@
 	margin: 0;
 	border: none;
 	background-color: transparent;
-	color: #ff5d76;
+	color: $primary-color;
 	transition: .3s;
 	font-weight: bold;
 }
 
 .newtaskbutton:hover {
-	color: #acd343;
+	color: $third-color;
 }
 
 
@@ -134,7 +150,7 @@ tr {
 }
 
 .ui-datepicker-calendar > tbody > tr > td.due > a.ui-state-default {
-	background-color: #ff5d76;
+	background-color: $primary-color;
 }
 
 .ui-datepicker-calendar > tbody > tr > td.due > a.ui-state-active {
@@ -150,49 +166,25 @@ tr {
 
 .ui-datepicker-calendar > tbody > tr > td > .ui-state-active {
 	font-weight: bold;
-	color: #ff5d76;
+	color: $primary-color;
 }
 
 .ui-datepicker-calendar > tbody> tr > .ui-datepicker-today > a {
 	font-weight: bold;
-	color: #c6cc31;
+	color: $third-color;
 }
 
 .ui-datepicker-calendar > tbody > tr > .ui-datepicker-today > .ui-state-active {
-	color: #ff5d76;
+	color: $primary-color;
 }
 
 .ui-datepicker-title {
-	color: #fbb03b;
+	color: $second-color;
 }
 
+@for $i from 1 through 7 {
 /* Rainbow accross the week. */
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(1) {
-	color: #ff5d76;
-}
-
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(2) {
-	color: #ff6d70;
-}
-
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(3) {
-	color: #fb8675;
-}
-
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(4) {
-	color: #fbb03b;
-}
-
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(5) {
-	color: #e6c531;
-}
-
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(6) {
-	color: #c6cc31;
-}
-
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(7) {
-	color: #aad23f;
+.ui-datepicker-calendar > thead > tr > th:nth-of-type(#{$i}) {color: nth($logo-colors, $i)}
 }
 
 .headertitle > form > input.dueinput {
@@ -224,7 +216,7 @@ tr {
 }
 
 .ui-accordion-header.ui-state-default {
-	color: #aad23f;
+	color: $third-color;
 }
 
 .ui- {
@@ -232,7 +224,7 @@ tr {
 }
 
 .ui-accordion-header.ui-state-active {
-	color: #ff5d76;
+	color: $primary-color;
 }
 
 .ui-accordion-header-icon {
