@@ -8,7 +8,7 @@ var autoprefixer = require('gulp-autoprefixer');
 // JS plugins
 var uglify = require('gulp-uglify');
 
-var imagemin = require('gulp-imagemin');
+//var imagemin = require('gulp-imagemin');
 
 var paths = {
   styles: './resources/style/*.scss',
@@ -36,15 +36,15 @@ gulp.task('jsgen', ['copydeps'], function() {
     .pipe(gulp.dest('./static/js'));
 });
 
-gulp.task('imggen', function() {
+/*gulp.task('imggen', function() {
   return gulp.src(paths.images, {base: './resources/branding'})
     .pipe(imagemin())
     .pipe(gulp.dest('./static/images'));
-});
+});*/
 
 gulp.task('watch', function() {
   gulp.watch(paths.styles, ['stylegen']);
   gulp.watch(paths.scripts, ['jsgen']);
 });
 
-gulp.task('default', ['watch', 'stylegen', 'jsgen', 'imggen']);
+gulp.task('default', ['watch', 'stylegen', 'jsgen', /*'imggen'*/]);
