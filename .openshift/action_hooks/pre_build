@@ -11,4 +11,4 @@ export PATH="$DEPENDENCY_BASE/node_modules/.bin/:$DEPENDENCY_BASE/node/bin/:$PAT
 export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npmrc
 node --version; npm --version
 npm config set cache "$DEPENDENCY_BASE/.npm"
-npm install $OPENSHIFT_REPO_DIR
+npm install gulp gulp-cssnano gulp-autoprefixer gulp-sass gulp-uglify gulp-imagemin
