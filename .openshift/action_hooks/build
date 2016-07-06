@@ -12,9 +12,8 @@ fi
 
 ln -sf $OPENSHIFT_DATA_DIR/media $OPENSHIFT_REPO_DIR/wsgi/media
 
-OLD_HOME=$HOME
-export HOME=$OPENSHIFT_REPO_DIR
-if [ -f "${OPENSHIFT_REPO_DIR}"/Gulpfile.js ]; then
- (cd "${OPENSHIFT_REPO_DIR}"; $OPENSHIFT_HOME_DIR/app-root/dependencies/node_modules/.bin/gulp)
-fi
-export HOME=$OLD_HOME
+export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npmrc
+export PATH="$DEPENDENCY_BASE/node_modules/.bin/:$DEPENDENCY_BASE/node/bin/:$PATH"
+npm config set cache "$DEPENDENCY_BASE/.npm"
+cd ${OPENSHIFT_REPO_DIR}
+$DEPENDENCY_BASE/node_modules/fruitydo/node_modules/.bin/gulp
