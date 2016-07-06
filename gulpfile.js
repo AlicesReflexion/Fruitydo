@@ -47,4 +47,4 @@ gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['jsgen']);
 });
 
-gulp.task('default', ['watch', 'stylegen', 'jsgen', /*'imggen'*/]);
+gulp.task('default', ['stylegen', 'jsgen', /*'imggen'*/]);
