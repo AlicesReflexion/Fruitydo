@@ -5,7 +5,6 @@
 # could be python, php, ruby, etc.
 
 echo "--> ACTION HOOK: pre_build <--"
-export DEPENDENCY_BASE="$OPENSHIFT_HOMEDIR/app-root/dependencies"
 cd $DEPENDENCY_BASE; wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x64.tar.xz; tar -xf node-v4.4.7-linux-x64.tar.xz; mv node-v4.4.7-linux-x64 node; rm node-v4.4.7-linux-x64.tar.xz
 mkdir -p $DEPENDENCY_BASE/.npm $DEPENDENCY_BASE/node_modules/.bin
 export PATH="$DEPENDENCY_BASE/node_modules/.bin/:$DEPENDENCY_BASE/node/bin/:$PATH"
