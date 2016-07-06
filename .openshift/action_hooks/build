@@ -11,3 +11,10 @@ mkdir $OPENSHIFT_DATA_DIR/media
 fi
 
 ln -sf $OPENSHIFT_DATA_DIR/media $OPENSHIFT_REPO_DIR/wsgi/media
+
+OLD_HOME=$HOME
+export HOME=$OPENSHIFT_REPO_DIR
+if [ -f "${OPENSHIFT_REPO_DIR}"/Gulpfile.js ]; then
+ (cd "${OPENSHIFT_REPO_DIR}"; $OPENSHIFT_HOME_DIR/app-root/dependencies/node_modules/.bin/gulp)
+fi
+export HOME=$OLD_HOME
