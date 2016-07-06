@@ -11,9 +11,3 @@ mkdir $OPENSHIFT_DATA_DIR/media
 fi
 
 ln -sf $OPENSHIFT_DATA_DIR/media $OPENSHIFT_REPO_DIR/wsgi/media
-
-export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npmrc
-export PATH="$DEPENDENCY_BASE/node_modules/.bin/:$DEPENDENCY_BASE/node/bin/:$PATH"
-npm config set cache "$DEPENDENCY_BASE/.npm"
-cd ${OPENSHIFT_REPO_DIR}
-$DEPENDENCY_BASE/node_modules/fruitydo/node_modules/.bin/gulp
