@@ -13,4 +13,4 @@ node --version; npm --version
 npm config set cache "$DEPENDENCY_BASE/.npm"
 cd $OPENSHIFT_REPO_DIR
 npm install gulp
-$DEPENDENCY_BASE/node_modules/.bin/gulp --gulpfile $OPENSHIFT_REPO_DIR/gulpfile-openshift.js
+$OPENSHIFT_REPO_DIR/node_modules/.bin/gulp --gulpfile $OPENSHIFT_REPO_DIR/gulpfile-openshift.js
