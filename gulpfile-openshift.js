@@ -1,13 +1,12 @@
 var NodeMod = process.env.DEPENDENCY_BASE + '/node_modules/';
-
 var gulp = require('gulp');
 
- CSS plugins
+// CSS plugins
 var cssnano = require(NodeMod + 'gulp-cssnano');
 var sass = require(NodeMod + 'gulp-sass');
 var autoprefixer = require(NodeMod + 'gulp-autoprefixer');
 
- JS plugins
+// JS plugins
 var uglify = require(NodeMod + 'gulp-uglify');
 
 var imagemin = require(NodeMod + 'gulp-imagemin');
