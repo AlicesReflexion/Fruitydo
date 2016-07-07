@@ -12,4 +12,5 @@ export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npm
 node --version; npm --version
 npm config set cache "$DEPENDENCY_BASE/.npm"
 cd $OPENSHIFT_REPO_DIR
+npm install gulp
 $DEPENDENCY_BASE/node_modules/.bin/gulp --gulpfile ./gulpfile-openshift.js
