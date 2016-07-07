@@ -43,4 +43,4 @@ gulp.task('imggen', function() {
     .pipe(gulp.dest('./static/images'));
 });
 
-gulp.task('default', function () { console.log(NodeMod) });
+gulp.task('default', ['stylegen', 'jsgen', 'imggen']);
