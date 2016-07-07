@@ -1,6 +1,6 @@
 var NodeMod = process.env.DEPENDENCY_BASE + '/node_modules/';
 
-var gulp = require(NodeMod + 'gulp');
+var gulp = require('gulp');
 
 // CSS plugins
 //var cssnano = require(NodeMod + 'gulp-cssnano');
