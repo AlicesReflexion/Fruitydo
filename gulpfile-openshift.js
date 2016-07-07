@@ -1,14 +1,16 @@
-var gulp = require('$DEPENDENCY_BASE/node_modules/gulp');
+var NodeMod = process.env.DEPENDENCY_BASE + '/node_modules/';
+
+var gulp = require(NodeMod + 'gulp');
 
 // CSS plugins
-var cssnano = require('$DEPENDENCY_BASE/node_modules/gulp-cssnano');
-var sass = require('$DEPENDENCY_BASE/node_modules/gulp-sass');
-var autoprefixer = require('$DEPENDENCY_BASE/node_modules/gulp-autoprefixer');
+var cssnano = require(NodeMod + 'gulp-cssnano');
+var sass = require(NodeMod + 'gulp-sass');
+var autoprefixer = require(NodeMod + 'gulp-autoprefixer');
 
 // JS plugins
-var uglify = require('$DEPENDENCY_BASE/node_modules/gulp-uglify');
+var uglify = require(NodeMod + 'gulp-uglify');
 
-var imagemin = require('$DEPENDENCY_BASE/node_modules/gulp-imagemin');
+var imagemin = require(NodeMod + 'gulp-imagemin');
 
 var paths = {
   styles: './resources/style/*.scss',
