@@ -19,7 +19,7 @@ var paths = {
   images: './resources/branding/**/*.svg'
 };
 
-gulp.task('copydeps', function() {
+/*gulp.task('copydeps', function() {
   return gulp.src(paths.scriptdeps, {base: './resources/js'})
     .pipe(gulp.dest('./static/js'));
 });
@@ -42,6 +42,6 @@ gulp.task('imggen', function() {
   return gulp.src(paths.images, {base: './resources/branding'})
     .pipe(imagemin())
     .pipe(gulp.dest('./static/images'));
-});
+});*/
 
 gulp.task('default', function () { console.log('Hello Gulp!') });
