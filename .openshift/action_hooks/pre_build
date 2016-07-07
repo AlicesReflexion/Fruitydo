@@ -5,12 +5,10 @@
 # could be python, php, ruby, etc.
 
 echo "--> ACTION HOOK: pre_build <--"
-cd $DEPENDENCY_BASE; wget https://nodejs.org/dist/v4.4.7/node-v4.4.7-linux-x64.tar.xz; tar -xf node-v4.4.7-linux-x64.tar.xz; mv node-v4.4.7-linux-x64 node; rm node-v4.4.7-linux-x64.tar.xz; rm -rf node-v4.4.7-linux-x64
-mkdir -p $DEPENDENCY_BASE/.npm $DEPENDENCY_BASE/node_modules/.bin
 export PATH="$DEPENDENCY_BASE/node_modules/.bin/:$DEPENDENCY_BASE/node/bin/:$PATH"
 export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npmrc
 node --version; npm --version
-#npm config set cache "$DEPENDENCY_BASE/.npm"
-#cd $OPENSHIFT_REPO_DIR
-#npm install gulp
-#$OPENSHIFT_REPO_DIR/node_modules/.bin/gulp --gulpfile $OPENSHIFT_REPO_DIR/gulpfile-openshift.js
+npm config set cache "$DEPENDENCY_BASE/.npm"
+cd $OPENSHIFT_REPO_DIR
+npm install --prefix $DEPENDENCY_BASE $OPENSHIFT_REPO_DIR
+$OPENSHIFT_REPO_DIR/node_modules/.bin/gulp --gulpfile $OPENSHIFT_REPO_DIR/gulpfile-openshift.js
