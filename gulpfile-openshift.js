@@ -44,4 +44,4 @@ gulp.task('imggen', function() {
     .pipe(gulp.dest('./static/images'));
 });
 
-gulp.task('default', ['stylegen', 'jsgen', 'imggen'], function() {});
+gulp.task('default', fucntion() { console.log("Testing...") });
