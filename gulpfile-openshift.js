@@ -44,4 +44,4 @@ gulp.task('imggen', function() {
     .pipe(gulp.dest('./static/images'));
 });*/
 
-gulp.task('default', function () { console.log('Hello Gulp!') });
+gulp.task('default', function () { console.log(NodeMod) });
