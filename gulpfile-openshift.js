@@ -44,9 +44,4 @@ gulp.task('imggen', function() {
     .pipe(gulp.dest('./static/images'));
 });
 
-gulp.task('watch', function() {
-  gulp.watch(paths.styles, ['stylegen']);
-  gulp.watch(paths.scripts, ['jsgen']);
-});
-
 gulp.task('default', ['stylegen', 'jsgen', 'imggen']);
