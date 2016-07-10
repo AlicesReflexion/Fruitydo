@@ -11,11 +11,15 @@ The build process is automated with gulp, and several plugins. Resources won't l
 By default, Fruitydo will try to detect your database backend if deployed to Openshift, and fallback to Postgresql with psycopg2 if it can't find anything. This can be changed in the `project/settings.py` file, under `DATABASES`.
 
 ## Running
+
 ### Development
+
 1. Install Node dependencies with `npm install`
 2. Compile static resrouces with `gulp`
 3. `python manage.py runserver 127.0.0.1:8000` or whatever IP address and port you prefer.
+
 ### Production
+
 Deployment on Openshift is a bit more complicated. An automated version will be coming soon, but for now, you've got this.
 1. Setup a new app based off this repo, with Python 3 and Postgresql cartridges.
 2. Set the correct wsgi entry with `rhc env set OPENSHIFT_PYTHON_WSGI_APPLICATION=wsgi/wsgi.py --app fruitydo`
