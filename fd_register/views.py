@@ -1,3 +1,5 @@
+"""These views control Fruitydo's account and registration system.
+This includes login, registration, email sending, etc."""
 import re
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -10,20 +12,28 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import get_template
-from userprefs.models import Userpreference
 import pyotp
+from userprefs.models import Userpreference
 
 
 def logout(request):
+    """Logs out the user and redirects them back to the homepage."""
     logoutaccount(request)
     return HttpResponseRedirect(reverse('home'))
 
 def login(request):
+    """Displays the login page. This doesn't actually log the user in."""
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('profilepage:profile'))
     return render(request, 'fd_register/login.html')
 
 def confirm_login(request):
+    """This is the view to actually log the user in.
+    User posts username and password. If the credentials are valid,
+    the system then checks if 2FA is enabled on the account. If it's not,
+    the user is logged in. If 2FA it is enabled, they're redirected
+    to a page where they can enter their OTP key alongside
+    hidden forms displaying username and password."""
     username = request.POST["username"]
     password = request.POST["password"]
     if 'otpkey' in request.POST:
@@ -53,11 +63,17 @@ def confirm_login(request):
     return HttpResponseRedirect(reverse("fd_register:login"))
 
 def register(request):
+    """This displays the register page, but doesn't actually do
+    any of the registration process."""
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('profilepage:profile'))
     return render(request, 'fd_register/register.html')
 
 def cofirm_register(request):
+    """The actual registration function. The user posts a username, email,
+    password and confirmation password. The inputs are checked with the
+    test_user function. If you're running Fruitydo on production, the user
+    will be created disabled, and a validation email will be sent."""
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('profilepage:profile'))
     username = request.POST['username'].lower()
@@ -84,6 +100,7 @@ def cofirm_register(request):
         return HttpResponseRedirect(reverse("fd_register:register"))
 
 def test_user(request, username, password, confirm_password, email):
+    """Some pre-registration tests to make sure the user registering is valid."""
     user_works = True
     try:
         User.objects.get(username=username)
@@ -99,7 +116,7 @@ def test_user(request, username, password, confirm_password, email):
     if not 3 < len(username) < 32:
         messages.error(request, "Username must be between 3 and 32 characters long.")
         user_works = False
-    if not len(password) > 8:
+    if len(password) <= 8:
         messages.error(request, "Password must be at least 8 characters long.")
         user_works = False
     if password != confirm_password:
@@ -112,6 +129,7 @@ def test_user(request, username, password, confirm_password, email):
 
 
 def send_email(request, user):
+    """Generates the validation email."""
     message_template = get_template("fd_register/email.txt")
     activationurl = request.build_absolute_uri(reverse('fd_register:confirm_email'))
     emailcode = user.userpreference.activationurl
@@ -123,6 +141,11 @@ def send_email(request, user):
               fail_silently=False)
 
 def confirm_email(request):
+    """The page from following the confirmation link in the email.
+    There should be a 'emailcode?' in the GET request. If there is,
+    the system tries to find the corrosponding user and set their account
+    to active. The code is then re-generated/re-populated and reused for
+    password resets. Which is probably a dangerous way of doing things."""
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('profilepage:profile'))
     emailcode = request.GET['emailcode']
@@ -142,6 +165,9 @@ def confirm_email(request):
         return HttpResponse("User account already activated")
 
 def reset_password(request):
+    """The page for the password reset form. User simply enters their email.
+    If a user matching that email is found, an email is sent to them.
+    Regardless, a confirmation message is displayed to prevent abuse. eg. email harvesting."""
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('profilepage:profile'))
     if 'email' in request.POST:
@@ -164,6 +190,10 @@ def reset_password(request):
     return render(request, "fd_register/reset_password.html")
 
 def confirm_reset(request):
+    """The page displayed following the forgot password link in your email.
+    'emailcode?' should be in GET. If no POST data is sent, it displayes the page.
+    If the new password is POSTed, the password is changed and the user logged in.
+    The reset code field is re-generated/re-populated."""
     if request.user.is_authenticated():
         return HttpResponseRedirect(reverse('profilepage:profile'))
     if 'emailcode' in request.GET:
