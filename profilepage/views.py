@@ -5,6 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django_markup.markup import formatter
 from django.core.serializers.json import DjangoJSONEncoder
+from django.contrib import messages
 from .models import Task, Event
 
 NOEVENT = "Nothing happened on this date."
@@ -28,15 +29,24 @@ def create(request):
     """Creates a task"""
     entered_title = request.POST['task_title']
     entered_date = request.POST['duedate']
-    task = Task(
-        User=request.user,
-        task_title=entered_title,
-        pub_date=datetime.now(),
-        recurring=0,
-        complete=0,
-        due_date=entered_date)
-    task.save()
+    if valid_title(entered_title):
+        task = Task(
+            User=request.user,
+            task_title=entered_title,
+            pub_date=datetime.now(),
+            recurring=0,
+            complete=0,
+            due_date=entered_date)
+        task.save()
+    else:
+        messages.error(request, "Not a valid task name.")
     return HttpResponseRedirect(reverse('profilepage:profile'))
+
+def valid_title(title):
+    """Checks if a task title is correct."""
+    if not 2 < len(title) < 64:
+        return False
+    return True
 
 def event_create(request):
     """Creates an event for a task."""
