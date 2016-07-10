@@ -1,14 +1,15 @@
+"""Add tasks and events to the admin interface"""
 from django.contrib import admin
 
 from .models import Task, Event
 
 class EventInline(admin.StackedInline):
-        model = Event
-        extra = 3
+    """Create an interface for adding events."""
+    model = Event
+    extra = 3
 
 class TaskAdmin(admin.ModelAdmin):
-        inlines = [EventInline]
+    """Add the interface."""
+    inlines = [EventInline]
 
 admin.site.register(Task, TaskAdmin)
-
-# Register your models here.
