@@ -30,6 +30,7 @@ Deployment on Openshift is a bit more complicated. An automated version will be 
 8. Close your ssh session.
 9. Set environment variables `OPENSHIFT_SMTP_URL`, `OPENSHIFT_SMTP_LOGIN`, `OPENSHIFT_SMTP_PASSWORD`, and `OPENSHIFT_SMTP_PORT`, which should all be pretty self-explanitory.
 10. If everything worked correctly, you can git push again and everything will work again.
+
 ## Contributing
 Fruitydo is *very much* a "this is my first app hope u like it guys" project. I have no idea what I'm doing, and will likely accept any pull request you throw at me. :)
 
