@@ -25,4 +25,7 @@ class Userpreference(models.Model):
         )
         newprefs.save()
 
+    def __string__(self):
+        return self.user
+
 # Create your models here.
