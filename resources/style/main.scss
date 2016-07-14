@@ -101,7 +101,7 @@ height: 15px;
 	transition: .3s;
 	outline: 0;
 	font-size: 20pt;
-	animation: fadein-delay-delay 2s;
+	animation: fadein-delay-delay 1s;
 }
 
 .registerbutton:hover {
@@ -125,11 +125,11 @@ height: 15px;
 }
 
 .lander > img {
-	animation: fadein 2s;
+	animation: fadein 1s;
 }
 
 .lander > .blurb {
-	animation: fadein-delay 2s;
+	animation: fadein-delay 1s;
 }
 
 @keyframes fadein{
