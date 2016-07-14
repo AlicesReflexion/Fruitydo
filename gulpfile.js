@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var flatten = require('gulp-flatten');
 
 // CSS plugins
 var cssnano = require('gulp-cssnano');
@@ -11,7 +12,7 @@ var uglify = require('gulp-uglify');
 var imagemin = require('gulp-imagemin');
 
 var paths = {
-  styles: './resources/style/*.scss',
+  styles: './resources/style/**/*.scss',
   scriptdeps: './resources/js/**/*',
   scripts: './resources/js/**/*.js',
   images: './resources/branding/**/*.svg'
@@ -27,6 +28,7 @@ gulp.task('stylegen', function() {
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({browsers: ['last 2 versions'], cascade: false}))
     .pipe(cssnano())
+    .pipe(flatten())
     .pipe(gulp.dest('./static/style'));
 });
 
