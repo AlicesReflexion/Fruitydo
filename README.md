@@ -26,7 +26,7 @@ Deployment on Openshift is a bit more complicated. An automated version will be 
 4. ssh into your server.
 5. Download and extract the development version of Node into your dependencies folder. `cd $DEPENDENCY_BASE; wget https://nodejs.org/dist/v6.3.0/node-v6.3.0-linux-x64.tar.xz; tar xf node-v6.3.0-linux-x64.tar.xz;`
 6. Note: The stable version of Node won't work. It uses the old infinitely deep folder package structure, which will burn through all your inodes. The dev version has a flat directory structure.
-7. Install the gulp dependencies manually: `npm install gulp-sass gulp-cssnano gulp-autoprefixer gulp-uglify gulp-imagemin`
+7. Install the gulp dependencies manually: `npm install gulp-sass gulp-cssnano gulp-autoprefixer gulp-uglify gulp-imagemin gulp-flatten`
 8. Close your ssh session.
 9. Set environment variables `OPENSHIFT_SMTP_URL`, `OPENSHIFT_SMTP_LOGIN`, `OPENSHIFT_SMTP_PASSWORD`, and `OPENSHIFT_SMTP_PORT`, which should all be pretty self-explanitory.
 10. If everything worked correctly, you can git push again and everything will work again.

@@ -1,5 +1,6 @@
 var NodeMod = process.env.DEPENDENCY_BASE + '/node_modules/';
 var gulp = require('gulp');
+var flatten = require(NodeMod + 'gulp-flatten');
 
 // CSS plugins
 var cssnano = require(NodeMod + 'gulp-cssnano');
@@ -12,7 +13,7 @@ var uglify = require(NodeMod + 'gulp-uglify');
 var imagemin = require(NodeMod + 'gulp-imagemin');
 
 var paths = {
-  styles: './resources/style/*.scss',
+  styles: './resources/style/**/*.scss',
   scriptdeps: './resources/js/**/*',
   scripts: './resources/js/**/*.js',
   images: './resources/branding/**/*.svg'
@@ -28,6 +29,7 @@ gulp.task('stylegen', function() {
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer({browsers: ['last 2 versions'], cascade: false}))
     .pipe(cssnano())
+    .pipe(flatten())
     .pipe(gulp.dest('./static/style'));
 });
 
