@@ -101,6 +101,7 @@ height: 15px;
 	transition: .3s;
 	outline: 0;
 	font-size: 20pt;
+	animation: fadein-delay-delay 2s;
 }
 
 .registerbutton:hover {
@@ -121,6 +122,52 @@ height: 15px;
 	text-align: center;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.lander > img {
+	animation: fadein 2s;
+}
+
+.lander > .blurb {
+	animation: fadein-delay 2s;
+}
+
+@keyframes fadein{
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadein-delay {
+	0% {
+		opacity: 0;
+	}
+
+	30% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadein-delay-delay {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
 }
 
 .lander > img {
