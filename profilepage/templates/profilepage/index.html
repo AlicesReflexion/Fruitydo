@@ -6,6 +6,7 @@
 {% block customscripts %}
 <link rel="stylesheet" href="{% static 'js/external/jquery-ui-1.11.4.custom/jquery-ui.css' %}">
 <link rel="stylesheet" href="{% static 'style/profilepage.css' %}">
+<link rel="stylesheet" href="{% static 'style/font-awesome.css' %}">
 <script src="{% static 'js/external/jquery.js' %}"></script>
 <script src="{% static 'js/external/jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'js/external/js-cookie.js' %}"></script>
@@ -47,16 +48,16 @@
       <div class="editcontrols">
         <input type="checkbox" name="markcomplete" form="form-{{task.id}}">
         <label for="markcomplete"><span><span></span></span>Done for now?</label>
-        <input type="submit" value="Save" class="saveeventbutton taskbuttons" form="form-{{task.id}}">
+        <span class="fa fa-floppy-o"></span><input type="submit" value="Save" class="saveeventbutton taskbuttons" form="form-{{task.id}}">
         <form action="{% url 'profilepage:task_delete' %}" method="post" class="delete_form">
-          <input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons">
+            <span class="fa fa-trash-o"></span><input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons">
         </form>
-        <input type="button" value="expand" name="expand" class="expandbutton taskbuttons">
-        <input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost">
+        <span class="fa fa-expand"></span><input type="button" value="expand" name="expand" class="expandbutton taskbuttons">
+        <span class="fa fa-times"></span><input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost">
       </div>
       <div class="viewcontrols">
-        <input type="button" value="edit" class="editbutton taskbuttons">
-        <input type="button" value="expand" class="expandbutton taskbuttons leftmost">
+          <span class="fa fa-pencil-square-o"></span><input type="button" value="edit" class="editbutton taskbuttons">
+          <span class="fa fa-expand"></span><input type="button" value="expand" class="expandbutton taskbuttons leftmost">
       </div>
     </div>
     </div>{% endfor %}
