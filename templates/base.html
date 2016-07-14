@@ -13,7 +13,7 @@
   <ul class="navbar">
     <li class="navtitle"><a href="{% url 'home' %}"><img height="30" width="98" src="{% static 'images/logo-scalable.svg' %}" alt="newtodologo"></a></li>
     <li class="navlink"><a href="{% url 'about' %}">About</a></li>
-    <li class="navlink"><a href="{% url 'help' %}">Help</a></li>
+    <li class="navlink"><a href="{% url 'helppage' %}">Help</a></li>
     {% if user.is_authenticated %} 
     <li class="auth"><a href="{% url 'fd_register:logout' %}">Logout</a></li>
       <li class="auth"><a href="{% url 'userprefs:settings_page' %}">Settings</a></li>
