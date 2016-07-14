@@ -52,12 +52,12 @@
         <form action="{% url 'profilepage:task_delete' %}" method="post" class="delete_form">
             <span class="fa fa-trash-o"></span><input type="button" value="Delete" name="delete" class="deletetaskbutton taskbuttons">
         </form>
-        <span class="fa fa-expand"></span><input type="button" value="expand" name="expand" class="expandbutton taskbuttons">
-        <span class="fa fa-times"></span><input type="button" value="Cancel" name="cancel" class="cancelbutton taskbuttons leftmost">
+        <a class="expandbutton taskbuttons" title="Expand"><span class="fa fa-expand"></span></a>
+        <a class="cancelbutton taskbuttons" title="Cancel"><span class="fa fa-times"></span></a>
       </div>
       <div class="viewcontrols">
-          <span class="fa fa-pencil-square-o"></span><input type="button" value="edit" class="editbutton taskbuttons">
-          <span class="fa fa-expand"></span><input type="button" value="expand" class="expandbutton taskbuttons leftmost">
+          <a class="editbutton taskbuttons" title="Edit"><span class="fa fa-pencil-square-o"></span></a>
+          <a class="expandbutton taskbuttons" title="Expand"><span class="fa fa-expand"></span></a>
       </div>
     </div>
     </div>{% endfor %}

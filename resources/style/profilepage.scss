@@ -236,59 +236,24 @@ tr {
 	display: none;
 }
 
-.editbutton {
-	background-image: url("/static/icons/pencilicon.png");
-}
 
-.largecontrols > .editbutton {
-	background-image: url("/static/icons/pencilicon-white.png");
-}
-
-.deletetaskbutton {
-	background-image: url("/static/icons/trashicon.png");
-}
-
-.largecontrols > .deletetaskbutton {
-	background-image: url("/static/icons/trashicon-white.png");
-}
-
-.saveeventbutton {
-	background-image: url("/static/icons/saveicon.png");
-}
-
-.largecontrols > .saveeventbutton {
-	background-image: url("/static/icons/saveicon-white.png");
-}
-
-.cancelbutton {
-	background-image: url("/static/icons/cancelicon.png");
-}
-
-.largecontrols > .cancelbutton {
-	background-image: url("/static/icons/cancelicon-white.png");
-}
-
-.taskbuttons {
-	background-color: transparent;
+a.taskbuttons {
 	border: none;
-	color: transparent;
-	width: 16px;
-	height: 16px;
-	background-size: 16px;
-	padding: 0;
-	margin-right: 5px;
+	font-size: 16px;
+	color: $primary-color;
+	padding-right: 5px;
 }
 
-.expandbutton {
-	background-image: url("/static/icons/expandicon.png");
+.largecontrols > .taskbuttons {
+	color: #d5d5d5;
 }
 
-.contractbutton {
-	background-image: url("/static/icons/contracticon.png");
+.largecontrols > .taskbuttons:hover {
+	color: #ffffff;
 }
 
-.largecontrols > .contractbutton {
-	background-image: url("/static/icons/contracticon-white.png");
+.taskbuttons:hover {
+	color: $second-color;
 }
 
 input[type=checkbox]{
