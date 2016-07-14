@@ -34,6 +34,7 @@ $(function() {
 
 $(document).ready(function() {
   $('.editorcontainer>.editcontrols>.deletetaskbutton').click(deletetask);
+  $('.editorcontainer>.editcontrols>.saveeventbutton').click(saveEvent);
 
   // Due date input calendar.
   $(".duecalendar").datepicker({
@@ -99,6 +100,15 @@ function fetchdates(taskid, month) {
     returndates = data;
   }, 'json');
   return returndates;
+}
+
+/**
+ * Saves an event to the server.
+ *
+ * {this} link or button with class saveeventbutton
+ */
+function saveEvent() {
+  $(this).parent().parent().find("form").submit();
 }
 
 /**
