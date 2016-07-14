@@ -33,7 +33,7 @@ $(function() {
 });
 
 $(document).ready(function() {
-  $('.editorcontainer>.editcontrols>form>.deletetaskbutton').click(deletetask);
+  $('.editorcontainer>.editcontrols>.deletetaskbutton').click(deletetask);
 
   // Due date input calendar.
   $(".duecalendar").datepicker({
@@ -48,7 +48,7 @@ $(document).ready(function() {
  * {this} input button with class deletetaskbutton.
  */
 function deletetask() {
-  var taskid = $(this).parent().parent().parent().parent().find(".datepicker").get()[0].id;
+  var taskid = $(this).parent().parent().parent().find(".datepicker").get()[0].id;
   if (confirm('Are you sure you want to delete this task? This cannot be undone.')) {
     $.post("/todo/task_delete", {
       task: taskid,
