@@ -5,7 +5,7 @@
 # could be python, php, ruby, etc.
 
 echo "--> ACTION HOOK: pre_build <--"
-export DEPENDENCY_BASE=$openshift_homedir/app-root/dependencies --app $app_name
+export DEPENDENCY_BASE=$OPENSHIFT_HOMEDIR/app-root/dependencies
 export PATH="$DEPENDENCY_BASE/node_modules/.bin/:$DEPENDENCY_BASE/node/bin/:$PATH"
 export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npmrc
 node --version; npm --version
