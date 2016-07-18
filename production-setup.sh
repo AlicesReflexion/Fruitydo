@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 setvars () {
 app_name="$1"
 rhc env set OPENSHIFT_PYTHON_WSGI_APPLICATION=wsgi/wsgi.py --app $app_name
-rhc env set DEPENDENCY_BASE=$OPENSHIFT_HOMEDIR/app_root/dependencies --app $app_name
+rhc env set DEPENDENCY_BASE=$OPENSHIFT_HOMEDIR/app-root/dependencies --app $app_name
 echo -e "${GREEN}wsgi and dependency directory set.${NC}"
 echo -n "enter the SMTP hostname you'll be sending email from: "
 read smtp_url
