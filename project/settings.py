@@ -33,8 +33,6 @@ DEBUG = DEBUG or os.getenv("debug","false").lower() == "true"
 if ON_PAAS and DEBUG:
     print("*** Warning - Debug mode is on ***")
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -78,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG
         },
     },
 ]
@@ -162,13 +161,3 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR,"static"),
 )
-
-TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'templates'),
-)
-
-#Registration
-ACCOUNT_ACTIVATION_DAYS=1
