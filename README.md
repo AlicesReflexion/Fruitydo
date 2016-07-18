@@ -18,18 +18,13 @@ By default, Fruitydo will try to detect your database backend if deployed to Ope
 3. `python manage.py runserver 127.0.0.1:8000` or whatever IP address and port you prefer.
 
 ### Production
-Deployment on Openshift is a bit more complicated. An automated version will be coming soon, but for now, you've got this.
+Fruitydo is made for easy deployment to Openshift. If you want to deploy elsewhere, you are on your own.
 
 1. Setup a new app based off this repo, with Python 3 and Postgresql cartridges.
-2. Set the correct wsgi entry with `rhc env set OPENSHIFT_PYTHON_WSGI_APPLICATION=wsgi/wsgi.py --app fruitydo`
-3. Create a `DEPENDENCY_BASE` environment variable that links to your dependency folder. `rhc env set DEPENDENCY_BASE=$OPENSHIFT_HOMEDIR/app_root/dependencies`
-4. ssh into your server.
-5. Download and extract the development version of Node into your dependencies folder. `cd $DEPENDENCY_BASE; wget https://nodejs.org/dist/v6.3.0/node-v6.3.0-linux-x64.tar.xz; tar xf node-v6.3.0-linux-x64.tar.xz;`
-6. Note: The stable version of Node won't work. It uses the old infinitely deep folder package structure, which will burn through all your inodes. The dev version has a flat directory structure.
-7. Install the gulp dependencies manually: `npm install gulp-sass gulp-cssnano gulp-autoprefixer gulp-uglify gulp-imagemin gulp-flatten`
-8. Close your ssh session.
-9. Set environment variables `OPENSHIFT_SMTP_URL`, `OPENSHIFT_SMTP_LOGIN`, `OPENSHIFT_SMTP_PASSWORD`, and `OPENSHIFT_SMTP_PORT`, which should all be pretty self-explanitory.
-10. If everything worked correctly, you can git push again and everything will work again.
+2. Run the `production-setup.sh` script included in this repo ON YOUR LOCAL MACHINE. You can either clone this repo, or download the file by itself.
+3. SSH into your server, and run the same script there.
+4. You should successfully be running Fruitydo on Openshift. If it is not working, you may have to restart the server or push the repo again.
+
 
 ## Contributing
 Fruitydo is *very much* a "this is my first app hope u like it guys" project. I have no idea what I'm doing, and will likely accept any pull request you throw at me. :)
