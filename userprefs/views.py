@@ -5,23 +5,28 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 import pyotp
 import qrcode
 from .models import Userpreference
 
+@login_required
 def settings_page(request):
     """Settings page"""
     return render(request, 'userprefs/settingspage.html')
 
+@login_required
 def enable_otp(request):
     """Page to enable 2FA on the account."""
     return render(request, 'userprefs/enableotp.html')
 
+@login_required
 def change_password(request):
     """Password change page. This only displays the page,
     not the actual logic. That's 'changepassword_confirm.'"""
     return render(request, 'userprefs/changepassword.html')
 
+@login_required
 def changepassword_confirm(request):
     """Password changing logic. Enter the old password,
     and a new password with confirmation. Change password on success."""
@@ -39,6 +44,7 @@ def changepassword_confirm(request):
         messages.success(request, "Successfully changed password.")
     return HttpResponseRedirect(reverse('userprefs:settings_page'))
 
+@login_required
 def disable_otp(request):
     """Button to disable OTP. There's no page for this. Just a single
     button on the user settings page."""
@@ -47,6 +53,7 @@ def disable_otp(request):
     messages.success(request, "Disabled Two Factor Authentication.")
     return HttpResponseRedirect(reverse('userprefs:settings_page'))
 
+@login_required
 def otp_qrcode(request):
     """The QRcode image that's generated for the user to scan with their
     phone."""
@@ -57,6 +64,7 @@ def otp_qrcode(request):
     otpqr.save(response, "PNG")
     return response
 
+@login_required
 def confirm_otp(request):
     """The button to enable 2FA on the user's account. They need to first
     enter the current OTP code before simply enabling it to make sure that

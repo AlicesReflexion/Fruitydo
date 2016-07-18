@@ -7,10 +7,12 @@ from django_markup.markup import formatter
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from .models import Task, Event
+from django.contrib.auth.decorators import login_required
 
 NOEVENT = "Nothing happened on this date."
 ERROR = "An unexpected error occured"
 
+@login_required
 def profile(request):
     """Returns the profile/todo page"""
     tasks = Task.objects.filter(User=request.user).order_by('due_date')
@@ -19,12 +21,14 @@ def profile(request):
         task.overdue = True
     return render(request, 'profilepage/index.html', {'incompletetasks':incompletetasks})
 
+@login_required
 def done(request):
-    """Marks a task as done"""
+    """Returns the complete tasks page."""
     tasks = Task.objects.filter(User=request.user)
     completetasks = tasks.filter(complete=True)
     return render(request, 'profilepage/completed.html', {'completetasks':completetasks})
 
+@login_required
 def create(request):
     """Creates a task"""
     entered_title = request.POST['task_title']
@@ -48,6 +52,7 @@ def valid_title(title):
         return False
     return True
 
+@login_required
 def event_create(request):
     """Creates an event for a task."""
     completed = bool("markcomplete" in request.POST)
@@ -74,6 +79,7 @@ def event_create(request):
         task.save()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
+@login_required
 def event_dates(request):
     """Returns dates where events occured for a given task in a given month"""
     user = request.user
@@ -90,6 +96,7 @@ def event_dates(request):
     data = json.dumps(alldates, cls=DjangoJSONEncoder)
     return HttpResponse(data)
 
+@login_required
 def task_delete(request):
     """Delete the given task."""
     user = request.user
@@ -97,6 +104,7 @@ def task_delete(request):
     task.delete()
     return HttpResponseRedirect(reverse('profilepage:profile'))
 
+@login_required
 def event_fetch(request):
     """Return the description for the given event."""
     user = request.user
@@ -116,14 +124,15 @@ def event_fetch(request):
     finalresponse = json.dumps(responsedata, cls=DjangoJSONEncoder)
     return HttpResponse(finalresponse)
 
+@login_required
 def event_fetch_fancy(request):
     """Return a markdown-formatted version of the requested event."""
     string = event_fetch(request)
     string = formatter(string, filter_name='markdown')
     return HttpResponse(string)
 
+@login_required
 def event_fetch_raw(request):
     """Return an unformatted version of the requested event."""
     string = event_fetch(request)
     return HttpResponse(string)
-# Create your views here.
