@@ -8,8 +8,6 @@ NC='\033[0m' # No Color
 setvars () {
 app_name="$1"
 rhc env set OPENSHIFT_PYTHON_WSGI_APPLICATION=wsgi/wsgi.py --app $app_name
-rhc env set DEPENDENCY_BASE=$OPENSHIFT_HOMEDIR/app-root/dependencies --app $app_name
-echo -e "${GREEN}wsgi and dependency directory set.${NC}"
 echo -n "enter the SMTP hostname you'll be sending email from: "
 read smtp_url
 echo -n "enter the port you'll be sending from: "
@@ -27,13 +25,14 @@ exit 0
 }
 
 installnpm () {
+  export DEPENDENCY_BASE=$OPENSHIFT_HOMEDIR/app-root/dependencies --app $app_name
   cd $DEPENDENCY_BASE
   wget -e robots=off -r -nd --no-parent -A "*-linux-x64.tar.xz" http://nodejs.org/dist/latest-v6.x/
   tar xf *.tar.xz
   rm *node*.tar.xz
   mv *node* node
   mkdir -p ./node_modules
-  export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app_root/build-dependencies/.npmrc
+  export NPM_CONFIG_USERCONFIG=$OPENSHIFT_HOMEDIR/app-root/build-dependencies/.npmrc
   export PATH="$DEPENDENCY_BASE/node_modules/.bin/:$DEPENDENCY_BASE/node/bin/:$PATH"
   npm config set cache "$DEPENDENCY_BASE/.npm"
   npm --prefix $DEPENDENCY_BASE install $OPENSHIFT_REPO_DIR
