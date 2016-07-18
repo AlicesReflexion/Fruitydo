@@ -1,15 +1,23 @@
+// Test if in Openshift
+var NodeMod = "";
+if (process.env.DEPENDENCY_BASE) {
+  NodeMod = process.env.DEPENDENCY_BASE + '/node_modules/';
+} else {
+  NodeMod = "";
+}
+
 var gulp = require('gulp');
-var flatten = require('gulp-flatten');
+var flatten = require(NodeMod + 'gulp-flatten');
 
 // CSS plugins
-var cssnano = require('gulp-cssnano');
-var sass = require('gulp-sass');
-var autoprefixer = require('gulp-autoprefixer');
+var cssnano = require(NodeMod + 'gulp-cssnano');
+var sass = require(NodeMod + 'gulp-sass');
+var autoprefixer = require(NodeMod + 'gulp-autoprefixer');
 
 // JS plugins
-var uglify = require('gulp-uglify');
+var uglify = require(NodeMod + 'gulp-uglify');
 
-var imagemin = require('gulp-imagemin');
+var imagemin = require(NodeMod + 'gulp-imagemin');
 
 var paths = {
   styles: './resources/style/**/*.scss',
@@ -49,4 +57,5 @@ gulp.task('watch', function() {
   gulp.watch(paths.scripts, ['jsgen']);
 });
 
-gulp.task('default', ['stylegen', 'jsgen', 'imggen']);
+gulp.task('default', ['stylegen', 'jsgen', 'imggen', 'watch']);
+gulp.task('production', ['stylegen', 'jsgen', 'imggen']);
