@@ -1,6 +1,6 @@
 ![Fruitydo logo](https://raw.githubusercontent.com/alexskc/Fruitydo/master/resources/branding/logo-large.png)
 
-fruitydo is a to do list app with a personal diary so you can track your progress towards a goal.
+Fruitydo is a to do list app with a personal diary so you can track your progress towards a goal.
 
 Running on Red Hat's Openshift at [fruitydo.alexskc.xyz](http://fruitydo.alexskc.xyz/)
 
