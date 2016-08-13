@@ -1,3 +1,5 @@
+@import 'branding';
+
 body {
 	background-color: #ffffff;
 	font-family: sans-serif;
@@ -87,8 +89,8 @@ height: 15px;
 
 /* Actually a link, not a button. */
 .registerbutton {
-	color: #ff5d76;
-	border-color: #ff5d76;
+	color: $primary-color;
+	border-color: $primary-color;
 	background-color: transparent;
 	border: 5px solid;
 	border-radius: 5px;
@@ -106,8 +108,8 @@ height: 15px;
 
 .registerbutton:hover {
 	color: #ffffff;
-	background-color: #aad23f;
-	border-color: #aad23f;
+	background-color: $third-color;
+	border-color: $third-color;
 }
 
 .registercontainer {
@@ -185,25 +187,25 @@ height: 15px;
 }
 
 h1 {
-	color: #ff5d76;
+	color: $primary-color;
 }
 
 h2 {
-	color: #fbb03b;
+	color: $second-color;
 }
 
 h3 {
-	color: #aad23f;
+	color: $third-color;
 }
 
 a {
-	color: #fbb03b;
+	color: $second-color;
 	text-decoration: none;
 	transition: .3s;
 }
 
 a:hover {
-	color: #aad23f;
+	color: $third-color;
 }
 
 p {
@@ -222,8 +224,8 @@ input[type=text], input[type=password], input[type=email]{
 
 input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
 	border-width: 0 0 2px 0;
-	border-color: #fbb03b;
-	color: #ff5d76;
+	border-color: $second-color;
+	color: $primary-color;
 }
 
 
