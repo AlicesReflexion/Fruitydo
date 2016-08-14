@@ -12,8 +12,8 @@ class Userpreference(models.Model):
     otp = models.BooleanField(default=False)
     otpkey = models.CharField(max_length=16)
     activationurl = models.CharField(max_length=30, default="", unique=True)
-    pendingmail = models.CharField(max_length=256, default="")
-    newmailcode = models.CharField(max_length=16, default="")
+    pendingmail = models.CharField(max_length=256, default="", blank=True)
+    newmailcode = models.CharField(max_length=16, default="", blank=True)
 
     @staticmethod
     def createprefs(newuser):
@@ -23,7 +23,9 @@ class Userpreference(models.Model):
             user=newuser,
             otp=False,
             otpkey=pyotp.random_base32(),
-            activationurl=pyotp.random_base32()
+            activationurl=pyotp.random_base32(),
+            pendingmail = "",
+            newmailcode = ""
         )
         newprefs.save()
 
