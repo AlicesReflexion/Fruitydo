@@ -145,4 +145,14 @@ def confirm_otp(request):
 def crypto_settings(request):
     """The encryption settings page. 
     Most crypto-related stuff is client-side, so there's not much to this."""
-    return render(request, 'userprefs/crypto_settings.html')
+    if request.method != "POST":
+        return render(request, 'userprefs/crypto_settings.html')
+    elif request.method == "POST" and request.user.userpreference.encryption == False:
+        password = request.POST["password"]
+        if request.user.check_password(password):
+            return render(request, 'userprefs/crypto_settings.html')
+        else:
+            messages.error(request, "Invalid password")
+            return HttpResponseRedirect(reverse('userprefs:settings_page'))
+    elif request.method == "POST" and request.user.userpreference.encryption == True:
+        return HttpResponse("not implemented.")
