@@ -1,0 +1,3 @@
+To verify your new email, click the link below:
+
+{{activationurl}}?emailcode={{emailcode}}
