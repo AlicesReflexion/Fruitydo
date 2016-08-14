@@ -57,6 +57,7 @@ def change_email(request):
         return  HttpResponseRedirect(reverse('userprefs:change_email'))
 
 def send_newemail(request, user):
+    """Send the email with the verification URL."""
     message_template = get_template("userprefs/changemail.txt")
     activationurl = request.build_absolute_uri(reverse('userprefs:confirm_email'))
     emailcode = user.userpreference.newmailcode
@@ -70,6 +71,8 @@ def send_newemail(request, user):
 
 @login_required
 def confirm_email(request):
+    """The URL in the verfication email. Check if the code matches
+    what's on the profile, and then redirect them back to settings."""
     user = request.user
     if request.GET['emailcode'] == user.userpreference.newmailcode:
         user.email = user.userpreference.pendingmail
