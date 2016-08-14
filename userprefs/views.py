@@ -140,3 +140,9 @@ def confirm_otp(request):
     else:
         messages.error(request, "Key does not match.")
     return HttpResponseRedirect(reverse('userprefs:settings_page'))
+
+@login_required
+def crypto_settings(request):
+    """The encryption settings page. 
+    Most crypto-related stuff is client-side, so there's not much to this."""
+    return render(request, 'userprefs/crypto_settings.html')

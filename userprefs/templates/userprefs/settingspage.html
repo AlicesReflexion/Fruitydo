@@ -5,12 +5,14 @@
 <div class="textblock">
         <h1>Settings</h1>
         <ul>
-        <li><a href="{% url 'userprefs:change_password' %}">Change Password</a></li>
-        <li><a href="{% url 'userprefs:change_email' %}">Change Email</a></li>
-        {% if user.userpreference.otp == False %}
-        <li><a href="{% url 'userprefs:enable_otp' %}">Enable Two Factor Authentication</a></li>
-        {% else %}
-        <li><a href="{% url 'userprefs:disable_otp' %}">Disable Two Factor Authentication</a></li>
-        {% endif %}
+                <li><a href="{% url 'userprefs:change_password' %}">Change Password</a></li>
+                <li><a href="{% url 'userprefs:change_email' %}">Change Email</a></li>
+                {% if user.userpreference.otp == False %}
+                <li><a href="{% url 'userprefs:enable_otp' %}">Enable Two Factor Authentication</a></li>
+                {% else %}
+                <li><a href="{% url 'userprefs:disable_otp' %}">Disable Two Factor Authentication</a></li>
+                {% endif %}
+                <li><a href="{% url 'userprefs:crypto_settings' %}">Change Encryption Settings</a></li>
+        </ul>
 </div>
 {% endblock %}
