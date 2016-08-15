@@ -47,7 +47,13 @@
         <input type="button" value="Enable Encryption" id="enablebutton">
         {% elif user.userpreference.encryption == True %}
         <h2>Change Encryption Password</h2>
+        <input type="password" id="currentpass" placeholder="Current Encryption Password">
+        <input type="password" id="newpass" placeholder="New Encryption Password">
+        <input type="password" id="confnewpass" placeholder="Confirm Encryption Password">
+        <input type="button" id="changebutton" value="Change Encryption Password">
         <h2>Disable Encryption</h2>
+        <input type="password" id="currentpass_disable" placeholder="Encryption Password">
+        <input type="button" id="disablebutton" value="Disable Encryption">
         {% endif %}
 </div>
 {% endif %}
