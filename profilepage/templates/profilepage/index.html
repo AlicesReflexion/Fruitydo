@@ -10,10 +10,13 @@
 <script src="{% static 'js/external/jquery.js' %}"></script>
 <script src="{% static 'js/external/jquery-ui-1.11.4.custom/jquery-ui.js' %}"></script>
 <script src="{% static 'js/external/js-cookie.js' %}"></script>
+{% if user.userpreference.encryption == False %}
 <script src="{% static 'js/profilepage.js' %}"></script>
+{% endif %}
 <script src="{% static 'js/todo-ui.js' %}"></script>
 {% if user.userpreference.encryption == True %}
 <script src="{% static 'js/external/sjcl.js' %}"></script>
+<script src="{% static 'js/external/markdown.js' %}"></script>
 <script src="{% static 'js/decrypt.js' %}"></script>
 {% endif %}
 {% endblock %}
