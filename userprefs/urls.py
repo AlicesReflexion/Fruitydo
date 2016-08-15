@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^enable_otp/confirm_otp', views.confirm_otp, name='confirm_otp'),
     url(r'^enable_otp', views.enable_otp, name='enable_otp'),
     url(r'^disable_otp', views.disable_otp, name='disable_otp'),
+    url(r'^crypto_settings/confirm_crypto', views.confirm_crypto, name='confirm_crypto'),
     url(r'^crypto_settings', views.crypto_settings, name='crypto_settings'),
     url(r'^', views.settings_page, name='settings_page'),
     ]

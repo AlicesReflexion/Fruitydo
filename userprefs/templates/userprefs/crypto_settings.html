@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block title %}Encryption{% endblock %}
+{% block customscripts %}
+{% if user.userpreference.encryption == True or request.method == "POST" %}
+<script src="{% static 'js/external/sjcl.js' %}"></script>
+<script src="{% static 'js/external/js-cookie.js' %}"></script>
+<script src="{% static 'js/external/jquery.js' %}"></script>
+{% endif %}
+{% if user.userpreference.encryption == False and request.method == "POST" %}
+<script src="{% static 'js/enable_crypto.js' %}"></script>
+{% endif %}
+{% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
 <div class="textblock">
@@ -8,7 +19,7 @@
         <p>Encryption is a very strong form of accoutn protection that makes it impossible for ANYONE,
         including hackers, governments, or even the site's admin, to access your 
         tasks without your encryption password.</p>
-        <p>However, this does come with several caveats:
+        <p>However, this does come with several caveats:</p>
         <ul>
                 <li>You must have a separate encryption password that is different from your account password.</li>
                 <li>If you lose your encryption password, you are locked out of your account completely.</li>
@@ -16,7 +27,7 @@
                 <li>You may have to wait a while to encrypt all your tasks, depending on how many you have.</li>
                 <li>Encryption is done on your computer, not by Fruitydo. There's more potential for things to go wrong,
                 and if they do, it's impossible for Fruitydo to fix them.</li>
-        </ul></p>
+        </ul>
         <p>If you enable encryption, you can still change your mind later and turn it off, as long as you still have
         your encryption password. You can also change your encryption password later as long as you still have your old
         one.</p>
@@ -28,9 +39,10 @@
         </form>
         {% elif user.userpreference.encryption == False and request.method == "POST" %}
         <h2>Choose an encryption password</h2>
-        <input type="password" name="encpass" placeholder="Encryption Password">
-        <input type="password" name ="encpass2" placeholder="Confirm Encryption Password">
-        <input type="button" value="Enable Encryption">
+        <input type="password" name="encpass" id="encpass" placeholder="Encryption Password">
+        <input type="password" name="encpass2" id="encpass2" placeholder="Confirm Encryption Password">
+        <input type="password" name="accpass" id="accpass" placeholder="Confirm Account Password">
+        <input type="button" value="Enable Encryption" id="enablebutton">
         {% elif user.userpreference.encryption == True %}
         <h2>Change Encryption Password</h2>
         <h2>Disable Encryption</h2>

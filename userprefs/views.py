@@ -156,3 +156,17 @@ def crypto_settings(request):
             return HttpResponseRedirect(reverse('userprefs:settings_page'))
     elif request.method == "POST" and request.user.userpreference.encryption == True:
         return HttpResponse("not implemented.")
+
+@login_required
+def confirm_crypto(request):
+    """Enable crypto on the user's account after completing the process."""
+    encryptedpass = request.POST["encryptedpass"]
+    if request.user.check_password(request.POST["accpass"]):
+        request.user.userpreference.encryptedkey = encryptedpass
+        request.user.userpreference.encryption = True
+        request.user.userpreference.save()
+        messages.success(request, "Encryption successfully enabled!")
+        return HttpResponse("success")
+    else:
+        messages.error("Account password does not match.")
+        return HttpResponse("failure")
