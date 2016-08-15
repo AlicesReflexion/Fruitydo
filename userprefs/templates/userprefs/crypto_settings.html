@@ -10,6 +10,9 @@
 {% if user.userpreference.encryption == False and request.method == "POST" %}
 <script src="{% static 'js/enable_crypto.js' %}"></script>
 {% endif %}
+{% if user.userpreference.encryption == True %}
+<script src="{% static 'js/crypto-settings.js' %}"></script>
+{% endif %}
 {% endblock %}
 {% block content %}
 {% if user.is_authenticated %}
