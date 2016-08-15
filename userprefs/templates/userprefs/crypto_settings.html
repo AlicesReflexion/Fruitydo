@@ -20,8 +20,8 @@
         <h1>Encryption Settings</h1>
         {% if user.userpreference.encryption == False and request.method != "POST" %}
         <p>Encryption is a very strong form of accoutn protection that makes it impossible for ANYONE,
-        including hackers, governments, or even the site's admin, to access your 
-        tasks without your encryption password.</p>
+        including hackers, governments, or even the site's admin, to read your tasks without an encryption password
+        you provide.</p>
         <p>However, this does come with several caveats:</p>
         <ul>
                 <li>You must have a separate encryption password that is different from your account password.</li>
@@ -32,6 +32,8 @@
                 and if they do, it's impossible for Fruitydo to fix them.</li>
                 <li>Not all the information on your account is encrypted. Task titles and events are. However, an attacker could
                 still get access to various metadata, including the number of tasks, and the dates of events.</li>
+                <li>If an attacker gets access to your account, they can still delete or change your tasks and events, even
+                without your encryption password.</li>
         </ul>
         <p>If you enable encryption, you can still change your mind later and turn it off, as long as you still have
         your encryption password. You can also change your encryption password later as long as you still have your old
