@@ -12,12 +12,25 @@
 <script src="{% static 'js/external/js-cookie.js' %}"></script>
 <script src="{% static 'js/profilepage.js' %}"></script>
 <script src="{% static 'js/todo-ui.js' %}"></script>
+{% if user.userpreference.encryption == True %}
+<script src="{% static 'js/external/sjcl.js' %}"></script>
+<script src="{% static 'js/decrypt.js' %}"></script>
+{% endif %}
 {% endblock %}
 
 {% block title %}Profile{% endblock %}
 
 {% block content %}
 {% if user.is_authenticated %}
+{% if user.userpreference.encryption == True %}
+<div class="encryptionoverlay">
+    <div class="wrapper">
+    <h1>Encryption password required to continue.</h1>
+    <input type="password" id="encpassword">
+    <input type="button" value="Decrypt tasks" id="decbutton">
+    </div>
+</div>
+{% endif %}
 <div class="wrapper">
     <div class="headertitle">
       <h1>Welcome back, {{ user.username }}</h1>

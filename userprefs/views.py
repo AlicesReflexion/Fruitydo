@@ -170,3 +170,7 @@ def confirm_crypto(request):
     else:
         messages.error("Account password does not match.")
         return HttpResponse("failure")
+
+@login_required
+def crypto_key(request):
+    return HttpResponse(request.user.userpreference.encryptedkey)
