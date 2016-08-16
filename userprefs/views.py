@@ -1,9 +1,11 @@
 """Views controlling the user settings page. So 2FA, password resetting,
 encryption, and other settings, and their relevant pages."""
+import json
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
+from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.decorators import login_required
@@ -11,6 +13,7 @@ from django.template.loader import get_template
 import pyotp
 import qrcode
 from .models import Userpreference
+from profilepage.models import Task, Event
 from fd_register.views import test_user
 import re
 
@@ -174,3 +177,22 @@ def confirm_crypto(request):
 @login_required
 def crypto_key(request):
     return HttpResponse(request.user.userpreference.encryptedkey)
+
+@login_required
+def all_tasks(request):
+    tasks = Task.objects.filter(User_id=request.user.id)
+    totalevents = []
+    for task in tasks:
+        events = Event.objects.filter(Task_id=task.id)
+        for event in events:
+            eventdata = {'id': task.id, 'description': event.event_description, 'pub_date': event.pub_date}
+            totalevents.append(eventdata)
+    finaldata = json.dumps(totalevents, cls=DjangoJSONEncoder)
+    return HttpResponse(finaldata, content_type='application/json')
+
+@login_required
+def disable_crypto(request):
+    request.user.userpreference.encryption = False
+    request.user.userpreference.save()
+    messages.success(request, "Encryption successfully disabled")
+    return HttpResponse("success")
