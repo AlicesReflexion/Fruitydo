@@ -7,6 +7,7 @@ from django_markup.markup import formatter
 from django.core.serializers.json import DjangoJSONEncoder
 from django.contrib import messages
 from .models import Task, Event
+from userprefs.models import Userpreference
 from django.contrib.auth.decorators import login_required
 
 NOEVENT = "Nothing happened on this date."
@@ -120,7 +121,10 @@ def event_fetch(request):
     else:
         fancy = formatter(returnevent.event_description, filter_name='markdown')
         raw = returnevent.event_description
-        responsedata = {'fancy': fancy, 'raw':raw}
+        if user.userpreference.encryption == False:
+            responsedata = {'fancy': fancy, 'raw':raw}
+        else:
+            responsedata = {'raw': raw}
     finalresponse = json.dumps(responsedata, cls=DjangoJSONEncoder)
     return HttpResponse(finalresponse)
 
