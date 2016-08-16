@@ -7,6 +7,20 @@ if(sjcl.random.isReady(8) === 2) {
   console.log(randompass);
 }
 
+function encryptall(password) {
+  $.get("/settings/crypto_settings/all_tasks").done(function(data) {
+    for (i=0; i < data.length; i++) {
+      encryptedevent = sjcl.encrypt(password, data[i]["description"]);
+      $.post("/todo/create_event", {
+        event_description: encryptedevent,
+        task: data[i]["id"],
+        pub_date: data[i]["pub_date"],
+        csrfmiddlewaretoken: csrftoken
+      });
+    }
+  });
+}
+
 $(document).ready(function(){
   $('#enablebutton').click(function() {
     var pass = $('#encpass').val()
@@ -30,7 +44,7 @@ $(document).ready(function(){
           accpass: accpass,
           csrfmiddlewaretoken: csrftoken
         }).done(function(data) {
-          window.location.replace("/settings");
+          encryptall(decryptedpass);
         });
         console.log("Encryption successfully enabled!")
       }
