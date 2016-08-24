@@ -1,260 +1,266 @@
 @import 'branding';
 
 body {
-	background-color: #ffffff;
-	font-family: sans-serif;
-	margin: 0;
-	margin-bottom: 30px;
-	/* Leave space for the footer at the bottom. */
-	min-height: calc(100% - 30px);
+  background-color: $footer-header;
+  font-family: sans-serif;
+  margin: 0;
+  margin-bottom: 30px;
+  // Leave space for the footer at the bottom.
+  min-height: calc(100% - 30px);
 }
 
 .navbar {
-	position: fixed;
-	/* Display from edge to edge. */
-	left: 0;
-	top: 0;
-	margin: 0;
-	padding-top: 4px;
-	padding-left: 0;
-	padding-right: 0;
-	width: 100%;
-	height: 35px;
-	background-color: #ffffff;
-	box-shadow: 0 0 5px #888888;
-	/* Make it appear over the body. */
-	z-index: 5;
-	display: block;
+  background-color: $footer-header;
+  box-shadow: 0 0 5px $shadow;
+  display: block;
+  height: 35px;
+  left: 0;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 4px;
+  position: fixed;
+  // Display from edge to edge.
+  top: 0;
+  width: 100%;
+  // Make it appear over the body.
+  z-index: 5;
+
+  li {
+    // Make all the links appear in one line.
+    display: inline-block;
+    font-size: 16px;
+    height: 35px;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
 }
 
-.navbar > li {
-	/* Make all the links appear in one line. */
-	display: inline-block;
-	font-size: 16px;
-	padding-left: 5px;
-	padding-right: 5px;
-	height: 35px;
-}
 
 .navlink {
-	padding-top: 8px;
-	vertical-align: top;
+  padding-top: 8px;
+  vertical-align: top;
 }
 
-.navlink > a, .auth > a {
-	text-decoration: none;
-	color: #888888;
-	transition: .3s;
+.navlink > a,
+.auth > a {
+  color: $shadow;
+  text-decoration: none;
+  transition: .3s;
 }
 
-.navlink> a:hover, .auth > a:hover {
-	color: #4b3621;
+.navlink> a:hover,
+.auth > a:hover {
+  color: $text;
 }
 
-/* Log in/Log out button */
+// Log in/Log out button
 .auth {
-	float: right;
-	text-align: right;
-	position: relative;
-	right: 0;
-	bottom: -8px;
+  bottom: -8px;
+  float: right;
+  position: relative;
+  right: 0;
+  text-align: right;
 }
 
-/* The actual "body" that's not the navbar or footer. */
+// The actual "body" that's not the navbar or footer.
 .content {
+  background-color: $content-bg;
+  box-shadow: 0 0 10px $shadow;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  // Expand to full height.
+  // 60px for navbar and padding, 20px for footer, 10px bottom padding.
+  // Dunno where the last 10px comes from...
+  min-height: calc(100vh - 100px);
+  padding: 60px 0 10px;
+  position: static;
+  width: 100%;
+  // So content doesn't appear under the navbar.
+  z-index: 1;
 
-background-color: #faf9fb;
-box-shadow: 0 0 10px #888888;
-width: 100%;
-/* Expand to full height.
- 60px for navbar and padding, 20px for footer, 10px bottom padding.
- Dunno where the last 10px comes from... */
-min-height: calc(100vh - 100px);
-height: 100%;
-margin: 0;
-/* So content doesn't appear under the navbar. */
-padding: 60px 0 10px 0;
-position: static;
-z-index: 1;
-left: 0;
 }
 
 .footer {
-z-index: -500;
-position: fixed;
-bottom: 5px;
-background-color: #ffffff;
-height: 15px;
+  background-color: $footer-header;
+  bottom: 5px;
+  height: 15px;
+  position: fixed;
+  z-index: -500;
 }
 
-/* Actually a link, not a button. */
+// Actually a link, not a button.
 .registerbutton {
-	color: $primary-color;
-	border-color: $primary-color;
-	background-color: transparent;
-	border: 5px solid;
-	border-radius: 5px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	margin: 15px;
-	width: 130px;
-	display: inline-block;
-	text-decoration: none;
-	transition: .3s;
-	outline: 0;
-	font-size: 20pt;
-	animation: fadein-delay-delay 1s;
+  animation: fadein-delay-delay 1s;
+  background-color: transparent;
+  border: 5px solid;
+  border-color: $primary-color;
+  border-radius: 5px;
+  color: $primary-color;
+  display: inline-block;
+  font-size: 20pt;
+  margin: 15px;
+  outline: 0;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  text-decoration: none;
+  transition: .3s;
+  width: 130px;
+
 }
 
 .registerbutton:hover {
-	color: #ffffff;
-	background-color: $third-color;
-	border-color: $third-color;
+  background-color: $register-bg;
+  border-color: $register-bg;
+  color: $register-text;
 }
 
 .registercontainer {
-	padding-top: 20px;
+  padding-top: 20px;
 }
 
 .lander {
-	width: 80%;
-	max-width: 980px;
-	/* For low resolution displays. */
-	max-height: 50%;
-	text-align: center;
-	margin-left: auto;
-	margin-right: auto;
-}
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 50%;
+  max-width: 980px;
+  text-align: center;
+  width: 80%;
+  // For low resolution displays.
 
-.lander > img {
-	animation: fadein 1s;
-}
+  img {
+    animation: fadein 1s;
+    width: 100%;
+  }
 
-.lander > .blurb {
-	animation: fadein-delay 1s;
+  .blurb {
+    animation: fadein-delay 1s;
+  }
 }
 
 @keyframes fadein{
-	0% {
-		opacity: 0;
-	}
+  0% {
+    opacity: 0;
+  }
 
-	100% {
-		opacity: 1;
-	}
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadein-delay {
-	0% {
-		opacity: 0;
-	}
+  0% {
+    opacity: 0;
+  }
 
-	30% {
-		opacity: 0;
-	}
+  30% {
+    opacity: 0;
+  }
 
-	100% {
-		opacity: 1;
-	}
+  100% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadein-delay-delay {
-	0% {
-		opacity: 0;
-	}
+  0% {
+    opacity: 0;
+  }
 
-	50% {
-		opacity: 0;
-	}
+  50% {
+    opacity: 0;
+  }
 
-	100% {
-		opacity: 1;
-	}
+  100% {
+    opacity: 1;
+  }
 }
 
-.lander > img {
-	width: 100%;
-}
 
 .textblock {
-	width: 90%;
-	max-width: 980px;
+  //center.
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 
-	/*center.*/
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
+  max-width: 980px;
+  width: 90%;
 }
 
 h1 {
-	color: $primary-color;
+  color: $primary-color;
 }
 
 h2 {
-	color: $second-color;
+  color: $second-color;
 }
 
 h3 {
-	color: $third-color;
+  color: $third-color;
 }
 
 a {
-	color: $second-color;
-	text-decoration: none;
-	transition: .3s;
+  color: $second-color;
+  text-decoration: none;
+  transition: .3s;
 }
 
 a:hover {
-	color: $third-color;
+  color: $third-color;
 }
 
 p {
-	color: #4B3621;
+  color: $text;
 }
 
-input[type=text], input[type=password], input[type=email]{
-	background-color: transparent;
-	border-style: solid;
-	/* Underline-style inputs.*/
-	border-width: 0 0 1px 0;
-	border-color: #AAAAAA;
-	transition: .2s;
-	color: #AAAAAA;
-}
+input[type=text],
+input[type=password],
+input[type=email] {
+  background-color: transparent;
+  border-color: $input-line;
+  border-style: solid;
+  // Underline-style inputs.
+  border-width: 0 0 1px;
+  color: $input-line;
+  transition: .2s;
+  }
 
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus{
-	border-width: 0 0 2px 0;
-	border-color: $second-color;
-	color: $primary-color;
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus {
+  border-color: $second-color;
+  border-width: 0 0 2px;
+  color: $primary-color;
 }
 
 
 .howto > p:nth-of-type(2n) {
-	text-align: right;
+  text-align: right;
 }
 
 .howto > p:nth-of-type(2n+1) {
-	text-align: left;
+  text-align: left;
 }
 
-ul.messages > li {
-	width: 450px;
-	border: 3px solid;
-	border-radius: 10px;
-	padding: 10px;
-	list-style-type: none;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
+messages > li {
+  border: 3px solid;
+  border-radius: 10px;
+  list-style-type: none;
+  margin-bottom: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5px;
+  padding: 10px;
+  width: 450px;
 
-ul.messages > .error {
-	border-color: #ff2222;
-	background-color: #ffcccc;
-}
+  .error {
+    background-color: $error-bg;
+    border-color: $error-border;
+  }
 
-ul.messages > .success {
-	border-color: #5ac54a;
-	background-color: #ccffcc;
+  .success {
+    background-color: $success-bg;
+    border-color: $success-border;
+  }
 }

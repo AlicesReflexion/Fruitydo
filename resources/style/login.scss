@@ -1,30 +1,42 @@
-.logindiv, .registerdiv, .resetdiv, .newpassdiv {
-	width: 95%;
-	max-width: 500px;
-	text-align: center;
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+@import 'branding';
+
+.logindiv,
+.registerdiv,
+.resetdiv,
+.newpassdiv {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 500px;
+  text-align: center;
+  width: 95%;
 }
 
-.loginform > input, .registerform > input, .resetform > input, .newpassform > input {
-	display: block;
-	font-size: 20px;
-	width: 95%;
-	padding: 5px;
-	margin: 5px;
+.loginform > input,
+.registerform > input,
+.resetform > input,
+.newpassform > input {
+  display: block;
+  font-size: 20px;
+  margin: 5px;
+  padding: 5px;
+  width: 95%;
 }
 
-input[type=button], input[type=submit] {
-	background: none;
-	border: 2px solid;
-	border-color: #aad23f;
-	color: #aad23f;
-	border-radius: 5px;
-	transition: .3s;
+input[type=button],
+input[type=submit] {
+  background: none;
+  border: 2px solid;
+  border-color: $third-color;
+  border-radius: 5px;
+  color: $third-color;
+  transition: .3s;
 }
 
-input[type=button]:hover, input[type=button]:focus, input[type=submit]:hover, input[type=submit]:focus {
-	border-color: #fbb03b;
-	color: #fbb03b;
+input[type=button]:hover,
+input[type=button]:focus,
+input[type=submit]:hover,
+input[type=submit]:focus {
+  border-color: $second-color;
+  color: $second-color;
 }

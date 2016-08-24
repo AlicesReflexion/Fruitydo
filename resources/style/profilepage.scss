@@ -1,328 +1,340 @@
 @import 'branding';
 
 .completeform {
-	display: inline;
+  display: inline;
 }
 
-/* div to center the title/new task form. */
+// div to center the title/new task form.
 .wrapper {
-	display: block;
-	margin-right: auto;
-	margin-left: auto;
-	text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .incompletetasks {
-	min-width: 340px;
-	/* Width of the calendar widget and textbox. */
-	max-width: 700px;
-	margin-right: auto;
-	margin-left: auto;
-	height: auto;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  // Width of the calendar widget and textbox.
+  max-width: 700px;
+  min-width: 340px;
 }
 
 .headertitle {
-	display: inline-block;
-	text-align: center;
-}
+  display: inline-block;
+  text-align: center;
 
-.headertitle > form > input[type=text] {
-	/* 27px: The size of the "+" button */
-	width: calc(100% - 27px);
+  form > input[type=text] {
+    // 27px: The size of the "+" button
+    width: calc(100% - 27px);
+  }
+
+  form > input.dueinput {
+    //displayed under the titlebar/button.
+    display: block;
+    width: 100%;
+  }
 }
 
 .tasks-header {
-	text-align: center;
+  text-align: center;
 }
 
 .newtaskbutton {
-	width: 20px;
-	height: 20px;
-	padding: 0;
-	margin: 0;
-	border: none;
-	background-color: transparent;
-	color: $primary-color;
-	transition: .3s;
-	font-weight: bold;
+  background-color: transparent;
+  border: 0;
+  color: $primary-color;
+  font-weight: bold;
+  height: 20px;
+  margin: 0;
+  padding: 0;
+  transition: .3s;
+  width: 20px;
 }
 
 .newtaskbutton:hover {
-	color: $third-color;
+  color: $third-color;
 }
 
 
 .eventbox {
-	/* 31px: The height of the edit/save/done buttons.
-	 * 20px: top and bottom margin.*/
-	height: calc(215px - 51px);
-	/* The same width as the datepicker widget. */
-	width: 280px;
-	overflow: auto;
-	display: none;
-	background-color: #dddddd;
-	border-radius: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 5px;
-	text-align: left;
+  background-color: #dddddd;
+  border-radius: 10px;
+  display: none;
+  // 31px: The height of the edit/save/done buttons.
+  // 20px: top and bottom margin.
+  height: calc(215px - 31px - 20px);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  overflow: auto;
+  padding: 5px;
+  text-align: left;
+  // The same width as the datepicker widget.
+  width: 280px;
+
+  p {
+    margin: 2px 0;
+  }
 }
 
-.eventbox > p {
-	margin: 2px 0 2px 0;
+// Headings are colored and have huge margins elsewhere.
+.eventbox > h1,
+.largepreview > h1,
+.eventbox > h2,
+.largepreview> h2,
+.eventbox > h3,
+.largepreview > h3 {
+  color: $text;
+  display: block;
+  margin: 4px 0;
 }
 
-/* Headings are colored and have huge margins elsewhere. */
-.eventbox > h1, .largepreview > h1,
-.eventbox > h2, .largepreview> h2,
-.eventbox > h3, .largepreview > h3
-{
-	margin: 4px 0 4px 0;
-	color: #4b3621;
-	display: block;
-}
-
-/* 31px: The height of the edit/save/done buttons. */
+// 31px: The height of the edit/save/done buttons.
 .desc_input {
-	height: calc(215px - 41px);
-	width: 301px;
-	resize: none;
-	display: inline;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 0;
-	box-shadow: inset, 3px, 3px, 3px, 3px, black;
+  box-shadow: inset, 3px, 3px, 3px, 3px, black;
+  display: inline;
+  height: calc(215px - 41px);
+  margin-bottom: 10px;
+  margin-top: 10px;
+  padding: 0;
+  resize: none;
+  width: 301px;
 }
 
 .delete_form {
-	display: inline;
+  display: inline;
 }
 
-.viewcontrols, .editcontrols {
-	text-align: right;
+.viewcontrols,
+.editcontrols {
+  text-align: right;
 }
 
 .task_calendar {
-	display: inline-block;
-	width: 100%;
-	padding-left: 0 !important;
-	padding-right: 0 !important;
+  display: inline-block;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
 }
 
 .calendarcontainer {
-	display: inline-table;
-	vertical-align: top;
-	width: 278.4px;
-	height: 241.95px;
+  display: inline-table;
+  height: 241.95px;
+  vertical-align: top;
+  width: 278.4px;
 }
 
 .editorcontainer {
-	display: inline-table;
-	vertical-align: top;
+  display: inline-table;
+  vertical-align: top;
 }
 
-/* Necessary for the textarea and div to resize properly. */
+// Necessary for the textarea and div to resize properly.
 tr {
-	height: 100%;
+  height: 100%;
 }
 
 .ui-datepicker-inline {
-	border: 0;
+  border: 0;
 }
 
-/* Highlight dates with events. */
-.ui-datepicker-calendar > tbody > tr > td.event > a.ui-state-default {
-	background-color: #dddddd;
-}
+.ui-datepicker-calendar > tbody > tr {
 
-.ui-datepicker-calendar > tbody > tr > td.due > a.ui-state-default {
-	background-color: $primary-color;
-}
+  td {
+    .ui-state-default {
+      background: transparent;
+      border: 0;
+      border-radius: 30px;
+      text-align: center;
+    }
 
-.ui-datepicker-calendar > tbody > tr > td.due > a.ui-state-active {
-	color: #ffffff;
-}
+    .ui-state-active {
+      color: $primary-color;
+      font-weight: bold;
+    }
+  }
 
-.ui-datepicker-calendar > tbody > tr > td > .ui-state-default {
-	text-align: center;
-	border-radius: 30px;
-	background: transparent;
-	border: none;
-}
+  td.event > a.ui-state-default {
+    // Highlight dates with events.
+    background-color: #dddddd;
+  }
 
-.ui-datepicker-calendar > tbody > tr > td > .ui-state-active {
-	font-weight: bold;
-	color: $primary-color;
-}
+  td.due {
+    a.ui-state-default {
+      background-color: $primary-color;
+    }
 
-.ui-datepicker-calendar > tbody> tr > .ui-datepicker-today > a {
-	font-weight: bold;
-	color: $third-color;
-}
+    a.ui-state-active {
+      color: #ffffff;
+    }
+  }
 
-.ui-datepicker-calendar > tbody > tr > .ui-datepicker-today > .ui-state-active {
-	color: $primary-color;
+  .ui-datepicker-today {
+    a {
+      color: $third-color;
+      font-weight: bold;
+    }
+
+    .ui-state-active {
+      color: $primary-color;
+    }
+  }
 }
 
 .ui-datepicker-title {
-	color: $second-color;
+  color: $second-color;
 }
 
 @for $i from 1 through 7 {
-/* Rainbow accross the week. */
-.ui-datepicker-calendar > thead > tr > th:nth-of-type(#{$i}) {color: nth($logo-colors, $i)}
+// Rainbow accross the week.
+  .ui-datepicker-calendar > thead > tr > th:nth-of-type(#{$i}) {color: nth($logo-colors, $i);}
 }
 
-.headertitle > form > input.dueinput {
-	/* Displayed under the titlebar/button. */
-	width: 100%;
-	display: block;
-}
 
 .ui-datepicker-header {
-	background-color: transparent;
-	border: none;
+  background-color: transparent;
+  border: 0;
 }
 
 .ui-widget-content {
-	background: transparent;
-	border: none;
+  background: transparent;
+  border: 0;
 }
 
 .ui-accordion-header {
-	background: transparent;
-	border: none;
-	text-align: center;
-	font-weight: bold;
-	transition: .3s;
+  background: transparent;
+  border: 0;
+  font-weight: bold;
+  text-align: center;
+  transition: .3s;
+
+  .ui-state-active {
+    color: $primary-color;
+  }
 }
 
 .ui-accordion-content {
-	text-align: center;
+  text-align: center;
+
+  .ui-state-default {
+    color: $third-color;
+  }
 }
 
-.ui-accordion-header.ui-state-default {
-	color: $third-color;
-}
 
-.ui- {
-	border: none;
-}
-
-.ui-accordion-header.ui-state-active {
-	color: $primary-color;
-}
 
 .ui-accordion-header-icon {
-	display: none;
+  display: none;
 }
 
-/* Not displayed until the user decides to input a due date. */
+// Not displayed until the user decides to input a due date.
 .duecalendar {
-	display: none;
+  display: none;
 }
 
 
 a.taskbuttons {
-	border: none;
-	font-size: 16px;
-	color: $primary-color;
-	padding-right: 5px;
+  border: 0;
+  color: $primary-color;
+  font-size: 16px;
+  padding-right: 5px;
 }
 
 .largecontrols > .taskbuttons {
-	color: #d5d5d5;
+  color: #d5d5d5;
 }
 
 .largecontrols > .taskbuttons:hover {
-	color: #ffffff;
+  color: #ffffff;
 }
 
 .taskbuttons:hover {
-	color: $second-color;
+  color: $second-color;
 }
 
 input[type=checkbox]{
-	display: none;
+  display: none;
 }
 
 input[type=checkbox] + label span {
-	display: inline-block;
-	width: 15px;
-	height: 15px;
-	border: 1px solid #ff5d76;
-	border-radius: 4px;
-	margin-right: 5px;
+  border: 1px solid $primary-color;
+  border-radius: 4px;
+  display: inline-block;
+  height: 15px;
+  margin-right: 5px;
+  width: 15px;
 }
 
 input[type=checkbox]:checked + label span {
-	border: 1px solid #fbb03b;
+  border: 1px solid $second-color;
 }
 
 .largeeditor {
-	width: 85vw;
-	height: 85vh;
-	top: calc(7.5vh - 20px - 32px);
-	left: calc(7.5vw - 20px - 32px);
-	position: absolute;
-	z-index: 999;
-	display: none;
-	/*max-width: 960px;*/
-	background-color: #faf9fb;
-	box-shadow: 0 0 5px #888888;
-	border-radius: 15px;
-	padding: 20px;
-	margin: 32px;
-	overflow: auto;
+  background-color: $content-bg;
+  border-radius: 15px;
+  box-shadow: 0 0 5px $shadow;
+  display: none;
+  height: 85vh;
+  left: calc(7.5vw - 20px - 32px);
+  margin: 32px;
+  overflow: auto;
+  padding: 20px;
+  position: absolute;
+  top: calc(7.5vh - 20px - 32px);
+  //max-width: 960px;
+  width: 85vw;
+  z-index: 999;
 }
 
 .largetextarea {
-	resize: none;
-	width: calc(100% - 40px + 19px);
-	height: 100%;
-	display: none;
+  display: none;
+  height: 100%;
+  resize: none;
+  width: calc(100% - 40px + 19px);
 }
 
-.largecontrols.viewcontrols, .largecontrols.editcontrols {
-	display: none;
-	z-index: 999;
-	position: absolute;
-	top: calc(85vh + 7.5vh + 28px);	
+.largecontrols.viewcontrols,
+.largecontrols.editcontrols {
+  display: none;
+  position: absolute;
+  top: calc(85vh + 7.5vh + 28px);
+  z-index: 999;
 }
 
 .largecontrols.editcontrols {
-	left: calc(85vw + 7.5vw + 32px - 64px - 20px - 20px);
-	width: 97px;
+  left: calc(85vw + 7.5vw + 32px - 64px - 20px - 20px);
+  width: 97px;
 }
 
 .largecontrols.viewcontrols {
-	left: calc(85vw + 7.5vw + 32px - 32px - 20px);
-	width: 47px;
+  left: calc(85vw + 7.5vw + 32px - 32px - 20px);
+  width: 47px;
 }
 
-.fade{
-	width: 100%;
-	height: 100vh;
-	background-color: #000000;
-	opacity: 0.6;
-	z-index: 998;
-	position: absolute;
-	top: 0;
-	left: 0;
-	display: none;
+.fade {
+  background-color: #000000;
+  display: none;
+  height: 100vh;
+  left: 0;
+  opacity: .6;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 998;
 }
 
-.encryptionoverlay{
-	width: 100%;
-	height: 100vh;
-	background-color: #FFFFFF;
-	opacity: 1;
-	z-index: 998;
-	position: absolute;
-	top: 0;
-	left: 0;
-	text-align: center;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.encryptionoverlay {
+  align-items: center;
+  background-color: $content-bg;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  z-index: 998;
 }
