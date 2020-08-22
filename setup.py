@@ -6,5 +6,5 @@ setup(name='Fruitydo',
     author='alexskc',
     author_email='alexskc@autistici.org',
     url='fruitydo.alexskc.xyz',
-    install_requires=['Django==1.8.2',],
+    install_requires=['Django==1.11.29',],
 )
